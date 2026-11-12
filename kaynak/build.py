@@ -10,7 +10,7 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'src')
 OUT = os.path.join(HERE, '..', 'index.html')
-FILES = ['lang.js', 'data.js', 'game.js', 'corp.js', 'prog.js', 'map.js', 'art.js', 'ui2.js', 'ui.js']
+FILES = ['lang.js', 'data.js', 'game.js', 'corp.js', 'prog.js', 'deep.js', 'deep2.js', 'deep3.js', 'deep4.js', 'map.js', 'art.js', 'ui2.js', 'ui3.js', 'ui4.js', 'ui5.js', 'ui6.js', 'ui7.js', 'audio.js', 'ui.js']
 PWA = '''<link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">

@@ -1,11 +1,12 @@
 /* ================= ŞİRKET YÖNETİMİ: FİLOLAR, ÇALIŞANLAR, BİNA, DİPLOMASİ ================= */
-const FLEETS=[{k:'koster',n:'',sh:'',cls:['koster']},{k:'gcargo',n:'',sh:'',cls:['gcargo']},{k:'bulk',n:'',sh:'',cls:['handy','supra','pmax']},{k:'tank',n:'',sh:'',cls:['ctank','mr','afra']}];
-const FLEET3={koster:[['Koster filosu','Coaster fleet','沿海货船船队'],['Koster','Coaster','沿海货船']],gcargo:[['Genel kargo filosu','General cargo fleet','杂货船船队'],['Genel kargo','General cargo','杂货船']],bulk:[['Dökme yük filosu','Bulk carrier fleet','散货船队'],['Dökme yük','Bulk','散货']],tank:[['Tanker filosu','Tanker fleet','油轮船队'],['Tanker','Tanker','油轮']]};
+const FLEETS=[{k:'koster',n:'',sh:'',cls:['koster']},{k:'gcargo',n:'',sh:'',cls:['gcargo']},{k:'bulk',n:'',sh:'',cls:['handy','supra','pmax']},{k:'tank',n:'',sh:'',cls:['ctank','mr','afra']},{k:'box',n:'',sh:'',cls:['feeder','cbox']},{k:'roro',n:'',sh:'',cls:['pctc']},{k:'gas',n:'',sh:'',cls:['lng']}];
+const FLEET3={koster:[['Koster filosu','Coaster fleet','沿海货船船队'],['Koster','Coaster','沿海货船']],gcargo:[['Genel kargo filosu','General cargo fleet','杂货船船队'],['Genel kargo','General cargo','杂货船']],bulk:[['Dökme yük filosu','Bulk carrier fleet','散货船队'],['Dökme yük','Bulk','散货']],tank:[['Tanker filosu','Tanker fleet','油轮船队'],['Tanker','Tanker','油轮']],box:[['Konteyner filosu','Container fleet','集装箱船队'],['Konteyner','Container','集装箱']],roro:[['Ro-Ro filosu','Ro-Ro fleet','滚装船队'],['Ro-Ro','Ro-Ro','滚装']],gas:[['LNG filosu','LNG fleet','LNG船队'],['LNG','LNG','LNG']]};
 const FLEETOF={},FLEET={};FLEETS.forEach(f=>{FLEET[f.k]=f;f.cls.forEach(c=>FLEETOF[c]=f.k);});
-const SROLE={mgr:{n:'',base:6500,d:''},insp:{n:'',base:7000,d:''},dip:{n:'',base:7500,d:''}};
+const SROLE={mgr:{n:'',base:6500,d:''},insp:{n:'',base:7000,d:''},dip:{n:'',base:7500,d:''},law:{n:'',base:8000,d:''}};
 const SROLE3={
  mgr:[['Filo müdürü','Fleet manager','船队经理'],['Filosundaki gemilere yük bulur, ikmali yapar ve sefere çıkarır. İyisi kârlı iş bağlar, kötüsü zarar ettirir. Becerisi özgeçmişten tam anlaşılmaz; yaptığı işlere bak.','Finds cargo for the ships in the fleet, arranges supplies and sends them to sea. A good one closes profitable deals, a bad one loses you money. The CV doesn’t really show skill; judge by results.','为船队中的船舶寻找货源、安排补给并派船出航。好的经理能谈成赚钱的生意，差的会让你亏钱。简历看不出真实能力，要看实际业绩。']],
  insp:[['Makine enspektörü','Technical superintendent','机务主管'],['Gemilerin durumunu izler, bakım zamanı gelince sana sorar. İyisi sorunu erken görür, arızayı azaltır ve bakımı ucuza bağlar.','Monitors the ships’ condition and asks you when maintenance is due. A good one spots trouble early, reduces breakdowns and gets maintenance done cheaply.','监控船舶状况，到了维修时间会征求你的意见。好的机务主管能及早发现问题、减少故障，并以较低成本完成维修。']],
+ law:[['Hukuk müşaviri','Legal counsel','法律顾问'],['Şirkete açılan davaları yürütür. İyisi mahkemede kazanma şansını artırır, uzlaşmaları ucuzlatır ve avukatlık masrafını düşürür. Müşavir yoksa her dava dışarıdan pahalı bir büroya gider.','Handles lawsuits against the company. A good one improves your chances in court, makes settlements cheaper and cuts legal fees. Without counsel every case goes to an expensive outside firm.','负责公司的诉讼案件。好的法律顾问能提高胜诉几率、降低和解金额并减少律师费。没有顾问时，每个案件都要交给昂贵的外部律所。']],
  dip:[['Dış ilişkiler müdürü','External relations manager','对外关系经理'],['Ülkelerle ilişkileri yürütür. İlişki kazanımlarını artırır, ticaret heyetlerini ucuzlatır.','Handles relations with countries. Increases relation gains and makes trade delegations cheaper.','负责与各国的关系。提高关系增幅，并降低贸易代表团的费用。']]};
 const HQ=[null,
  {n:'',slots:1,cost:0,nw:0,rent:1500,d:''},
@@ -30,25 +31,36 @@ const AUTOLBL={bd:[['Seyirde arıza','Breakdown at sea','航行中故障'],[['m�
  maint:[['Bakım önerisi','Maintenance proposal','维修建议'],[['yaptırılsın','do it','执行'],['yaptırılmasın','don’t do it','不执行']]],
  bribe:[['Limanda ek ödeme talebi','Extra payment request in port','港口索要额外费用'],[['ödensin','pay','付款'],['reddedilsin','refuse','拒绝']]],
  info:[['Bilgi pencereleri','Information windows','信息窗口'],[NOWIN]],lvl:[['Seviye atlama','Level-ups','升级通知'],[NOWIN]],
- nofuel:[['Denizde yakıt bitmesi','Running out of fuel at sea','海上燃油耗尽'],[['acil ikmal istensin','request emergency bunkers','申请紧急加油']]]};
+ nofuel:[['Denizde yakıt bitmesi','Running out of fuel at sea','海上燃油耗尽'],[['acil ikmal istensin','request emergency bunkers','申请紧急加油']]],
+ sar:[['İmdat çağrısı','Distress call','求救信号'],[['yardıma gidilsin','go and help','前往救援'],['sahil güvenliğe bildirilsin','alert the coast guard','通知海岸警卫队']]],
+ ga:[['Kaza masrafı','Casualty costs','事故费用'],[['müşterek avarya','general average','共同海损'],['masraf üstlenilsin','bear the cost','承担费用']]],
+ grad:[['Kadet mezuniyeti','Cadet graduation','实习生结业'],[['gemide başlasın','start on board','在船任职'],['acentede beklesin','wait at the agency','在中介待命']]],
+ case:[['Davalar','Lawsuits','诉讼'],[['uzlaşılsın','settle','和解'],['mahkemeye gidilsin','go to court','诉诸法庭'],['müşavir karar versin','counsel decides','顾问决定']]],
+ arrest:[['Gemi tutuklaması','Ship arrest','船舶扣押'],[['teminat yatırılsın','post security','提供担保'],['uzlaşılsın','settle','和解']]],
+ svy:[['Sörvey önerisi','Survey proposal','检验建议'],[['yaptırılsın','do it','执行'],['sonraya kalsın','later','以后再说']]],
+ poach:[['Rakiplerin personel teklifi','Rivals poaching crew','对手挖角船员'],[['teklif eşlensin','match the offer','跟进报价'],['%15 zam teklif edilsin','offer a 15% raise','提出加薪15%'],['gitmesine izin verilsin','let them go','让他走']]],
+ war:[['Navlun savaşı','Freight war','运费战'],[['fiyat kırılsın','cut prices','降价'],['çekilinsin','pull out','退出']]],
+ bonus:[['Yılsonu ikramiyesi','Year-end bonus','年终奖'],[['tam maaş','a full month’s pay','一个月工资'],['yarım maaş','half a month’s pay','半个月工资'],['ikramiye yok','no bonus','不发']]],
+ ret:[['Emeklilik','Retirement','退休'],[['ikramiye verilsin','give a bonus','发奖金'],['kalması rica edilsin','ask them to stay','请其留任'],['uğurlansın','wish them well','送别']]],
+ promo:[['Terfi isteği','Promotion request','晋升请求'],[['terfi ettirilsin','promote','提拔'],['zam verilsin','give a raise','加薪'],['reddedilsin','refuse','拒绝']]]};
 
 function initCorp(){S.hq=S.hq||1;S.staff=S.staff||[];S.fleet=S.fleet||{};FLEETS.forEach(f=>{if(!S.fleet[f.k])S.fleet[f.k]={open:true,crew:'cheap'};});
  S.rel=S.rel||{};Object.keys(CNAME).forEach(c=>{if(S.rel[c]===undefined)S.rel[c]=c==='TR'?65:Math.round(rnd(44,58));});
  S.ban=S.ban||{};S.boy=S.boy||{};S.auto=S.auto||{};S.dipCd=S.dipCd||{};S.pol=S.pol||{next:S.day+rnd(25,45),cr:{},last:{},n:0};S.lastSpd=S.lastSpd||1;
- if(!S.spool)refreshStaff();initProg();PORTS.forEach(p=>{if(!S.offers[p.id]){S.offers[p.id]=[];fillOffers(p.id);}});setRouting();}
-function setRouting(){RTc=(S&&S.pol&&S.pol.cr.redsea&&S.pol.cr.redsea.mode===0)?RT2:RT;}
+ if(!S.spool)refreshStaff();initProg();PORTS.forEach(p=>{if(!S.offers[p.id]){S.offers[p.id]=[];fillOffers(p.id);}});setRouting();initDeep();initDeep2();initDeep3();initDeep4();}
+function setRouting(){RTc=(S&&((S.pol&&S.pol.cr.redsea&&S.pol.cr.redsea.mode===0)||(S.rpol&&S.rpol.avoid)))?RT2:RT;}
 
 /* ---------- çalışanlar ---------- */
 function mkStaff(role){const skill=rndSkill(),nat=wpick(NATS,NATW),[f,l]=NAMES[nat],fn=pick(f),ln=pick(l),tier=Math.random()<0.65?(skill>=4?'hi':skill<=2?'lo':'mid'):pick(['hi','mid','lo']);
  return {id:S.nid++,role,skill,nat,name:nat==='CN'?ln+' '+fn:fn+' '+ln,exp:clamp(skill*4+ri(-5,5),0,32),cv:pick(CV[tier]),wage:Math.round(SROLE[role].base*(0.55+0.22*skill)*rnd(0.85,1.2)/50)*50,stat:{voy:0,profit:0,late:0,det:0,jobs:0,hist:[]}};}
-function refreshStaff(){S.spool={mgr:[],insp:[],dip:[]};for(let i=0;i<5;i++)S.spool.mgr.push(mkStaff('mgr'));for(let i=0;i<3;i++){S.spool.insp.push(mkStaff('insp'));S.spool.dip.push(mkStaff('dip'));}S.spoolDay=Math.floor(S.day);}
+function refreshStaff(){S.spool={mgr:[],insp:[],dip:[],law:[]};for(let i=0;i<5;i++)S.spool.mgr.push(mkStaff('mgr'));for(let i=0;i<3;i++){S.spool.insp.push(mkStaff('insp'));S.spool.dip.push(mkStaff('dip'));S.spool.law.push(mkStaff('law'));}S.spoolDay=Math.floor(S.day);}
 const staffOf=(role,fleet)=>S.staff.find(x=>x.role===role&&(role!=='mgr'||x.fleet===fleet));
 const inspector=()=>staffOf('insp'),diplomat=()=>staffOf('dip');
 function mgrOf(s){return staffOf('mgr',FLEETOF[s.cls]);}
 function managed(s){return !s.manual&&!!mgrOf(s);}
 function fireStaff(id){const i=S.staff.findIndex(x=>x.id===id);if(i<0)return;const m=S.staff[i];pay(m.wage,'ofis');S.staff.splice(i,1);
  logMsg(()=>L(m.name+' ('+SROLE[m.role].n+') işten çıkarıldı',m.name+' ('+SROLE[m.role].n+') dismissed',m.name+'（'+SROLE[m.role].n+'）被解雇'));}
-function hireStaff(role,pid,fleet){const pool=S.spool[role],i=pool.findIndex(x=>x.id===pid);if(i<0)return false;const cur=staffOf(role,fleet);
+function hireStaff(role,pid,fleet){if(role==='mgr'&&!mgrUnl()){toast(L('Filo müdürü '+MGRN+' teslimattan sonra açılır','Fleet managers open after '+MGRN+' deliveries','完成'+MGRN+'次交货后可任命船队经理'),'','bad');return false;}const pool=S.spool[role],i=pool.findIndex(x=>x.id===pid);if(i<0)return false;const cur=staffOf(role,fleet);
  if(!cur&&S.staff.length>=HQ[S.hq].slots){toast(L('Kadro dolu. Daha büyük bir binaya taşınman gerekiyor.','No free positions. You need to move to a bigger building.','编制已满，需要搬到更大的办公楼。'),'','bad');return false;}
  const m=pool[i];if(!canPay(m.wage)){toast(L('İmza parası için nakit yetmiyor','Not enough cash for the signing bonus','现金不足以支付签约金'),'','bad');return false;}
  if(cur)fireStaff(cur.id);pool.splice(i,1);pool.push(mkStaff(role));pay(m.wage,'ofis');m.since=Math.floor(S.day);if(role==='mgr')m.fleet=fleet;S.staff.push(m);
@@ -59,7 +71,7 @@ function hireStaff(role,pid,fleet){const pool=S.spool[role],i=pool.findIndex(x=>
 function hash01(a,b){let x=Math.imul(a|0,73856093)^Math.imul(b|0,19349663);x=Math.imul(x^(x>>>13),1274126177);x^=x>>>16;return ((x>>>0)%10000)/10000;}
 function mgrPick(s,m){let best=null,bv=0;const sg=MSIG[m.skill-1];
  for(const o of S.offers[s.port]||[]){if(!fits(s,o)||avoid(o.to))continue;const e=planTrip(s,o.to,o);if(!e.range||!canPay(e.topCost))continue;
-  if(m.skill>=3&&(e.risk.lvl===2||e.days>o.days))continue;
+  if(m.skill>=3&&(e.risk.lvl===2||e.days>o.days||e.wx.sev>0.55))continue;
   const ppd=(e.profit+e.fr*(MNEG[m.skill-1]-1))/Math.max(e.days,0.5);let v=ppd*(1+(hash01(o.id,m.id)*2-1)*sg*2)+(hash01(o.id+7,m.id)*2-1)*sg*5000;
   if(m.skill>=4&&e.risk.lvl===1)v*=0.8;if(v>bv){bv=v;best=o;}}
  return best;}

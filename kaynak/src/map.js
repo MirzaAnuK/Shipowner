@@ -86,17 +86,21 @@ function drawBase(){const g=bx,z=view.z;g.setTransform(DPR,0,0,DPR,0,0);g.lineJo
 }
 
 /* ---------- gemiler ---------- */
-const SLEN={koster:18,gcargo:21,handy:26,supra:28,pmax:31,ctank:20,mr:27,afra:33},SHOLD={koster:1,gcargo:3,handy:5,supra:5,pmax:7};
+const SLEN={koster:18,gcargo:21,handy:26,supra:28,pmax:31,ctank:20,mr:27,afra:33,feeder:23,cbox:31,pctc:27,lng:32},SHOLD={koster:1,gcargo:3,handy:5,supra:5,pmax:7};
 function shipTop(g,s,L,moving,t){const B=Math.max(4.6,L*0.22),h=B/2,st=-L/2,bw=L/2;
  if(moving){g.strokeStyle=TH.foam;g.lineCap='round';g.lineWidth=1.2;for(let k=0;k<3;k++){const ph=(t*0.8+k/3)%1,d=L*0.25+ph*L*1.25,sp=h*0.5+ph*h*1.7;g.globalAlpha=0.6*(1-ph);g.beginPath();g.moveTo(st-d+L*0.22,-sp*0.55);g.lineTo(st-d,-sp);g.moveTo(st-d+L*0.22,sp*0.55);g.lineTo(st-d,sp);g.stroke();}
   g.globalAlpha=0.45;g.setLineDash([2,3]);g.lineDashOffset=t*18;g.beginPath();g.moveTo(st,0);g.lineTo(st-L*1.1,0);g.stroke();g.setLineDash([]);g.globalAlpha=1;g.lineCap='butt';}
  g.beginPath();g.moveTo(bw,0);g.quadraticCurveTo(bw-L*0.14,-h,bw-L*0.32,-h);g.lineTo(st+L*0.09,-h);g.quadraticCurveTo(st,-h,st,-h*0.4);g.lineTo(st,h*0.4);g.quadraticCurveTo(st,h,st+L*0.09,h);g.lineTo(bw-L*0.32,h);g.quadraticCurveTo(bw-L*0.14,h,bw,0);g.closePath();
  g.fillStyle=hullCol(s)||TH.hull;g.fill();g.strokeStyle=TH.foam;g.lineWidth=1.1;g.stroke();
- const d0=st+L*0.27,d1=bw-L*0.24,dh=h-1.4;g.fillStyle=s.type==='tank'?TH.tank:TH.dry;g.fillRect(d0,-dh,d1-d0,dh*2);
- if(L>=13){if(s.type==='tank'){g.strokeStyle=TH.sup;g.lineWidth=0.9;g.beginPath();g.moveTo(d0+1,0);g.lineTo(d1-1,0);g.moveTo((d0+d1)/2,-dh);g.lineTo((d0+d1)/2,dh);g.stroke();}
+ const d0=st+L*0.27,d1=bw-L*0.24,dh=h-1.4;
+ if(s.type==='box'){const n=Math.max(3,Math.round((d1-d0)/3.2)),cw=(d1-d0)/n;for(let i=0;i<n;i++){g.fillStyle=['#b8432f','#2f6fa8','#c99a2e','#2e7d57'][(i*7+s.id)%4];g.fillRect(d0+i*cw+0.3,-dh,cw-0.6,dh*2);}}
+ else if(s.type==='lng'){g.fillStyle=TH.sup;const n=4,cw=(d1-d0)/n;for(let i=0;i<n;i++){g.beginPath();g.arc(d0+cw*(i+0.5),0,Math.min(cw*0.48,dh),0,7);g.fill();}}
+ else if(s.type==='roro'){g.fillStyle=TH.sup;g.fillRect(st+L*0.06,-h+0.8,L*0.84,(h-0.8)*2);}
+ else{g.fillStyle=s.type==='tank'?TH.tank:TH.dry;g.fillRect(d0,-dh,d1-d0,dh*2);}
+ if(L>=13&&(s.type==='dry'||s.type==='tank')){if(s.type==='tank'){g.strokeStyle=TH.sup;g.lineWidth=0.9;g.beginPath();g.moveTo(d0+1,0);g.lineTo(d1-1,0);g.moveTo((d0+d1)/2,-dh);g.lineTo((d0+d1)/2,dh);g.stroke();}
   else{const n=SHOLD[s.cls]||2,gw=(d1-d0)/n;g.fillStyle=TH.deck;for(let i=0;i<n;i++)g.fillRect(d0+i*gw+0.7,-dh+0.9,gw-1.4,dh*2-1.8);}}
  g.fillStyle=TH.sup;g.fillRect(st+L*0.08,-(h-0.9),L*0.16,(h-0.9)*2);g.fillStyle=TH.mag;g.fillRect(st+L*0.115,-1.1,L*0.06,2.2);}
-function shipPos(s){if(s.voy&&(s.state==='sea'||s.state==='broken'))return posOn(s.voy);const p=PORT[s.port];return {lon:p.lon,lat:p.lat,ang:null,i:0};}
+function shipPos(s){if(s.voy&&(s.state==='sea'||s.state==='broken'||s.state==='tc'))return posOn(s.voy);const p=PORT[s.port];return {lon:p.lon,lat:p.lat,ang:null,i:0};}
 function drawMap(now){
  const key=view.lon.toFixed(4)+'|'+view.lat.toFixed(4)+'|'+view.z.toFixed(4)+'|'+CW+'|'+CH+'|'+(S?coLv():0)+'|'+LI;if(key!==baseKey){baseKey=key;drawBase();}
  cx.setTransform(1,0,0,1,0,0);cx.drawImage(base,0,0);cx.setTransform(DPR,0,0,DPR,0,0);if(!S)return;
@@ -108,13 +112,14 @@ function drawMap(now){
  cx.globalAlpha=1;
  if(ui.preview){cx.strokeStyle=TH.mag;cx.lineWidth=2.4;cx.lineDashOffset=-t*14;linePts(cx,ui.preview.map(k=>NODE[k]));cx.lineDashOffset=0;const P=PORT[ui.preview[ui.preview.length-1]];if(P&&P._on){cx.setLineDash([]);cx.beginPath();cx.arc(P._bx,P._by,(P._r||4)+4,0,7);cx.stroke();}}
  cx.setLineDash([]);
+ drawWx(cx,t,z);drawRz(cx,t,z);
  /* gemiler */
  const dock={},hk=clamp(z/14,0.7,1.5);
  for(const s of S.ships){const p=shipPos(s),L=SLEN[s.cls]*f;let x=sx(p.lon),y=sy(p.lat),ang=p.ang;
   if(ang===null){const P=PORT[s.port],k=dock[s.port]=(dock[s.port]||0)+1;
    if(z>=7){const d=(5+(k-1)*8.5)*hk;x+=P.ux*d;y+=P.uy*d;ang=Math.atan2(P.ux,-P.uy);if(Math.cos(ang)<0)ang+=Math.PI;}
    else{x=(P._bx||x)+(P._r||4)+2+L/2+(k-1)*3;y=(P._by||y)-(P._r||4)-3-(k-1)*7;ang=0;}}
-  s._x=x;s._y=y;const sel=ui.sel===s.id,moving=s.state==='sea'&&!(s.hold>0);
+  s._x=x;s._y=y;const sel=ui.sel===s.id,moving=(s.state==='sea'&&!(s.hold>0))||(s.state==='tc'&&!!s.voy&&!(s.tc&&s.tc.off>0));
   cx.save();cx.translate(x,y);
   const rr=L*0.62+4;
   if(s.state==='idle'&&!s.ack){const ph=(t*1.1)%1;cx.strokeStyle=TH.mag;cx.lineWidth=2;cx.globalAlpha=1-ph;cx.beginPath();cx.arc(0,0,rr+ph*9,0,7);cx.stroke();cx.globalAlpha=1;cx.beginPath();cx.arc(0,0,rr,0,7);cx.stroke();}

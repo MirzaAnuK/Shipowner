@@ -34,10 +34,19 @@ const CLS={
  pmax:{n:'Panamax dökme',t:'dry',dwt:[72000,82000],spd:[13,14.5],cons:[30,36],rat:15,base:29e6,age:[5,18]},
  ctank:{n:'Küçük ürün tankeri',t:'tank',dwt:[3500,7500],spd:[10.5,12.5],cons:[7,11],rat:8,base:8e6,age:[14,28]},
  mr:{n:'MR tanker',t:'tank',dwt:[40000,50000],spd:[13,14.5],cons:[24,29],rat:15,base:40e6,age:[6,20]},
- afra:{n:'Aframax tanker',t:'tank',dwt:[100000,115000],spd:[13.5,15],cons:[38,46],rat:17,base:54e6,age:[5,18]}};
-const KINDS={dryX:['Genel kargo','Çelik rulo','Çimento','Kereste','Hurda','Mermer','Gübre','Tahıl','Proje yükü'],dryS:['Genel kargo','Çelik rulo','Çimento','Kereste','Hurda','Mermer','Gübre','Tahıl','Proje yükü'],dryM:['Tahıl','Kömür','Gübre','Klinker','Şeker','Çelik'],dryL:['Demir cevheri','Kömür','Tahıl','Boksit'],tankS:['Motorin','Benzin','Bitkisel yağ','Kimyasal'],tankM:['Motorin','Jet yakıtı','Nafta','Benzin'],tankL:['Ham petrol','Fuel oil']};
-const SZ={X:{dry:[1200,4000]},S:{dry:[4200,9500],tank:[2000,6500]},M:{dry:[18000,58000],tank:[30000,48000]},L:{dry:[62000,80000],tank:[80000,110000]}};
-const REPREQ={dryX:0,dryS:0,dryM:10,dryL:30,tankS:0,tankM:30,tankL:50};
+ afra:{n:'Aframax tanker',t:'tank',dwt:[100000,115000],spd:[13.5,15],cons:[38,46],rat:17,base:54e6,age:[5,18]},
+ feeder:{n:'Feeder konteyner',t:'box',dwt:[9000,16000],spd:[15.5,18],cons:[20,27],rat:11,base:18e6,age:[8,25]},
+ cbox:{n:'Panamax konteyner',t:'box',dwt:[45000,62000],spd:[19,22],cons:[48,60],rat:16,base:36e6,age:[6,20]},
+ pctc:{n:'Araç taşıyıcı',t:'roro',dwt:[14000,21000],spd:[17.5,20],cons:[30,38],rat:14,base:44e6,age:[6,22]},
+ lng:{n:'LNG tankeri',t:'lng',dwt:[70000,85000],spd:[17.5,19.5],cons:[55,68],rat:18,base:80e6,age:[5,18]}};
+const KINDS={dryX:['Genel kargo','Çelik rulo','Çimento','Kereste','Hurda','Mermer','Gübre','Tahıl','Proje yükü'],dryS:['Genel kargo','Çelik rulo','Çimento','Kereste','Hurda','Mermer','Gübre','Tahıl','Proje yükü'],dryM:['Tahıl','Kömür','Gübre','Klinker','Şeker','Çelik'],dryL:['Demir cevheri','Kömür','Tahıl','Boksit'],tankS:['Motorin','Benzin','Bitkisel yağ','Kimyasal'],tankM:['Motorin','Jet yakıtı','Nafta','Benzin'],tankL:['Ham petrol','Fuel oil'],boxS:['Konteyner','Soğutmalı konteyner','Tehlikeli madde (IMO)'],boxM:['Konteyner','Soğutmalı konteyner','Tehlikeli madde (IMO)'],roroM:['Otomobil','Kamyon ve iş makinesi','Tarım makinesi','Otobüs'],lngL:['LNG']};
+const SZ={X:{dry:[1200,4000]},S:{dry:[4200,9500],tank:[2000,6500],box:[6000,14000]},M:{dry:[18000,58000],tank:[30000,48000],box:[28000,52000],roro:[11000,19000]},L:{dry:[62000,80000],tank:[80000,110000],lng:[60000,78000]}};
+const TMUL={dry:1,tank:1.3,boxS:1,boxM:1.35,roro:1.2,lng:2},TOPS={dry:1,tank:0.6,box:0.5,roro:0.45,lng:0.55},TPSC={tank:6,lng:8};
+/* yeni tipler yalnızca uygun limanlarda: konteyner terminali, araç limanı, LNG terminali */
+const TPORTS={box:['IST','IZM','MER','PIR','ALX','GOA','ALC','CAS','RTM','HAM','LOS','DUR','JED','DXB','KHI','BOM','CGP','SIN','SHA','PUS','YOK','SYD','SSZ','BUE','HOU','NYC','LAX'],roro:['IST','PIR','ALX','GOA','RTM','HAM','LOS','DUR','JED','DXB','BOM','SIN','SHA','PUS','YOK','SYD','SSZ','BUE','HOU','NYC','LAX'],lng:['ALG','LOS','DXB','HOU','SYD','IST','PIR','RTM','BOM','SHA','PUS','YOK'],lngx:['ALG','LOS','DXB','HOU','SYD']};
+const portOk=(type,pid)=>!TPORTS[type]||TPORTS[type].includes(pid);
+const shipPre=t=>t==='tank'||t==='lng'?'M/T ':'M/V ';
+const REPREQ={dryX:0,dryS:0,dryM:10,dryL:30,tankS:0,tankM:30,tankL:50,boxS:10,boxM:30,roroM:25,lngL:55};
 const DESTF=[0.85,0.92,1,1.12,1.25],PSC_P=[.06,.15,.3,.5,.7],PSC_T=[30,42,54,64,72];
 const HOME=['IST','IZM','MER','PIR','CND','ALX'],HUBS=['IST','PIR','RTM','SIN','SHA','DXB','HOU','ALC'];
 
@@ -48,14 +57,14 @@ function loadSave(){try{const t=localStorage.getItem(SAVE_KEY);if(!t)return null
 function clearSave(){try{localStorage.removeItem(SAVE_KEY);}catch(e){}}
 
 /* ---------- gemi hesapları ---------- */
-function shipValue(s){return CLS[s.cls].base*(ECO.dfl+(1-ECO.dfl)*Math.pow(Math.max(0,1-s.age/30),1.4))*(0.7+0.3*s.cond/100)+upgVal(s);}
+function shipValue(s){const v=CLS[s.cls].base*(ECO.dfl+(1-ECO.dfl)*Math.pow(Math.max(0,1-s.age/30),1.4))*(0.7+0.3*s.cond/100)+upgVal(s);return S&&S.steel?Math.max(v,ldt(s)*S.steel*0.85):v;}
 function maxCond(s){return clamp(100-s.age*0.9,60,97);}
 function ppCost(s){return 14*Math.pow(s.dwt,0.55);}
 function sk(s,k){const p=s.crew[k];return p?Math.max(1,p.skill-(s.morale<30?1:0)):0;}
 function missingRoles(s){return ROLES.filter(r=>!s.crew[r.k]).map(r=>r.n);}
-function seaSpeed(s){return s.spd*(0.92+0.03*sk(s,'kap'))*(s.cond<50?0.92:1)*(up(s,'coat')?1.03:1);}
-function consSea(s){return s.cons*(1.10-0.03*sk(s,'cb'))*(s.cond<70?1+(70-s.cond)/150:1)*(up(s,'prop')?0.92:1)*(up(s,'coat')?0.96:1);}
-function opsDays(s,tons){return (0.8+tons/12000)*(1.4-0.12*sk(s,'zab'))*(s.type==='tank'?0.6:1)*opsMul(s);}
+function seaSpeed(s){return (s.slow?0.85:1)*s.spd*(0.92+0.03*sk(s,'kap'))*(s.cond<50?0.92:1)*(up(s,'coat')?1.03:1);}
+function consSea(s){return (s.slow?0.62:1)*(s.lngf?0.95:1)*s.cons*(1.10-0.03*sk(s,'cb'))*(s.cond<70?1+(70-s.cond)/150:1)*(up(s,'prop')?0.92:1)*(up(s,'coat')?0.96:1);}
+function opsDays(s,tons){return (0.8+tons/12000)*(1.4-0.12*sk(s,'zab'))*(TOPS[s.type]||1)*opsMul(s)*(s.port&&hasTerm(s.port)?0.75:1);}
 function wageDay(s){let t=0;for(const r of ROLES)if(s.crew[r.k])t+=s.crew[r.k].wage;return t/30;}
 const ECO={fr:1.08,opx:1,szA:5.87,szE:0.25,dfl:0.22};
 const szF=t=>clamp(ECO.szA*Math.pow(t,-ECO.szE),0.3,1);
@@ -64,14 +73,14 @@ function crewN(s){return CLS[s.cls].rat+ROLES.filter(r=>s.crew[r.k]).length;}
 function fuelPrice(pid){return Math.round(620*PORT[pid].bf*S.fuelIdx);}
 function fuelPx(s,pid){return Math.round(fuelPrice(pid)*(up(s,'scr')?0.9:1));}
 function provRate(s){return crewN(s)*9*(0.85+PORT[s.port].st*0.06);}
-function portFee(s,pid){return Math.round((1500+0.25*s.dwt)*[0.7,0.85,1,1.2,1.4][PORT[pid].st-1]*relFee(pid)/10)*10;}
+function portFee(s,pid){return Math.round((1500+0.25*s.dwt)*[0.7,0.85,1,1.2,1.4][PORT[pid].st-1]*relFee(pid)*(hasTerm(pid)?0.4:1)/10)*10;}
 function tollAmt(n,s){return Math.round((n==='Süveyş Kanalı'?8000+2.2*s.dwt:10000+2.6*s.dwt)/100)*100;}
-function pscRisk(s,pid){const st=PORT[pid].st,pI=Math.min(0.92,(PSC_P[st-1]+(s.age>20?0.12:0))*relPsc(pid)),thr=PSC_T[st-1]+(s.type==='tank'?6:0),base=s.cond+(sk(s,'kap')+sk(s,'cb')-6)*3+pscB(s);
+function pscRisk(s,pid){const st=PORT[pid].st,pI=Math.min(0.92,(PSC_P[st-1]+(s.age>20?0.12:0))*relPsc(pid)),thr=PSC_T[st-1]+(TPSC[s.type]||0),base=s.cond+(sk(s,'kap')+sk(s,'cb')-6)*3+pscB(s);
  const pDet=pI*clamp((thr-10-base+7)/14,0,1),pFail=pI*clamp((thr-base+7)/14,0,1);return {pDet,pFail,lvl:pDet>=0.25?2:(pDet>=0.05||pFail>=0.3)?1:0};}
-function estimate(s,to,o){const r=route(s.port,to),sea=r.nm/(seaSpeed(s)*24),ops=o?opsDays(s,o.tons)*2:0,days=sea+ops,fuel=consSea(s)*sea+s.cons*0.08*ops;let toll=0;
+function estimate(s,to,o){const r=route(s.port,to),sea=r.nm/(seaSpeed(s)*24),wait=o?(hasTerm(s.port)?0:cong(s.port)*0.85)+(hasTerm(to)?0:cong(to)*0.85):0,ops=o?opsDays(s,o.tons)*2+wait:0,days=sea+ops,fuel=consSea(s)*sea+s.cons*0.08*ops;let toll=0;
  for(let i=1;i<r.path.length;i++){const tk=TOLL[r.path[i-1]+'-'+r.path[i]];if(tk)toll+=tollAmt(tk,s);}
- const fee=portFee(s,to),run=(wageDay(s)+opexDay(s)+provRate(s))*days,fuelCost=fuel*fuelPx(s,s.port),fr=o?Math.round(o.freight*frMul(s)):0,profit=fr-fuelCost-toll-fee-run;
- return {nm:r.nm,sea,ops,days,fuel,fuelCost,toll,fee,run,fr,profit,ppd:profit/Math.max(days,0.5),risk:pscRisk(s,to),path:r.path};}
+ const fee=portFee(s,to),run=(wageDay(s)+opexDay(s)+provRate(s))*days,fuelCost=fuel*fuelPx(s,s.port),fr=o?Math.round(o.freight*frMul(s)):0,lt=o?layTime(o):0,dr=o?demRate(s.cls):0,dem=o?Math.round(layCalc({lt,dr,used:ops})/100)*100:0,ets=etsCalc(consSea(s)*sea,s.port,to),rz=rzEst(s,r.path),profit=fr-fuelCost-toll-fee-run+dem-ets-rz.cost;
+ return {nm:r.nm,sea,ops,days,fuel,fuelCost,toll,fee,run,fr,profit,wait,lt,dr,dem,wx:routeWx(r.path),ets,rz,ppd:profit/Math.max(days,0.5),risk:pscRisk(s,to),path:r.path};}
 function planTrip(s,to,o){const e=estimate(s,to,o);e.needFuel=e.fuel*1.12+2;e.range=e.needFuel<=s.fuelCap;e.needProv=Math.ceil(e.days+3);
  e.fuelShort=Math.max(0,Math.ceil(Math.min(s.fuelCap,e.needFuel)-s.fuel));e.provShort=Math.max(0,Math.ceil(e.needProv-s.prov));
  e.topCost=e.fuelShort*fuelPx(s,s.port)+e.provShort*provRate(s);e.miss=missingRoles(s);return e;}
@@ -81,9 +90,9 @@ function fin(cat,x){S.fin.cur[cat]=(S.fin.cur[cat]||0)+x;}
 function pay(x,cat,s){if(!(x>0))return;S.cash-=x;fin(cat,-x);if(s&&cat!=='bakım')s.vc=(s.vc||0)+x;}
 function earn(x,cat){S.cash+=x;fin(cat,x);}
 function fleetValue(){let t=0;for(const s of S.ships)t+=shipValue(s);return t;}
-function creditLimit(){return 150000+0.25*fleetValue()+400000*((S.hq||1)-1);}
+function creditLimit(){return 150000+0.25*Math.max(0,fleetValue()-debt())+400000*((S.hq||1)-1);}
 function canPay(x){return S.cash-x>=-creditLimit();}
-function netWorth(){return S.cash+fleetValue();}
+function netWorth(){return S.cash+fleetValue()-debt();}
 function level(){const w=netWorth(),i=w<3e6?0:w<10e6?1:w<30e6?2:w<80e6?3:4;return [L('Tek gemili armatör','Single-ship owner','单船船东'),L('Küçük filo sahibi','Small fleet owner','小型船队船东'),L('Büyüyen şirket','Growing company','成长中的公司'),L('Büyük armatör','Major shipowner','大型船东'),L('Denizcilik devi','Shipping giant','航运巨头')][i];}
 function addRep(x){S.rep=clamp(S.rep+x,((S.hq||1)-1)*4,100);}
 /* kayıt defteri: metin ya da üç dilde metin üreten kapanış */
@@ -95,7 +104,7 @@ function newGame(name){
  initCorp();genMarket(true);refreshPool(true);PORTS.forEach(p=>{S.offers[p.id]=[];fillOffers(p.id);});logFounded();
 }
 function logFounded(){logMsg(()=>L(S.name+' kuruldu. Sermaye: '+USD(S.cash),S.name+' founded. Capital: '+USD(S.cash),S.name+'成立。资本：'+USD(S.cash)));}
-function shipName(type){let n,i=0;do{n=pick(SHIPN);i++;}while(S.names.includes(n)&&i<80);S.names.push(n);return (type==='tank'?'M/T ':'M/V ')+n;}
+function shipName(type){let n,i=0;do{n=pick(SHIPN);i++;}while(S.names.includes(n)&&i<80);S.names.push(n);return shipPre(type)+n;}
 function mkListing(ck,ports,old){ports=ports.filter(p=>portUnl(p));if(!ports.length)ports=['IST'];const c=CLS[ck],age=old?ri(Math.max(c.age[0],c.age[1]-8),c.age[1]):ri(c.age[0],c.age[1]);
  const m={id:S.nid++,cls:ck,type:c.t,dwt:Math.round(rnd(c.dwt[0],c.dwt[1])/100)*100,age,spd:Math.round(rnd(c.spd[0],c.spd[1])*10)/10,cons:Math.round(rnd(c.cons[0],c.cons[1])*2)/2,at:pick(ports)};
  m.cond=Math.round(clamp(maxCond(m)-rnd(3,16),38,96));m.name=shipName(c.t);m.price=Math.round(shipValue(m)*rnd(0.97,1.12)/1000)*1000;return m;}
@@ -103,23 +112,25 @@ function mkStarter(){const m=mkListing('koster',['IST'],false);m.age=ri(21,24);m
 function genMarket(first){S.mktDay=Math.floor(S.day);S.names=S.ships.map(s=>s.name.slice(4));const A=[];
  A.push(first?mkStarter():mkListing('koster',HOME,true),mkListing('koster',HOME),mkListing('gcargo',HOME,true),mkListing('gcargo',HOME),mkListing('ctank',HOME,true),mkListing('handy',HUBS));
  const ks=['supra','pmax','mr','afra','handy','ctank'];for(let i=0;i<3;i++)A.push(mkListing(pick(ks),HUBS));
+ A.push(mkListing(pick(['feeder','feeder','pctc','cbox','lng']),HUBS));
  A.sort((a,b)=>a.price-b.price);S.market=A;}
 function buyBlock(m){if(!licOk(m.cls))return 'lic';if(S.ships.length>=shipCap())return 'cap';if(!canPay(m.price))return 'cash';return '';}
 function buyWhy(m){const k=buyBlock(m);return k==='lic'?L('Ruhsat yok: '+licTxt(m.cls)+' gerekli','No licence: requires '+licTxt(m.cls),'没有执照：需要'+licTxt(m.cls)):k==='cap'?L('Ofisin en fazla '+shipCap()+' gemi yönetebilir. Daha büyük binaya taşın','Your office can manage at most '+shipCap()+' ships. Move to a bigger building','你的办公室最多只能管理'+shipCap()+'艘船。请搬到更大的办公楼'):k==='cash'?L('Nakit ve kredi limitin yetmiyor','Not enough cash and credit','现金和信用额度不足'):'';}
 function buyShip(lid){const i=S.market.findIndex(m=>m.id===lid);if(i<0)return null;const m=S.market[i],k=buyBlock(m);if(k){toast(k==='cash'?L('Bu gemi için nakit yetmiyor','Not enough cash for this ship','现金不足，买不起这艘船'):buyWhy(m),'','bad');return null;}
- pay(m.price,'gemi');S.market.splice(i,1);const cap=Math.round(m.cons*40/10)*10;
+ pay(m.price,'gemi');S.market.splice(i,1);const s=shipFrom(m);logMsg(()=>L(s.name+' satın alındı: '+USD(m.price),s.name+' bought: '+USD(m.price),'购入'+s.name+'：'+USD(m.price)));save();return s;}
+function shipFrom(m){const cap=Math.round(m.cons*40/10)*10;
  const s={id:m.id,cls:m.cls,type:m.type,name:m.name,dwt:m.dwt,age:m.age,spd:m.spd,cons:m.cons,cond:m.cond,port:m.at,state:'idle',op:0,hold:0,fuel:Math.round(cap*0.15),fuelCap:cap,prov:7,crew:{},morale:70,cargo:null,voy:null,flags:{},up:{}};
- S.ships.push(s);logMsg(()=>L(s.name+' satın alındı: '+USD(m.price),s.name+' bought: '+USD(m.price),'购入'+s.name+'：'+USD(m.price)));save();return s;}
-function sellShip(sid){const i=S.ships.findIndex(s=>s.id===sid);if(i<0)return;const s=S.ships[i];if(s.state!=='idle'||s.cargo)return;const v=Math.round(shipValue(s)*0.85/1000)*1000;earn(v,'gemi');S.ships.splice(i,1);
+ S.ships.push(s);svInit(s);return s;}
+function sellShip(sid){const i=S.ships.findIndex(s=>s.id===sid);if(i<0)return;const s=S.ships[i];if(s.state!=='idle'||s.cargo)return;const v=Math.round(shipValue(s)*0.85/1000)*1000;earn(v,'gemi');S.ships.splice(i,1);payoffShip(s);
  const t=()=>L(s.name+' satıldı: '+USD(v),s.name+' sold: '+USD(v),s.name+'已售出：'+USD(v));logMsg(t);toast(t());save();}
 function mkPerson(role,skill){const nat=wpick(NATS,NATW),[f,l]=NAMES[nat],fn=pick(f),ln=pick(l);
- return {id:S.nid++,role,skill,nat,name:nat==='CN'?ln+' '+fn:fn+' '+ln,exp:Math.max(0,skill*4-3+ri(0,4)),wage:Math.round(ROLE[role].base*WMUL[skill]*rnd(0.92,1.08)/50)*50,xp:0};}
+ return personInit({id:S.nid++,role,skill,nat,name:nat==='CN'?ln+' '+fn:fn+' '+ln,exp:Math.max(0,skill*4-3+ri(0,4)),wage:Math.round(ROLE[role].base*WMUL[skill]*rnd(0.92,1.08)/50)*50,xp:0});}
 const rndSkill=()=>wpick([1,2,3,4,5],[22,28,25,17,8]);
 function refreshPool(first){S.poolDay=Math.floor(S.day);for(const r of ROLES){if(first){for(let k=1;k<=5;k++)S.pool.push(mkPerson(r.k,k));continue;}
-  let A=S.pool.filter(p=>p.role===r.k).slice(2);const rest=S.pool.filter(p=>p.role!==r.k);while(A.length<5)A.push(mkPerson(r.k,rndSkill()));S.pool=rest.concat(A);}}
+  const K=S.pool.filter(p=>p.role===r.k&&(p.own||p.ret));let A=S.pool.filter(p=>p.role===r.k&&!(p.own||p.ret)).slice(2);A=K.concat(A);const rest=S.pool.filter(p=>p.role!==r.k);while(A.length<5+K.length)A.push(mkPerson(r.k,rndSkill()));S.pool=rest.concat(A);}}
 function fire(s,role){const p=s.crew[role];if(!p)return;pay(Math.round(p.wage/2),'personel');delete s.crew[role];}
 function hire(s,role,pid){if(!s.port){toast(L('Personel değişimi limanda yapılır','Crew changes are made in port','只能在港口更换船员'),'','bad');return false;}const i=S.pool.findIndex(p=>p.id===pid);if(i<0)return false;
- if(s.crew[role])fire(s,role);const p=S.pool.splice(i,1)[0];s.crew[role]=p;pay(1500,'personel',s);
+ if(s.crew[role]){const o=s.crew[role];if(ceLeft(o)<=7){delete s.crew[role];S.leave.push({p:o,back:Math.floor(S.day)+ri(45,90)});}else fire(s,role);}const p=S.pool.splice(i,1)[0];s.crew[role]=p;p.since=Math.floor(S.day);p.ce=Math.floor(S.day)+CONTR[role]+ri(-15,15);p.poolT=undefined;pay(1500+(crewAir(s.port)?0:2500),'personel',s);
  if(S.pool.filter(x=>x.role===role).length<3)S.pool.push(mkPerson(role,rndSkill()));return true;}
 function autoCrew(s,mode){for(const r of ROLES){if(s.crew[r.k])continue;const c=S.pool.filter(p=>p.role===r.k);if(!c.length)continue;c.sort(mode==='best'?(a,b)=>b.skill-a.skill||a.wage-b.wage:(a,b)=>a.wage-b.wage);hire(s,r.k,c[0].id);}}
 
@@ -133,39 +144,45 @@ function doRepair(s,dock){if(s.state!=='idle')return;const inf=dock?dockInfo(s):
  logMsg(()=>dock?L(s.name+' havuza alındı: '+USD(inf.cost),s.name+' entered drydock: '+USD(inf.cost),s.name+'进坞：'+USD(inf.cost)):L(s.name+' bakıma alındı: '+USD(inf.cost),s.name+' under maintenance: '+USD(inf.cost),s.name+'开始维修：'+USD(inf.cost)));s.ack=false;resume();}
 
 /* ---------- yük teklifleri ---------- */
-function mkOffer(from,type,sz){const [a,b]=SZ[sz][type],tons=Math.round(rnd(a,b)/100)*100;let cands=PORTS.filter(p=>p.id!==from&&portOpen(p.id)).map(p=>({p,d:RTc[from].dist[p.id]}));
+function mkOffer(from,type,sz){const [a,b]=SZ[sz][type],tons=Math.round(rnd(a,b)/100)*100;let cands=PORTS.filter(p=>p.id!==from&&portOpen(p.id)&&portOk(type==='lng'&&TPORTS.lngx.includes(from)?'lng':type,p.id)&&!(type==='lng'&&TPORTS.lngx.includes(p.id))).map(p=>({p,d:RTc[from].dist[p.id]}));if(!cands.length)cands=PORTS.filter(p=>p.id!==from&&portOpen(p.id)).map(p=>({p,d:RTc[from].dist[p.id]}));
  if(sz==='X'||sz==='S'){const near=cands.filter(c=>c.d<=(sz==='X'?2600:5500));cands=near.length>=3?near:cands.sort((x,y)=>x.d-y.d).slice(0,4);}
  const w=cands.map(c=>sz==='X'||sz==='S'?1/Math.pow(c.d+(sz==='X'?250:400),1.2):(c.d<600?0.2:1)/Math.pow(c.d+1500,0.6)),pk=wpick(cands,w),to=pk.p.id,nm=pk.d;
- const per=ECO.fr*(8+0.013*Math.min(nm,1500)+0.008*Math.max(0,nm-1500))*szF(tons)*DESTF[PORT[to].st-1]*(type==='tank'?1.3:1)*rnd(0.85,1.2)*(0.95+S.rep/600)*(0.55+0.45*S.fuelIdx)*offerMul(from,to);
- return {id:S.nid++,type,sz,kind:pick(KINDS[type+sz]),tons,from,to,nm:Math.round(nm),freight:Math.round(tons*per/100)*100,days:Math.ceil(nm/240*1.5+(0.8+tons/12000)*2.6+4),exp:S.day+rnd(8,22),rep:REPREQ[type+sz]};}
+ const per=ECO.fr*(8+0.013*Math.min(nm,1500)+0.008*Math.max(0,nm-1500))*szF(tons)*DESTF[PORT[to].st-1]*(TMUL[type+sz]||TMUL[type]||1)*rnd(0.85,1.2)*(0.95+S.rep/600)*(0.55+0.45*S.fuelIdx)*offerMul(from,to)*pwMul(from,to);
+ const kd=pick(KINDS[type+sz]);
+ return {id:S.nid++,type,sz,kind:kd,imo:kd==='Tehlikeli madde (IMO)'?1:0,tons,from,to,nm:Math.round(nm),freight:Math.round(tons*per*(kd==='Tehlikeli madde (IMO)'?1.25:1)/100)*100,days:Math.ceil(nm/240*1.5+(0.8+tons/12000)*2.6+4),exp:S.day+rnd(8,22),rep:REPREQ[type+sz]};}
 function fillOffers(pid){if(!portOpen(pid)){S.offers[pid]=[];return;}const A=S.offers[pid]=(S.offers[pid]||[]).filter(o=>o.exp>S.day),cnt=(t,z)=>A.filter(o=>o.type===t&&o.sz===z).length;
  while(cnt('dry','X')<3)A.push(mkOffer(pid,'dry','X'));while(cnt('dry','S')<2)A.push(mkOffer(pid,'dry','S'));while(cnt('tank','S')<2)A.push(mkOffer(pid,'tank','S'));
- while(A.length<10){const k=wpick(['dryX','dryS','dryM','dryL','tankS','tankM','tankL'],[14,14,24,14,10,14,10]);A.push(mkOffer(pid,k.slice(0,-1),k.slice(-1)));}}
-function fits(s,o){return s.type===o.type&&o.tons<=s.dwt&&S.rep>=o.rep&&portOpen(o.to);}
+ if(portOk('box',pid)){while(cnt('box','S')<2)A.push(mkOffer(pid,'box','S'));if(portTier(pid)>=2||PORT[pid].c==='TR')while(cnt('box','M')<1)A.push(mkOffer(pid,'box','M'));}
+ if(TPORTS.roro.includes(pid))while(cnt('roro','M')<2)A.push(mkOffer(pid,'roro','M'));
+ if(TPORTS.lngx.includes(pid))while(cnt('lng','L')<2)A.push(mkOffer(pid,'lng','L'));
+ while(A.filter(o=>o.type==='dry'||o.type==='tank').length<10){const k=wpick(['dryX','dryS','dryM','dryL','tankS','tankM','tankL'],[14,14,24,14,10,14,10]);A.push(mkOffer(pid,k.slice(0,-1),k.slice(-1)));}}
+function fits(s,o){return s.type===o.type&&o.tons<=s.dwt&&S.rep>=o.rep&&portOpen(o.to)&&!svOver(s)&&(!o.imo||up(s,'imo'));}
 
 /* ---------- sefer ---------- */
 function depart(s,to,oid,top,by){if(s.state!=='idle'||to===s.port||!PORT[to])return false;if(!portOpen(to)){if(!by)toast(PORT[to].n+': '+portWhy(to),'','bad');return false;}let o=null;
+ if(ciiBanned(s)&&(isEU(to)||isEU(s.port))&&!by){toast(L(s.name+': karbon notu yüzünden AB limanlarına giremez',s.name+': barred from EU ports by its carbon rating',s.name+'：因碳强度评级不得进入欧盟港口'),s.id,'bad');return false;}
+ if(ciiBanned(s)&&isEU(to))return false;
  if(oid){o=(S.offers[s.port]||[]).find(x=>x.id===oid);if(!o){toast(L('Bu yük artık piyasada yok','This cargo is no longer on the market','这批货已不在市场上'),'','bad');return false;}}
  const p=planTrip(s,to,o);if(p.miss.length){toast(L('Personel eksik: ','Crew missing: ','缺少船员：')+LJ(p.miss),s.id,'bad');return false;}
  if(!p.range){toast(L('Bu geminin yakıt menzili bu sefere yetmiyor','This ship’s fuel range is not enough for this voyage','这艘船的燃油续航不足以完成此航次'),'','bad');return false;}
  if(top){if(!canPay(p.topCost)){toast(L('İkmal için nakit yetmiyor','Not enough cash for supplies','现金不足，无法补给'),'','bad');return false;}if(p.fuelShort>0)buyFuel(s,p.fuelShort);if(p.provShort>0)buyProv(s,p.provShort);}
  const r=route(s.port,to),cum=legs(r.path),trig=[];
- for(let i=1;i<r.path.length;i++){const tk=TOLL[r.path[i-1]+'-'+r.path[i]];if(tk)trig.push({k:'toll',at:(cum[i-1]+cum[i])/2,amt:tollAmt(tk,s),n:tk});if(r.path[i]==='GA1'&&Math.random()<0.35)trig.push({k:'pir',at:cum[i]});if(r.path[i]==='HOR'&&S.pol.cr.hormuz)trig.push({k:'war',at:cum[i]});if(r.path[i]==='BAB'&&S.pol.cr.redsea&&S.pol.cr.redsea.mode>0)trig.push({k:'red',at:cum[i],mode:S.pol.cr.redsea.mode});}
- s.voy={from:s.port,to,path:r.path,cum,nm:r.nm,done:0,trig,lastEv:S.day,t0:S.day};
- if(o){S.offers[s.port]=S.offers[s.port].filter(x=>x.id!==oid);s.cargo={kind:o.kind,tons:o.tons,freight:Math.round(o.freight*frMul(s)*(by?MNEG[by.skill-1]:1)/100)*100,by:by?by.id:0,sz:o.sz,to:o.to,from:o.from,due:S.day+o.days,claim:0,t0:S.day};s.state='load';s.op=opsDays(s,o.tons);
+ for(let i=1;i<r.path.length;i++){const tk=TOLL[r.path[i-1]+'-'+r.path[i]];if(tk)trig.push({k:'toll',at:(cum[i-1]+cum[i])/2,amt:tollAmt(tk,s),n:tk});}
+ s.voy={from:s.port,to,path:r.path,cum,nm:r.nm,done:0,trig,lastEv:S.day,t0:S.day,fu:0};
+ if(o){S.offers[s.port]=S.offers[s.port].filter(x=>x.id!==oid);s.cargo={kind:o.kind,tons:o.tons,freight:Math.round(o.freight*frMul(s)*(by?MNEG[by.skill-1]:1)/100)*100,by:by?by.id:0,sz:o.sz,to:o.to,from:o.from,due:S.day+o.days,claim:0,t0:S.day};s.state='load';s.op=opsDays(s,o.tons);{const w1=waitAt(s.port);s.op+=w1;Object.assign(s.cargo,{lt:layTime(o),dr:demRate(s.cls),used:0,w1});}
   const c=s.cargo;logMsg(()=>L(s.name+': '+kindN(c.kind)+' '+N(c.tons)+' t, '+PORT[c.from].n+' → '+PORT[c.to].n+', navlun '+USD(c.freight),s.name+': '+kindN(c.kind)+' '+N(c.tons)+' t, '+PORT[c.from].n+' → '+PORT[c.to].n+', freight '+USD(c.freight),s.name+'：'+kindN(c.kind)+' '+N(c.tons)+'吨，'+PORT[c.from].n+' → '+PORT[c.to].n+'，运费'+USD(c.freight)));}
- else{s.cargo=null;s.state='sea';s.port=null;logMsg(()=>L(s.name+' boş olarak '+PORT[to].n+' limanına gidiyor',s.name+' sailing in ballast to '+PORT[to].n,s.name+'空载驶往'+PORT[to].n));}
+ else{if(!by)S.done.ballastGo=1;s.cargo=null;s.state='sea';s.port=null;logMsg(()=>L(s.name+' boş olarak '+PORT[to].n+' limanına gidiyor',s.name+' sailing in ballast to '+PORT[to].n,s.name+'空载驶往'+PORT[to].n));}
  S.stat.voy++;s.ack=false;resume();save();return true;}
 function idleList(){return S.ships.filter(s=>s.state==='idle'&&!s.ack&&!managed(s));}
 function resume(){if(S.speed>0)return;if(S.opt.autoPause&&idleList().length)return;S.speed=S.lastSpd||1;}
-function goIdle(s,why){s.state='idle';s.op=0;s.ack=false;s.idleAt=S.day;if(managed(s)){R();return;}maintCheck(s);
+function goIdle(s,why){s.state='idle';s.op=0;s.ack=false;s.idleAt=S.day;if(managed(s)){R();return;}tip('port');maintCheck(s);
  toast(L(s.name+': '+PORT[s.port].n+' limanında emir bekliyor',s.name+': awaiting orders at '+PORT[s.port].n,s.name+'：在'+PORT[s.port].n+'等待指令')+(why?L(' ('+why+')',' ('+why+')','（'+why+'）'):''),s.id,'warn');if(S.opt.autoPause)S.speed=0;R();save();}
 function psc(s,P){const st=P.st;
- if(s.flags.dump){s.flags.dump=0;if(Math.random()<[.05,.1,.2,.4,.6][st-1]){const fine=Math.round((60000+s.dwt*3)/1000)*1000;pay(fine,'ceza',s);addRep(-15);addRel(P.c,-10);s.state='held';s.op=5;
+ if(s.flags.dump){s.flags.dump=0;const ct=Math.random()<[.05,.1,.2,.4,.6][st-1];if(!ct)lawWhistle(s);if(ct){const fine=Math.round((60000+s.dwt*3)/1000)*1000;pay(fine,'ceza',s);addRep(-15);addRel(P.c,-10);s.state='held';s.op=5;
    pushInfo(()=>L('MARPOL ihlali: ','MARPOL violation: ','违反MARPOL公约：')+s.name,()=>L(P.n+' liman devleti kontrolü yağ kayıt defterindeki tutarsızlığı fark etti. Ceza '+USD(fine)+', gemi 5 gün tutuldu ve şirketin itibarı ağır yara aldı.','Port State Control at '+P.n+' found inconsistencies in the oil record book. Fine '+USD(fine)+'; the ship is detained for 5 days and the company’s reputation has taken a heavy blow.',P.n+'的港口国监督检查发现油类记录簿有出入。罚款'+USD(fine)+'，船舶被滞留5天，公司声誉严重受损。'));
-   logMsg(()=>L(s.name+' MARPOL ihlalinden tutuldu, ceza '+USD(fine),s.name+' detained for a MARPOL violation, fine '+USD(fine),s.name+'因违反MARPOL被滞留，罚款'+USD(fine)));return 'held';}}
+   logMsg(()=>L(s.name+' MARPOL ihlalinden tutuldu, ceza '+USD(fine),s.name+' detained for a MARPOL violation, fine '+USD(fine),s.name+'因违反MARPOL被滞留，罚款'+USD(fine)));tip('psc');lawOpen('marpol',s,fine*1.5,0.2,()=>L(P.n+' liman devleti kontrolünün raporu üzerine bayrak devleti, kaptan ve çarkçıbaşı hakkında MARPOL ihlalinden kovuşturma başlattı.','Following the Port State Control report at '+P.n+', the flag state has opened a MARPOL prosecution against the master and chief engineer.','根据'+P.n+'港口国监督的报告，船旗国对船长和轮机长提起MARPOL刑事诉讼。'));return 'held';}}
  const pI=Math.min(0.92,(PSC_P[st-1]+(s.age>20?0.12:0))*relPsc(P.id));if(Math.random()>pI)return 'none';
- const thr=PSC_T[st-1]+(s.type==='tank'?6:0),score=s.cond+(sk(s,'kap')+sk(s,'cb')-6)*3+pscB(s)+rnd(-7,7);
+ const thr=PSC_T[st-1]+(TPSC[s.type]||0),score=s.cond+(sk(s,'kap')+sk(s,'cb')-6)*3+pscB(s)+rnd(-7,7)-(svOver(s)?15:0);
  if(score>=thr){if(st>=4)addRep(1);if(!managed(s))toast(L(s.name+': liman devleti denetimi temiz geçti',s.name+': passed the Port State Control inspection',s.name+'：顺利通过港口国监督检查'),s.id,'ok');return 'ok';}
  if(score>=thr-10){const fine=Math.round((3000+s.dwt*0.3)*(st/3)/100)*100;pay(fine,'ceza',s);toast(L(s.name+': denetimde eksiklik bulundu, ceza '+USD(fine),s.name+': deficiencies found in inspection, fine '+USD(fine),s.name+'：检查发现缺陷，罚款'+USD(fine)),s.id,'bad');
   logMsg(()=>L(s.name+': '+P.n+' denetiminde eksiklik, ceza '+USD(fine),s.name+': deficiencies in the '+P.n+' inspection, fine '+USD(fine),s.name+'：'+P.n+'检查发现缺陷，罚款'+USD(fine)));return 'def';}
@@ -175,30 +192,31 @@ function psc(s,P){const st=P.st;
   'Port State Control at '+P.n+' found serious deficiencies. The ship will be detained for '+days+' days. Fine '+USD(fine)+(fix?', mandatory repairs '+USD(fix):'')+'. Taking a ship in this condition to strictly inspected ports is expensive: get it maintained or trade to laxer ports.',
   P.n+'的港口国监督检查发现严重缺陷。船舶将被滞留'+days+'天。罚款'+USD(fine)+(fix?'，强制修理'+USD(fix):'')+'。以这种船况前往检查严格的港口代价高昂：请先维修，或改跑检查宽松的港口。'));
  logMsg(()=>L(s.name+' '+P.n+' limanında tutuldu ('+days+' gün)',s.name+' detained at '+P.n+' ('+days+' days)',s.name+'在'+P.n+'被滞留（'+days+'天）'));return 'held';}
-function arrive(s){const P=PORT[s.voy.to];s.port=P.id;s.voy=null;s.hold=0;pay(portFee(s,P.id),'liman',s);logMsg(()=>L(s.name+' '+P.n+' limanına vardı',s.name+' arrived at '+P.n,s.name+'抵达'+P.n));
- if(S.ets&&EU.includes(P.c)&&s.age>15&&!s.eco&&!up(s,'scr'))pay(Math.round(s.dwt*0.35/10)*10,'liman',s);
+function arrive(s){const P=PORT[s.voy.to],v0=s.voy;s.port=P.id;s.voy=null;etsArrive(s,v0);lawArrive(s,P);quayRoll(s,P);s.hold=0;deepArrive(s);pay(portFee(s,P.id),'liman',s);logMsg(()=>L(s.name+' '+P.n+' limanına vardı',s.name+' arrived at '+P.n,s.name+'抵达'+P.n));
  if(P.c==='IR'&&S.pol.cr.hormuz)addRel('US',-2);
  if(s.morale<30&&Math.random()<0.4){const rs=ROLES.filter(r=>s.crew[r.k]);if(rs.length){const r=pick(rs),p=s.crew[r.k];delete s.crew[r.k];
   toast(L(p.name+' ('+r.n+') moral bozukluğundan istifa etti',p.name+' ('+r.n+') resigned over low morale',p.name+'（'+r.n+'）因士气低落辞职'),s.id,'bad');logMsg(()=>L(s.name+': '+r.n+' '+p.name+' istifa etti',s.name+': '+r.n+' '+p.name+' resigned',s.name+'：'+r.n+p.name+'辞职'));}}
  const res=psc(s,P);
- if(res!=='held'){if(s.cargo){s.state='disch';s.op=opsDays(s,s.cargo.tons)+(res==='def'?1:0);}else goIdle(s);}
+ if(res!=='held'){if(s.cargo){s.state='disch';const w2=waitAt(P.id);s.cargo.w2=w2;s.op=opsDays(s,s.cargo.tons)+(res==='def'?1:0)+w2;}else goIdle(s);}
  if(res!=='held'&&P.st===1&&Math.random()<0.06)evBribe(s,P);
  R();}
 function completeCargo(s){const c=s.cargo,late=Math.max(0,S.day-c.due);let pen=0;if(late>0.5)pen=Math.min(0.4,0.02*Math.ceil(late))*c.freight;
- const cr=(c.claim||0)+(Math.random()<Math.max(0.02,0.14-0.028*sk(s,'zab'))?rnd(0.03,0.08):0),claim=cr*c.freight,net=Math.round(c.freight-pen-claim);
+ const cr=(c.claim||0)+(Math.random()<Math.max(0.02,0.14-0.028*sk(s,'zab'))?rnd(0.03,0.08):0);let claim=cr*c.freight;
+ if(claim>25000&&Math.random()<0.5){const a=claim*1.4,kn=kindN(c.kind),Pn=PORT[c.to].n;lawOpen('cargo',s,a,0.45+0.05*sk(s,'zab'),()=>L(Pn+' limanında alıcı, '+kn+' yükünün hasarlı teslim edildiğini söyleyerek tazminat davası açtı.','At '+Pn+' the receiver has sued, saying the '+kn+' cargo was delivered damaged.','在'+Pn+'，收货人起诉称'+kn+'货物交付时已受损。'));claim=0;}
+ const net=Math.round(c.freight-pen-claim);
  earn(net,'navlun');const prof=Math.round(net-(s.vc||0));s.vc=0;addRel(PORT[c.to].c,late>0.5?-1:0.6);addRel(PORT[c.from].c,0.3);
  if(c.by){const m=S.staff.find(x=>x.id===c.by);if(m){m.stat.voy++;m.stat.profit+=prof;if(late>0.5)m.stat.late++;m.stat.hist.unshift({n:s.name,k:c.kind,f:c.from,t:c.to,p:prof});if(m.stat.hist.length>8)m.stat.hist.length=8;}}
  S.stat.cargo++;S.stat.tons+=c.tons;addRep(late>0.5?-2:({X:0.5,S:0.6,M:1,L:1.5}[c.sz]+(PORT[c.to].st>=4?0.5:0)));const gx=voyXP(c,late>0.5);c.xp=gx;
  const t=()=>L(s.name+': '+kindN(c.kind)+' teslim edildi, navlun '+USD(net)+', sefer kârı '+USD(prof)+', +'+gx+' tecrübe'+(pen>0?' (gecikme cezası '+USD(pen)+')':'')+(claim>0?' (yük hasarı '+USD(claim)+')':''),
   s.name+': '+kindN(c.kind)+' delivered, freight '+USD(net)+', voyage profit '+USD(prof)+', +'+gx+' XP'+(pen>0?' (late penalty '+USD(pen)+')':'')+(claim>0?' (cargo damage '+USD(claim)+')':''),
   s.name+'：'+kindN(c.kind)+'已交付，运费'+USD(net)+'，航次利润'+USD(prof)+'，经验+'+gx+(pen>0?'（延误罚款'+USD(pen)+'）':'')+(claim>0?'（货损'+USD(claim)+'）':''));
- if(!managed(s))toast(t(),s.id,pen>0||claim>0?'warn':'ok');logMsg(t);s.cargo=null;addXP(FLEETOF[s.cls],gx);goIdle(s);}
+ if(!managed(s))toast(t(),s.id,pen>0||claim>0?'warn':'ok');logMsg(t);laySettle(s);s.cargo=null;addXP(FLEETOF[s.cls],gx);goIdle(s);}
 
 /* ---------- olaylar ----------
    başlık, metin ve seçenekler kapanış olarak verilir; olay kaydedilmeden önce üç dile çevrilir */
 const OK3=()=>L('Tamam','OK','好的');
 function evText(ev){ev.title=LX(ev.title);ev.body=LX(ev.body);ev.opts=ev.opts.map(o=>({l:LX(o.l),s:LX(o.s)}));return ev;}
-function pushEv(ev){evText(ev);const a=S.auto[ev.k];
+function pushEv(ev){if(ev.k!=='info'&&ev.k!=='lvl')tip('ev');evText(ev);const a=S.auto[ev.k];
  if(a!==undefined&&ev.k!=='over'&&ev.k!=='pol'){const i=Math.min(a,ev.opts.length-1);
   if(ev.k==='info'||ev.k==='lvl'){toast(tx(ev.title),ev.sid,ev.k==='lvl'?'ok':'bad');logMsg(()=>tx(ev.title)+'. '+tx(ev.body));}
   else toast(tx(ev.title)+': '+tx(ev.opts[i].l)+L(' (otomatik)',' (automatic)','（自动）'),ev.sid);applyEv(ev,i);return;}
@@ -207,15 +225,15 @@ function pushInfo(title,body){pushEv({k:'info',title,body,opts:[{l:OK3}]});}
 function evBribe(s,P){const amt=Math.round((1200+s.dwt*0.05)/100)*100;pushEv({k:'bribe',sid:s.id,title:()=>L('Limanda ek ödeme talebi: ','Request for an extra payment in port: ','港口索要额外费用：')+s.name,
  body:()=>L(P.n+' limanında bir görevli, evrak işlerini “hızlandırmak” için '+USD(amt)+' istiyor. Ödenmezse işlemler ağırdan alınacak.','An official at '+P.n+' wants '+USD(amt)+' to “speed up” the paperwork. If you don’t pay, things will move slowly.',P.n+'的一名官员索要'+USD(amt)+'来“加快”办理手续。不付的话，手续会被拖延。'),d:{amt},
  opts:[{l:()=>L('Öde, iş yürüsün','Pay and keep things moving','付钱，让事情顺利进行'),s:()=>USD(amt)+L(' · gecikme olmaz · duyulursa itibar zedelenir',' · no delay · reputation suffers if it gets out',' · 不会延误 · 若传出去会损害声誉')},{l:()=>L('Reddet','Refuse','拒绝'),s:()=>L('2 gün gecikme · itibar artar','2-day delay · reputation improves','延误2天 · 声誉提升')}]});}
-function evBreakdown(s){const major=Math.random()<0.15+Math.max(0,70-s.cond)/200,sev=major?2.5:1,avg=(sk(s,'cb')+sk(s,'c2'))/2,pOk=clamp(0.22+0.14*avg-(major?0.2:0),0.1,0.95),
+function evBreakdown(s){tip('bd');const major=Math.random()<0.15+Math.max(0,70-s.cond)/200,sev=major?2.5:1,avg=(sk(s,'cb')+sk(s,'c2'))/2,pOk=clamp(0.22+0.14*avg-(major?0.2:0),0.1,0.95),
  svc=Math.round((9000+s.dwt*0.9)*sev/100)*100,parts=Math.round((1500+s.dwt*0.1)*sev/100)*100,v=s.voy,bi=ri(0,BD3.length-1),pct=Math.floor(v.done/v.nm*100);
  s.state='broken';s.op=99;s.cond=Math.max(15,s.cond-0.5);v.lastEv=S.day;
  pushEv({k:'bd',sid:s.id,title:()=>(major?L('Ciddi arıza: ','Major breakdown: ','严重故障：'):L('Arıza: ','Breakdown: ','故障：'))+s.name,
   body:()=>BD3[bi][LI]+L('. Gemi '+PORT[v.from].n+' – '+PORT[v.to].n+' seferinde, yolun %'+pct+' noktasında sürükleniyor.','. The ship is drifting '+pct+'% of the way through the '+PORT[v.from].n+'–'+PORT[v.to].n+' voyage.','。船舶在'+PORT[v.from].n+'至'+PORT[v.to].n+'航次中、航程'+pct+'%处漂航。'),d:{pOk,svc,parts,sev,avg},
   opts:[{l:()=>L('Kendi mürettebatım tamir etsin','Let my crew fix it','让我的船员自己修'),s:()=>L('Parça ','Parts ','零件')+USD(parts)+L(' · başarı ihtimali ',' · chance of success ',' · 成功率')+PC(Math.round(pOk*100))},
    {l:()=>L('Servis çağır','Call a service team','叫维修服务'),s:()=>USD(svc)+' · '+D1(1.5*sev)+L(' gün · garantili',' days · guaranteed','天 · 保证修好')}]});}
-function evStorm(s){const v=s.voy;v.lastStorm=S.day;v.lastEv=S.day;const pOk=clamp(0.3+0.13*sk(s,'kap')+(up(s,'nav')?0.2:0),0.2,0.97),delay=Math.round(rnd(0.8,2)*10)/10,kn=s.crew.kap?s.crew.kap.name:'';
- pushEv({k:'storm',sid:s.id,title:()=>L('Fırtına uyarısı: ','Storm warning: ','风暴预警：')+s.name,body:()=>L('Rota üzerinde 9 bofor fırtına bekleniyor. Kaptan '+(kn?kn+' ':'')+'talimat bekliyor.','A force 9 gale is forecast on the route. '+(kn?'Captain '+kn:'The captain')+' is waiting for instructions.','航线上预计有9级大风。船长'+kn+'正在等待指示。'),d:{pOk,delay},
+function evStorm(s){tip('storm');const v=s.voy;v.lastStorm=S.day;v.lastEv=S.day;const pOk=clamp(0.3+0.13*sk(s,'kap')+(up(s,'nav')?0.2:0),0.2,0.97),delay=Math.round(rnd(0.8,2)*10)/10,kn=s.crew.kap?s.crew.kap.name:'';
+ pushEv({k:'storm',sid:s.id,title:()=>L('Fırtına uyarısı: ','Storm warning: ','风暴预警：')+s.name,body:()=>(v.wxn?v.wxn+'. ':'')+L('Rota üzerinde 9 bofor fırtına bekleniyor. Kaptan '+(kn?kn+' ':'')+'talimat bekliyor.','A force 9 gale is forecast on the route. '+(kn?'Captain '+kn:'The captain')+' is waiting for instructions.','航线上预计有9级大风。船长'+kn+'正在等待指示。'),d:{pOk,delay},
   opts:[{l:()=>L('Rotayı değiştir','Change course','改变航线'),s:()=>L('+'+D1(delay)+' gün gecikme · güvenli','+'+D1(delay)+' days delay · safe','延误'+D1(delay)+'天 · 安全')},{l:()=>L('Rotada kal','Stay on course','保持航线'),s:()=>L('%'+Math.round(pOk*100)+' ihtimalle sorunsuz · aksi halde hasar',Math.round(pOk*100)+'% chance of no trouble · otherwise damage',Math.round(pOk*100)+'%的概率平安无事 · 否则会受损')}]});}
 function evBilge(s){s.voy.lastEv=S.day;const slop=Math.round((2500+s.dwt*0.15)/100)*100,pFix=clamp(0.2+0.15*sk(s,'c2'),0.2,0.95);
  pushEv({k:'bilge',sid:s.id,title:()=>L('Sintine tankı dolu: ','Bilge tank full: ','舱底水舱已满：')+s.name,body:()=>L('Yağlı su ayırıcı (OWS) 15 ppm alarmı veriyor, deşarj yapılamıyor. Çarkçıbaşı ne yapılacağını soruyor.','The oily water separator (OWS) is giving a 15 ppm alarm, so nothing can be discharged. The chief engineer asks what to do.','油水分离器（OWS）发出15 ppm报警，无法排放。轮机长询问该怎么办。'),d:{slop,pFix},
@@ -251,6 +269,7 @@ function applyEv(ev,i){const s=S.ships.find(x=>x.id===ev.sid),d=ev.d||{};
  case 'maint':if(s){s.askMaint=0;if(i===0)doRepair(s,d.dock);else s.maintSkip=S.day+25;}break;
  case 'bribe':if(i===0){pay(d.amt,'liman',s);if(Math.random()<0.05){addRep(-4);toast(L('Ödeme basına sızdı, şirketin itibarı zedelendi','The payment leaked to the press and damaged the company’s reputation','这笔付款被媒体曝光，公司声誉受损'),s.id,'bad');}}else{if(s.state==='disch')s.op+=2;addRep(0.5);}break;
  case 'pol':POL[ev.id].run(i,ev.c);logMsg(()=>tx(ev.title)+': '+tx(ev.opts[i].l));break;
+ default:deepEv(ev,i,s,d);
  }
  return false;}
 
@@ -258,11 +277,11 @@ function applyEv(ev,i){const s=S.ships.find(x=>x.id===ev.sid),d=ev.d||{};
 function pBreak(s){return (0.0015+0.0007*Math.pow(Math.max(0,85-s.cond),1.15))*(1.6-0.22*sk(s,'cb'))*(inspector()?IBF[inspector().skill-1]:1)*(up(s,'eng')?0.65:1);}
 function seaStep(s,d){const v=s.voy;
  if(s.fuel<=0){evNoFuel(s);return;}
- if(s.hold>0){s.hold-=d;s.fuel=Math.max(0,s.fuel-consSea(s)*0.5*d);return;}
- v.done+=seaSpeed(s)*24*d;s.fuel=Math.max(0,s.fuel-consSea(s)*d);
+ if(s.hold>0){s.hold-=d;const fh=consSea(s)*0.5*d;s.fuel=Math.max(0,s.fuel-fh);v.fu=(v.fu||0)+fh;s.cf=(s.cf||0)+fh;return;}
+ {const dn=seaSpeed(s)*24*d*wxSea(s,d),fc=consSea(s)*d;v.done+=dn;s.fuel=Math.max(0,s.fuel-fc);v.fu=(v.fu||0)+fc;s.cf=(s.cf||0)+fc;s.cd=(s.cd||0)+dn*s.dwt;}
  const c0=s.cond;s.cond=Math.max(15,s.cond-0.08*(1+s.age/20)*(1.3-0.1*sk(s,'c2'))*(up(s,'eng')?0.8:1)*d);
  if(c0>=50&&s.cond<50&&!managed(s))toast(L(s.name+' yıpranıyor: durum %50 altına indi, ilk limanda bakım yaptır',s.name+' is wearing out: condition is below 50%, get maintenance at the next port',s.name+'磨损加剧：船况低于50%，请在下一个港口维修'),s.id,'warn');
- for(const r of ROLES){const p=s.crew[r.k];if(!p)continue;p.xp=(p.xp||0)+d;if(p.skill<5&&p.xp>=120*p.skill){p.xp=0;p.skill++;p.wage=Math.round(p.wage*1.15/50)*50;toast(L(p.name+' ('+r.n+') tecrübe kazandı',p.name+' ('+r.n+') gained experience',p.name+'（'+r.n+'）经验提升'),s.id,'ok');R();}}
+ crewXp(s,d);
  for(const t of v.trig){if(t.x||v.done<t.at)continue;t.x=1;
   if(t.k==='toll'){pay(t.amt,'kanal',s);logMsg(()=>L(s.name+': '+tollN(t.n)+' geçişi '+USD(t.amt),s.name+': '+tollN(t.n)+' transit '+USD(t.amt),s.name+'：'+tollN(t.n)+'通行费'+USD(t.amt)));}
   else if(t.k==='war'){const a=Math.round((5000+0.6*s.dwt)/100)*100;pay(a,'kanal',s);logMsg(()=>L(s.name+': Hürmüz savaş riski primi '+USD(a),s.name+': Hormuz war-risk premium '+USD(a),s.name+'：霍尔木兹战争险附加费'+USD(a)));
@@ -283,15 +302,16 @@ function tickShip(s,d){
  const tgt=clamp(35+13*(s.crew.asc?s.crew.asc.skill:0)+(up(s,'hab')?12:0)-(s.prov<=0?45:0),5,100);s.morale+=clamp(tgt-s.morale,-6*d,4*d);
  switch(s.state){
   case 'idle':s.fuel=Math.max(0,s.fuel-s.cons*0.03*d);s.cond=Math.max(15,s.cond-0.015*d);break;
-  case 'load':s.fuel=Math.max(0,s.fuel-s.cons*0.08*d);s.op-=d;if(s.op<=0){s.state='sea';s.port=null;s.voy.lastEv=S.day;R();}break;
-  case 'disch':s.fuel=Math.max(0,s.fuel-s.cons*0.08*d);s.op-=d;if(s.op<=0)completeCargo(s);break;
-  case 'maint':s.op-=d;if(s.op<=0){s.cond=Math.max(s.cond,s.maintTo);s.vc=0;const w=finishWork(s);goIdle(s,w||L('bakım bitti','maintenance done','维修完成'));}break;
+  case 'load':s.fuel=Math.max(0,s.fuel-s.cons*0.08*d);if(s.cargo)s.cargo.used=(s.cargo.used||0)+d;if(portWx(s.port)<0.6)s.op-=d;if(s.op<=0){s.state='sea';s.port=null;s.voy.lastEv=S.day;R();}break;
+  case 'disch':s.fuel=Math.max(0,s.fuel-s.cons*0.08*d);if(s.cargo)s.cargo.used=(s.cargo.used||0)+d;if(portWx(s.port)<0.6)s.op-=d;if(s.op<=0)completeCargo(s);break;
+  case 'maint':s.op-=d;if(s.op<=0){s.cond=Math.max(s.cond,s.maintTo);s.vc=0;const w=svDone(s)||finishWork(s);goIdle(s,w||L('bakım bitti','maintenance done','维修完成'));}break;
   case 'held':s.op-=d;if(s.op<=0){if(s.cargo){s.state='disch';s.op=opsDays(s,s.cargo.tons);toast(L(s.name+' serbest bırakıldı, tahliye başladı',s.name+' released, discharge started',s.name+'已获释放，开始卸货'),s.id);R();}else goIdle(s,L('serbest bırakıldı','released','已获释放'));}break;
   case 'broken':s.fuel=Math.max(0,s.fuel-s.cons*0.1*d);s.op-=d;if(s.op<=0){s.state='sea';s.voy.lastEv=S.day;if(!managed(s))toast(L(s.name+' tamir edildi, yola devam ediyor',s.name+' repaired, continuing the voyage',s.name+'已修好，继续航行'),s.id,'ok');R();}break;
   case 'sea':seaStep(s,d);break;
+  case 'tc':tcStep(s,d);break;
  }}
 function newDay(){const day=Math.floor(S.day);
- PORTS.forEach(p=>fillOffers(p.id));corpDay(day);
+ PORTS.forEach(p=>fillOffers(p.id));corpDay(day);deepDay(day);deep2Day(day);deep3Day(day);deep4Day(day);
  if(day-S.fuelDay>=10){S.fuelDay=day;S.fuelIdx=clamp(S.fuelIdx*rnd(0.93,1.08),0.75,1.35);}
  if(day-S.mktDay>=45){genMarket();toast(L('Gemi pazarına yeni ilanlar geldi','New listings in the ship market','船舶市场有新挂牌'));R();}
  if(day-S.poolDay>=30)refreshPool();

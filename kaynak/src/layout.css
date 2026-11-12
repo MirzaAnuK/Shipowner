@@ -319,3 +319,39 @@ html.port #panel,html.port #sheetBody{padding-bottom:24px}
 html.pwa,html.pwa body{height:var(--vh,100%)}
 html.pwa #app{height:var(--vh,100%)}
 html.pwa.rot #app{height:var(--vw)}
+/* derinlik: personel, rakipler */
+.cr1 span.cm{font-size:12px;white-space:normal}
+.prow.rv .pn{display:block}.prow.rv .rk{display:inline-block;min-width:20px;font:700 15px/1 var(--disp);font-style:normal;color:var(--mute)}.prow.rv .dot{margin-right:6px}
+.prow.rv.me{background:var(--card);box-shadow:inset 3px 0 0 var(--mag)}.prow.rv.me .pn{font-weight:600}
+/* ayarlar */
+.btn.tgl{flex-direction:column;align-items:flex-start;text-align:left;padding:7px 12px}.btn.tgl>span{display:flex;align-items:center;gap:10px}
+.tgsw{position:relative;flex:none;width:34px;height:20px;border-radius:10px;background:var(--line);transition:background .15s}.tgsw::after{content:"";position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.3);transition:left .15s}
+.tgsw.on{background:var(--mag)}.tgsw.on::after{left:16px}
+.btn.tgl small{padding-left:44px}
+/* açık temada iOS ana ekran uygulamasının beyaz durum çubuğu yazısı okunsun */
+html.pwa.lt body::before{content:"";position:fixed;left:0;right:0;top:0;height:env(safe-area-inset-top,0px);background:rgba(10,20,29,.55);z-index:70;pointer-events:none}
+/* yeni gemi tipleri */
+.card.ship.box,.srow.box,.mrow.box,.sline.box{border-left-color:#2f8f8a}
+.card.ship.roro,.srow.roro,.mrow.roro,.sline.roro{border-left-color:#8e6cc4}
+.card.ship.lng,.srow.lng,.mrow.lng,.sline.lng{border-left-color:#3fa0c9}
+.fl{display:grid;gap:5px;margin-top:4px;font:600 12px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.fl input{height:40px;padding:0 10px;background:var(--bg);border:1px solid var(--ink);border-radius:3px;font:16px var(--body);color:var(--ink);text-transform:none;letter-spacing:0}
+.card.lk{opacity:.72}
+/* rehberli tur */
+#tut{position:absolute;inset:0;z-index:25;pointer-events:none}
+#tut.dim{background:rgba(5,11,17,.55)}
+#tut .th{position:absolute;border-radius:6px;box-shadow:0 0 0 9999px rgba(5,11,17,.55);border:2px solid var(--mag);transition:left .25s,top .25s,width .25s,height .25s;animation:tutp 1.4s ease-in-out infinite}
+#tut .tb{position:absolute;pointer-events:auto;background:var(--card);color:var(--ink);border:1px solid var(--ink);border-top:4px solid var(--mag);padding:12px 14px;box-shadow:0 8px 28px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:6px}
+#tut .tb b{font:700 19px/1.15 var(--disp)}#tut .tb p{font-size:14px;line-height:1.4}
+#tut .tn{font:600 11px/1 var(--disp);letter-spacing:.12em;color:var(--mute)}
+#tut .tbs{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px}#tut .ta{flex:1;font-size:13px;font-weight:600;color:var(--mag)}
+@keyframes tutp{50%{border-color:rgba(255,255,255,.15)}}
+@media (prefers-reduced-motion:reduce){#tut .th{animation:none;transition:none}}
+/* ipucu ve görevler */
+#tip{position:absolute;left:8px;bottom:54px;right:8px;max-width:440px;z-index:3;background:var(--card);color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--mag);padding:9px 11px 8px;box-shadow:0 4px 14px rgba(0,0,0,.18);font-size:13px;line-height:1.4}
+#tip b{display:block;font-size:13px}#tip b small{font-weight:400;color:var(--mute)}#tip p{margin:4px 0 6px}#tip .btns{margin:0;display:flex;flex-wrap:wrap;gap:6px}#tip .btns .btn{flex:1 1 auto;min-width:0;padding-left:10px;padding-right:10px}
+html.pwa #tip,html.rot #tip{bottom:calc(54px + var(--mb))}
+.msn{padding:6px 0;border-top:1px solid var(--line)}.msn:first-of-type{border-top:0}.msn .mt{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.msn .mt .num{color:var(--ok);font-size:12px;white-space:nowrap}
+.msn.ok b{color:var(--mute);font-weight:500}.msn .bar{margin:5px 0 2px}.msn small{color:var(--mute);font-size:11px}.msn .btns{margin:6px 0 0}.msn .note{margin:6px 0 0}
+.msnc{border-left:3px solid var(--mag)}
+.prow.emp.off{opacity:.75}

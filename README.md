@@ -1,148 +1,117 @@
 # Armatör
 
-Tarayıcıda oynanan bir denizcilik şirketi oyunu. **Türkçe, English, 中文** dillerinde oynanır. Tek bir eski kosterle başlarsın; dünya limanları arasında yük taşır, personelini seçer, tecrübe kazanır ve şirketini tanker filolarına kadar büyütürsün.
+**Tarayıcıda oynanan bir denizcilik şirketi oyunu.** Tek bir eski kosterle, rıhtımda kiralık bir odada başlarsın. Dünya limanları arasında yük taşır, personelini seçer, gemilerini ayakta tutar, denizin kurallarıyla ve dünyanın gündemiyle uğraşırsın. Yıllar içinde şirketini tanker, konteyner ve LNG filolarına, şehrin siluetine giren bir denizcilik kulesine kadar büyütürsün.
 
-Kurulum gerekmez: telefonda, tablette ya da bilgisayarda tarayıcıdan açılır. İstersen ana ekrana ekleyip uygulama gibi, internetsiz de oynayabilirsin.
+Türkçe, English ve 中文 oynanır. Telefonda, tablette ve bilgisayarda çalışır; kurulum gerekmez.
 
 ![Yatay ekran](ekran/yatay.png)
 
 <img src="ekran/dikey.png" alt="Dikey ekran" width="300">
 
-## Nasıl oynanır
+## Oyun baştan sona
 
-1. Şirketine bir ad ver ve pazardan ilk kosterini al.
-2. Gemiye personel ata. Tecrübeli personel pahalıdır; tecrübesiz olan ucuzdur ama işini daha zor yapar.
-3. Gemiyi **Sevk et** ile limandaki en kârlı ve güvenli yüke gönder ya da yükü kendin seç. Eksik yakıt ve kumanya tek dokunuşla tamamlanır.
-4. Navlun, yük teslim edilince ödenir. Maaşlar, işletme giderleri ve liman masrafları her gün işler; boş bekleyen gemi para kaybettirir.
-5. Her teslimat geminin sınıfında tecrübe kazandırır. Tecrübe arttıkça yeni gemi ruhsatları, büyük limanlar ve gemi geliştirmeleri açılır.
-6. Ofisini büyüt, filo müdürleri ve makine enspektörü işe al, işi otomatiğe bağla.
+### İlk gün
 
-Gemi emir beklerken oyun durur ve seni uyarır. Haritada bir gemiye ya da limana dokununca ayrıntısı açılır.
+Şirketine bir ad verirsin. Kasanda bir kosterlik para, ofisinde tek bir masa vardır. Kısa bir rehberli tur düğmeleri gösterir. Pazardan ilk gemini seçersin: yaşı, durumu, hızı ve yakıt tüketimi fiyatını belirler. Sonra mürettebatını kurarsın: kaptan, 2. kaptan, çarkçıbaşı, 2. çarkçı ve aşçı. Tecrübeli denizci pahalıdır ama işini iyi yapar. İyi kaptan gemiyi hızlı götürür, iyi çarkçıbaşı yakıt ve arızayı azaltır, iyi aşçı gemideki morali tutar.
 
-## Dil
+### İlk sefer
 
-Oyun Türkçe, İngilizce ve Çince (basitleştirilmiş) oynanabilir. İlk açılışta telefonun ya da tarayıcının diline göre seçilir; giriş ekranından, ekran yönü sorusundan ya da **Ayarlar › Dil** bölümünden istediğin zaman değiştirebilirsin. Seçim tarayıcıda saklanır.
+Limandaki yük listesinde her yükün cinsi, tonajı, gideceği liman, süresi, navlunu ve tahmini kârı yazar. Bir yük seçersin; gemi yükler, harita üzerinde gerçek deniz yollarından, boğazlardan ve kanallardan geçerek yol alır, varınca tahliye eder. Navlun teslimde ödenir. Bu arada maaşlar, işletme giderleri, yakıt ve liman masrafları her gün işler; boş bekleyen gemi para yakar. Limanda iyi yük yoksa yükün bol olduğu bir limana boş sefer yaparsın.
 
-Dil değişince seyir defteri, olaylar ve haritadaki adlar da yeni dilde görünür. Bu sürümden önce başlatılmış kayıtlarda eski defter satırları Türkçe kalır.
+Limanlarda kuyruk olur, bazen grev çıkar. Yükleme ve tahliye anlaşılan süreyi (laytime) aşarsa kiracı sana demuraj öder; erken bitirirsen sen dispeç ödersin. Geç teslim ceza getirir, kötü hava ve dikkatsiz yükleme yük hasarına yol açar.
 
-## Özellikler
+### Denizde
 
-- **12 gemi sınıfı, 5 tip:** koster, genel kargo, Handysize, Supramax ve Panamax dökme yük, küçük ürün tankeri, MR ve Aframax tanker, feeder ve Panamax konteyner, araç taşıyıcı (Ro-Ro), LNG tankeri. Her tipin kendi yükleri ve limanları var; tehlikeli madde (IMO) konteynerleri için gemide belge gerekir.
-- **Yeni inşa ve hurda:** Dört tersaneden sıfır gemi siparişi (1–2 yıl, üç taksit, ekonomik makine ve scrubber seçeneği). Yaşlı gemiler Aliağa, Alang ya da Chittagong'da çelik fiyatından hurdaya satılır.
-- **Hava ve mevsimler:** Haritada hareket eden kasırga, tayfun, kış fırtınası, poyraz ve muson. Fırtınadaki gemi yavaşlar ve yıpranır, sert havada liman işi durur.
-- **Laytime ve demuraj:** Limanlarda kuyruk ve grevler. Laytime aşılırsa demuraj alırsın, erken bitirirsen dispeç ödersin.
-- **34 liman ve gerçek deniz yolları:** Boğazlar, Süveyş ve Panama kanalları, Ümit Burnu, Aden Körfezi.
-- **Liman devleti denetimi:** Denetimi gevşek limanlar eski gemiye göz yumar ama az öder; sıkı limanlar iyi öder, bakımsız gemiyi tutar.
-- **Personel:** Kaptan, 2. kaptan, çarkçıbaşı, 2. çarkçı ve aşçı. Beceri, maaş ve moral oyunu doğrudan etkiler. Her denizcinin yaşı ve sadakati var: terfi ister, emekli olur, yılsonu ikramiyesi bekler, sadakatsiz olan istifa eder.
-- **Banka:** İşletme kredisi ve yarı peşin, yarı kredili gemi alımı. Faiz itibara bağlı, taksitler her ay ödenir.
-- **Zaman çarteri:** Gemiyi 3, 6 ya da 12 aylığına sabit günlük kirayla bir kiracıya ver; arızada kira kesilir (off-hire).
-- **Klas sörveyleri:** 2,5 yılda bir ara, 5 yılda bir özel sörvey. Kaçırılırsa klas askıya alınır ve gemi yük alamaz.
-- **Rakip şirketler:** Dört rakip büyür, zorlanır, batar. Personelini ayartır, navlun savaşı açar, ucuz gemi satar; batmak üzere olanı satın alabilirsin.
-- **Seyirde olaylar:** Makine arızası, fırtına, sintine ve yağlı su kararı, korsan riski, yakıtsız kalma.
-- **Tecrübe ve ruhsat:** Her gemi sınıfında ayrı tecrübe puanı var. Yeni sınıf için ruhsat, büyük limanlar için şirket seviyesi gerekir.
-- **Gemi geliştirmeleri:** Pervane, makine revizyonu, scrubber, yük donanımı, kapasite artırımı ve diğerleri. Gövde boyası ve gemi adı da değiştirilebilir.
-- **Ofis binası:** 5 seviye. Bina büyüdükçe dışı ve içi değişir; kadro ve yönetilebilecek gemi sayısı artar.
-- **Otomasyon:** Filo müdürleri yükü senin yerine bulur, iyisi kâr ettirir, kötüsü zarar. Makine enspektörü bakım zamanı gelince sorar.
-- **Ülkeler ve gündem:** Her ülkeyle ilişki puanın var. Kurgusal politik olaylarda verdiğin kararlar navlunu, liman masraflarını ve limanların açık olup olmadığını etkiler.
-- **Karbon kuralları:** Her gemi yıl sonunda A–E karbon notu (CII) alır, kurallar her yıl sıkılaşır. E notlu gemi AB limanlarına giremez. AB seferlerinde karbon bedeli. Ekonomik seyir ve LNG yakıtlı yeni inşa.
-- **Terminaller:** Limanlarda rıhtım alıp terminale büyüt. Kendi terminalinde kuyruk yok, liman masrafı düşük; başka şirketlerin gemileri aylık gelir getirir.
-- **Sözleşmeler ve kadetler:** Denizciler 4–8 aylık sözleşmeyle çalışır; değişim havalimanı olan limanlarda yapılır. Kadet programıyla kendi 2. kaptan ve çarkçılarını yetiştir.
-- **Riskli bölgeler:** Kızıldeniz, Aden, Gine Körfezi, Hürmüz ve Kuzey Karadeniz. Savaş riski sigortası, silahlı koruma ya da Ümit Burnu'ndan dolaşma. İmdat çağrıları, kurtarma ödülü ve müşterek avarya.
-- **Uzun soluklu:** Tecrübe yavaş birikir; büyük gemi sınıfları ve büyük limanlar yıllar içinde açılır. Oyun iki hızda oynanır.
-- **Rehberli tur:** İlk oyunda düğmeleri adım adım gösteren, ilk gemiyi aldırıp ilk sefere çıkaran kısa bir eğitim. Ayarlar'dan yeniden başlatılabilir.
-- **Dil:** Türkçe, İngilizce ve Çince. Sayılar, para ve tarihler seçilen dile göre yazılır.
-- **Müzik ve deniz sesi:** Oyun çalarken üretilen sakin bir denizci havası ve dalga sesi. Dosya indirilmez, internetsiz çalışır; Ayarlar'dan ayrı ayrı açılıp kapatılır.
-- **Ekran:** Dikey ve yatay düzen, Ayarlar'dan seçilen açık, koyu ya da otomatik tema, tam ekran, çevrimdışı oynama.
+Seyir her zaman sakin geçmez. Makine arıza yapar: mürettebat tamir etmeye çalışır ya da servis çağırırsın. Haritada gerçekten dolaşan kasırgalar, tayfunlar ve kış fırtınaları vardır; mevsime göre değişir, musonlar Hint Okyanusu'nu zorlaştırır. Sintine tankı dolar ve yağlı suyu ne yapacağına sen karar verirsin. Denize basmak ucuzdur ama yasadışıdır; yakalanmasan bile bir gün eski bir denizci ihbar edebilir. Bazen yakınlardaki bir gemiden imdat çağrısı gelir: yardıma gidersen zaman kaybedersin ama kurtarma ödülü ve itibar kazanırsın.
 
-## Telefonda oynamak
+### Limanda
 
-- **Ana ekrana ekle:** Android'de Chrome menüsünden “Ana ekrana ekle”, iPhone'da Safari'de Paylaş › “Ana Ekrana Ekle”. Oyun tam ekran açılır ve internetsiz de çalışır.
-- **Dikey ya da yatay:** İlk açılışta hangisini istediğin sorulur. Haritadaki döndürme düğmesiyle ya da Ayarlar sekmesinden değiştirebilirsin. Yatay seçince destekleyen tarayıcılarda oyun tam ekrana geçip ekranı yatay kilitler; desteklemeyenlerde telefonu sola yatırarak tutman yeterli.
-- **Bilgisayarda:** 1–7 tuşları bölümler arasında geçer, boşluk tuşu zamanı durdurur ve başlatır, Esc açık pencereyi kapatır.
+Her ülkenin liman devleti denetimi farklı sıkılıktadır. Gevşek limanlar eski gemiye göz yumar ama az öder; sıkı limanlar iyi öder ama kötü durumdaki gemiyi tutar ve ceza keser. Gemiler zamanla yıpranır: bakım ve havuz yaptırırsın. Klas sörveyleri iki buçuk yılda bir gelir; kaçırırsan klas askıya alınır ve gemi yük alamaz. Yakıt fiyatı limandan limana değişir, ucuz limanda depoyu doldurmak kârı büyütür.
 
-## Kayıtlar
+### Personel
 
-Oyun kendini tarayıcının yerel depolamasına kaydeder; hiçbir veri bir sunucuya gönderilmez. Tarayıcı verilerini silersen kayıt da silinir.
+Denizciler 4–8 aylık sözleşmeyle çalışır. Sözleşme dolunca havalimanı olan bir limanda değişim yaparsın; izne çıkan denizci sana bağlıysa birkaç ay sonra geri döner. Sözleşmeyi çok uzatırsan moral düşer, denizci gemiyi terk eder ve dava açabilir. Mürettebatın yaşlanır, emekli olur, terfi ister, zam ister; rakip şirketler iyi kaptanını ayartmaya çalışır. Kadet programıyla kendi zabitlerini ve çarkçılarını yetiştirirsin: daha ucuz ve sana daha bağlı olurlar.
 
-Kaydını başka bir cihaza taşımak ya da yedeklemek için **Ayarlar › Kayıt** bölümünden kaydı dosya olarak indir, diğer cihazda **Kayıt yükle** ile aç.
+### Büyümek
 
-## GitHub Pages ile yayınlamak
+Her teslimat geminin sınıfında tecrübe kazandırır. Tecrübe arttıkça navlun artar, liman işleri hızlanır, yeni gemi ruhsatları, büyük limanlar ve gemi geliştirmeleri (pervane, makine revizyonu, scrubber, yük donanımı, yaşam mahalli) açılır. Koster ve genel kargodan dökme yüke, tankere, konteynere, araç taşıyıcıya ve LNG'ye uzanan 12 gemi sınıfı vardır.
 
-1. Bu klasördeki her şeyi bir GitHub deposuna yükle. `index.html` deponun en üst klasöründe olmalı.
-2. Depoda **Settings › Pages** bölümüne gir. “Build and deployment” altında kaynak olarak **Deploy from a branch**, dal olarak **main** ve klasör olarak **/ (root)** seç, kaydet.
-3. Bir iki dakika sonra oyun `https://<kullanıcı-adı>.github.io/<depo-adı>/` adresinde açılır.
+Para yetmezse bankaya gidersin: işletme kredisi çekebilir, gemiyi yarı peşin yarı krediyle alabilirsin. Gemiyi zaman çarterine verip sabit günlük kira da alabilirsin. Gemi yaşlanınca satar ya da söküme gönderirsin; yenisi için ikinci el pazara bakar ya da tersaneye sıfır gemi ısmarlarsın.
 
-Ücretsiz GitHub hesabında Pages için deponun herkese açık (public) olması gerekir.
+### Şirket
 
-## Dosyalar
+Ofisin beş binadan geçer: rıhtımdaki tek odadan iş hanına, müstakil ofise, genel müdürlüğe ve denizcilik kulesine. Bina büyüdükçe dışı ve içi değişir, daha çok çalışan ve gemi sığar. Makine enspektörü bakımı takip eder, dış ilişkiler müdürü ülkelerle ilişkini yürütür, hukuk müşaviri davaları üstlenir. On beş teslimattan sonra filolara müdür atayabilirsin: yükü senin yerine bulurlar; iyisi kâr ettirir, kötüsü zarar.
 
-| Dosya | Ne işe yarar |
-|---|---|
-| `index.html` | Oyunun kendisi. Tek dosya; kod, görünüm ve çizimler içinde. |
-| `manifest.webmanifest` | Ana ekrana eklenince adı, ikonu ve tam ekran ayarı. |
-| `sw.js` | İnternetsiz oynamak için önbellek. Önce ağa bakar, böylece güncellemeler hemen gelir. |
-| `favicon.svg`, `icon-*.png`, `apple-touch-icon.png` | İkonlar. |
-| `ekran/` | Bu sayfadaki ekran görüntüleri (Türkçe, İngilizce, Çince). |
-| `kaynak/` | Oyunun bölünmüş kaynak kodu ve derleme betiği. |
+Şirket seviyesi yükseldikçe yoğun limanlarda kendi rıhtımını alıp terminale büyütebilirsin: orada gemilerin kuyruk beklemez, başka şirketlerin gemileri de sana para kazandırır. Dört rakip şirket de büyür, zorlanır, batar; zor durumdakini satın alabilirsin.
 
-## Geliştirme
+### Dünya
 
-Kaynak kod `kaynak/src` klasöründe, bölümlere ayrılmış hâlde durur:
+Her ülkeyle ilişkin vardır. İlişki iyiyse navlun artar, masraf ve denetim azalır; çok kötüleşirse limanlar kapanır. Kurgusal kriz, boykot ve yaptırım olaylarında taraf seçersin ya da tarafsız kalırsın. Kızıldeniz, Aden Körfezi, Gine Körfezi, Hürmüz ve Kuzey Karadeniz'in risk seviyesi zamanla değişir; savaş riski sigortası, silahlı koruma ya da Ümit Burnu'ndan dolaşmak arasında seçim yaparsın.
 
-- `lang.js`: dil desteği, çeviri tabloları, sayı ve tarih biçimleri
-- `data.js`: harita, limanlar, deniz yolları ve rota hesabı
-- `game.js`: gemiler, yükler, seferler, olaylar ve ekonomi
-- `corp.js`: filolar, çalışanlar, ofis binası, ülke ilişkileri ve gündem
-- `prog.js`: tecrübe, ruhsatlar, liman kilitleri ve gemi geliştirmeleri
-- `deep.js`, `deep2.js`, `deep3.js`: banka, kiralama, sörvey, rakipler, tersane, hava, laytime, karbon, terminal, kadet, sözleşme ve riskli bölgeler
-- `map.js`: harita çizimi ve dokunmatik kontroller
-- `art.js`, `ui2.js`…`ui6.js`, `audio.js`, `ui.js`: portreler, bina çizimleri ve arayüz
-- `shell.html`, `layout.css`: sayfa iskeleti ve görünüm
+### Kurallar
 
-Bir değişiklik yaptıktan sonra `kaynak` klasöründe şunu çalıştır; deponun kökündeki `index.html` yeniden oluşturulur:
+Her yıl sonunda gemilerin A'dan E'ye bir karbon notu alır ve kurallar her yıl sıkılaşır. E notlu gemi Avrupa Birliği limanlarına giremez; AB seferlerinde yakılan yakıtın karbon bedeli ödenir. Ekonomik seyir, bakım, yeni gemi ve LNG yakıt notu iyileştirir.
 
-```
-python3 build.py
-```
+Deniz kurallarına aykırı davranırsan şirketine dava açılır. Yük hasarı, çatışma ve rıhtım kazaları da mahkemeye gidebilir. Her davada uzlaşır ya da mahkemede savunursun; davası süren gemin limanda tutuklanabilir.
 
-Python dışında hiçbir şey gerekmez; dış kütüphane kullanılmıyor.
+### Öğrenmek
 
-Arayüze yeni bir metin eklerken üç dili birlikte yaz: `L('Türkçe','English','中文')`. Kayda giren metinler (seyir defteri, olaylar) için `logMsg(()=>L(...))` ve `pushEv({title:()=>L(...)})` gibi fonksiyon biçimi kullanılır; böylece dil değişince eski satırlar da çevrilir.
+Oyunu adım adım öğreten 22 görev vardır; her biri bir ödül verir. Yeni bir şeyle ilk kez karşılaştığında kısa bir ipucu çıkar. Oyun uzun soluklu düşünülmüştür: büyük gemiler ve büyük limanlar yıllar içinde açılır.
 
-## Notlar
+## Ekran ve ses
 
-- Oyundaki politik olaylar kurgusaldır ve hiçbir tarafı savunmaz. Bir şirketin dünyadaki gerilimler karşısında ne tür kararlar vermek zorunda kalabileceğini göstermek için vardır.
-- Fiyatlar, navlunlar ve süreler oyun dengesi için seçilmiştir, gerçek piyasa verisi değildir.
-- Yazı tipleri Google Fonts'tan yüklenir. İnternet yoksa sistem yazı tipi kullanılır.
+Dikey ve yatay iki düzen vardır; ana ekrana eklenince uygulama gibi tam ekran ve internetsiz açılır. Açık, koyu ve otomatik tema, oyun içinde üretilen sakin bir denizci müziği ve dalga sesi vardır. Oyun kendini tarayıcıya kaydeder; kayıt dosyası dışarı alınıp başka cihaza taşınabilir.
+
+Oyundaki politik olaylar kurgusaldır. Fiyatlar ve süreler oyun dengesi için seçilmiştir, gerçek piyasa verisi değildir.
 
 ---
 
 ## English
 
-**Armatör** (“shipowner”) is a shipping company management game that runs in the browser. It plays in **Turkish, English and Simplified Chinese**: the language is picked from your device on first launch and can be changed any time on the start screen or under **Settings › Language**.
+**Armatör** (“shipowner”) is a shipping company game that runs in the browser, in Turkish, English and Chinese.
 
 ![English, landscape](ekran/english.png)
 
-Start with one old coaster, carry cargo between 34 world ports, hire crew, earn experience per ship class to unlock licences, larger ports and ship upgrades, then grow into bulk carriers and tankers. Run container ships, car carriers and LNG carriers, order newbuildings and scrap old tonnage, sail around moving hurricanes and typhoons, earn demurrage when ports are congested, take bank loans and ship mortgages, put ships on time charter, keep up with class surveys, compete with four rival companies (or buy one out) and look after crew who age, want promotion and can be poached. Fleet managers can automate your fleets, and fictional political events affect relations with countries. A calm, generated sea tune and wave sounds play in the background; music, sea sounds and the light or dark theme are set in the Settings tab.
+**Day one.** You name your company and start with enough cash for one old coaster and a single desk in a rented room on the quay. A short guided tour shows you the buttons. You pick your first ship from the market, then hire a crew: master, chief officer, chief engineer, second engineer and cook. Experienced seafarers cost more but do better work: a good master is faster, a good chief engineer saves fuel and prevents breakdowns, a good cook keeps morale up.
 
-Carbon rules (yearly CII ratings A–E, EU emissions charges, slow steaming), your own port terminals, crew contracts and cadet training, and high-risk areas (Red Sea, Gulf of Aden, Gulf of Guinea, Hormuz) with war-risk insurance, armed guards, distress calls and general average add depth to the long game.
+**The first voyage.** Each port lists cargoes with their type, tonnage, destination, deadline, freight and estimated profit. Your ship loads, sails real sea lanes through straits and canals, and discharges. Freight is paid on delivery, while wages, running costs, fuel and port fees accrue every day, so an idle ship loses money. Ports have queues and strikes; go over laytime and the charterer pays you demurrage, finish early and you pay despatch.
 
-A short guided tour walks new players through buying their first ship and starting the first voyage. No install needed. It works on phones, tablets and desktops, in portrait or landscape, can be added to the home screen and plays offline. Saves are stored locally in the browser and can be exported to a file.
+**At sea.** Engines break down. Hurricanes, typhoons and winter gales move across the map with the seasons, and the monsoon makes the Indian Ocean hard work. You decide what to do with oily bilge water: pumping it overboard is cheap and illegal, and a former crew member may report it years later. A distress call may come from a nearby ship; helping costs time but earns a salvage award and reputation.
 
-To host it: upload this folder to a GitHub repository and enable **Settings › Pages** with “Deploy from a branch”, branch `main`, folder `/ (root)`. The source lives in `kaynak/src`; run `python3 build.py` inside `kaynak` to rebuild `index.html`. All interface text is written as `L('Türkçe','English','中文')`, with translation tables in `lang.js`.
+**In port.** Port State Control is lax in some countries and strict in others. Lax ports pay little; strict ports pay well but detain ships in poor condition. Ships wear out and need maintenance and drydocking, and class surveys fall due every two and a half years. Fuel prices differ from port to port.
+
+**Crew.** Seafarers work 4–8 month contracts and must be relieved at ports with an airport. Keep them on too long and they walk off and may sue. Crew age, retire, ask for promotions and raises, and rivals try to poach your best master. A cadet programme lets you train your own loyal officers.
+
+**Growing.** Every delivery earns experience in the ship's class, unlocking higher freight, faster port work, new licences, bigger ports and upgrades across 12 classes, from coasters to bulk carriers, tankers, container ships, car carriers and LNG carriers. You can borrow from the bank, buy ships half on credit, charter them out, sell or scrap old tonnage, and order newbuildings from shipyards.
+
+**The company.** Your office moves through five buildings, from a room on the quay to a maritime tower. You hire a technical superintendent, an external relations manager and a legal counsel; after 15 deliveries you can appoint fleet managers who find cargo for you, well or badly. Later you can buy your own berths and grow them into terminals, and take over struggling rivals.
+
+**The world and its rules.** Relations with each country raise or lower freight, costs and inspections, and fictional crises ask you to take sides. Risk levels in the Red Sea, the Gulf of Aden, the Gulf of Guinea, Hormuz and the northern Black Sea change over time; you choose war-risk insurance, armed guards or the long way round the Cape. Ships get a yearly carbon rating from A to E, E-rated ships are barred from the EU, and EU voyages pay for their emissions. Breaking the rules of the sea, cargo damage, collisions and quay accidents lead to lawsuits that you can settle or fight in court, and a ship with a pending case can be arrested in port.
+
+**Learning.** 22 missions with rewards teach the game step by step, and short tips appear the first time you meet something new. The game is designed to be played over a long time.
 
 ---
 
 ## 中文
 
-**Armatör**（土耳其语“船东”）是一款在浏览器中运行的航运公司经营游戏，支持**土耳其语、英语和简体中文**。首次打开时会根据设备语言自动选择，之后可以在开始界面或“**设置 › 语言**”中随时切换。
+**Armatör**（土耳其语“船东”）是一款在浏览器中运行的航运公司经营游戏，支持土耳其语、英语和中文。
 
 <img src="ekran/zhongwen.png" alt="中文竖屏" width="300">
 
-你从一艘旧沿海货船起步，在全球34个港口之间运货，招募船员，为每种船型积累经验，以解锁新的船舶执照、更大的港口和船舶改装，逐步发展到散货船和油轮船队。你还可以经营集装箱船、汽车运输船和LNG运输船，向船厂订造新船、拆解旧船，避开会移动的飓风和台风，在港口拥堵时赚取滞期费，向银行贷款、用抵押贷款买船、把船期租出去、按时完成船级检验、与四家竞争对手较量（甚至收购对手），并照顾会变老、要求晋升、可能被挖走的船员。船队经理可以替你打理船队，虚构的时事事件会影响你与各国的关系。游戏背景有实时生成的舒缓航海音乐和海浪声；音乐、海浪声和浅色/深色主题可在“设置”页面调整。
+**第一天。** 给公司起个名字。你的钱只够买一艘旧沿海货船，办公室只是码头边租来的一个单间。简短的新手引导会介绍各个按钮。你从市场挑选第一艘船，再招募船员：船长、大副、轮机长、大管轮和厨师。有经验的船员更贵，但更能干：好船长航速快，好轮机长省油少故障，好厨师能稳住士气。
 
-碳排放规则（每年A–E的CII评级、欧盟排放费、经济航速）、自有港口码头、船员合同与实习生培养，以及高风险海域（红海、亚丁湾、几内亚湾、霍尔木兹）的战争险、武装护卫、求救信号和共同海损，让长线经营更有深度。
+**第一个航次。** 每个港口都列出货物的种类、吨数、目的港、期限、运费和预计利润。船舶装货后沿真实航道穿过海峡和运河，抵达后卸货。运费在交货时支付，而工资、运营费、燃油和港口费每天都在产生，闲置的船就是在亏钱。港口会排队、会罢工；超出装卸时间由租船人付滞期费，提前完成则由你付速遣费。
 
-新玩家会有一段简短的引导，带你买下第一艘船并开始首个航次。无需安装，手机、平板和电脑都能玩，支持竖屏和横屏，可以添加到主屏幕并离线游玩。存档保存在浏览器本地，也可以导出为文件。
+**海上。** 主机会出故障。飓风、台风和冬季风暴随季节在地图上移动，季风让印度洋航行更艰难。含油舱底水怎么处理由你决定：排进海里便宜但违法，多年后可能被前船员举报。附近船舶可能发来求救信号；前往救援会耽误时间，但能获得救助报酬和声誉。
 
-发布方法：把本文件夹上传到 GitHub 仓库，在 **Settings › Pages** 中选择 “Deploy from a branch”、分支 `main`、文件夹 `/ (root)`。源代码位于 `kaynak/src`，在 `kaynak` 文件夹中运行 `python3 build.py` 即可重新生成 `index.html`。
+**港口。** 各国港口国监督松紧不一。宽松的港口运费低；严格的港口运费高，但会滞留船况差的船。船舶会磨损，需要维修和进坞，每两年半要做一次船级检验。各港油价也不同。
+
+**船员。** 船员签4到8个月的合同，到期后要在有机场的港口换班。拖得太久，船员会离船甚至起诉。船员会变老、退休、要求晋升和加薪，对手公司还会挖走你最好的船长。通过实习生计划，你可以培养自己忠诚的驾驶员和轮机员。
+
+**成长。** 每次交货都为该船型积累经验，带来更高运费、更快装卸、新执照、更大的港口和各种改装。共有12个船型，从沿海货船到散货船、油轮、集装箱船、汽车滚装船和LNG船。你可以向银行贷款、一半贷款买船、把船期租出去、出售或拆解旧船，也可以向船厂订造新船。
+
+**公司。** 办公室会经历五栋楼，从码头边的单间一直到航运大厦。你可以聘请机务主管、对外关系经理和法律顾问；完成15次交货后还能任命船队经理替你找货，经理有好有坏。之后可以购买自己的泊位并扩建成码头，还能收购陷入困境的对手。
+
+**世界与规则。** 与各国的关系会影响运费、费用和检查，虚构的危机会要求你选边站。红海、亚丁湾、几内亚湾、霍尔木兹和黑海北部的风险等级不断变化；你可以选择战争险、武装护卫，或绕行好望角。船舶每年获得A到E的碳评级，E级船不得进入欧盟，往返欧盟的航次要为排放付费。违反海上规则、货损、碰撞和码头事故都会招来诉讼，你可以和解，也可以出庭应诉；有未决案件的船可能在港口被扣押。
+
+**学习。** 22个带奖励的任务会一步步教你玩法，第一次遇到新情况时会出现简短提示。这是一款适合长期经营的游戏。
