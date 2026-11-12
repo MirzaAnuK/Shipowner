@@ -21,7 +21,7 @@ Gemi emir beklerken oyun durur ve seni uyarır. Haritada bir gemiye ya da limana
 
 ## Dil
 
-Oyun Türkçe, İngilizce ve Çince (basitleştirilmiş) oynanabilir. İlk açılışta telefonun ya da tarayıcının diline göre seçilir; giriş ekranından, ekran yönü sorusundan ya da **Şirket › Ayarlar › Dil** bölümünden istediğin zaman değiştirebilirsin. Seçim tarayıcıda saklanır.
+Oyun Türkçe, İngilizce ve Çince (basitleştirilmiş) oynanabilir. İlk açılışta telefonun ya da tarayıcının diline göre seçilir; giriş ekranından, ekran yönü sorusundan ya da **Ayarlar › Dil** bölümünden istediğin zaman değiştirebilirsin. Seçim tarayıcıda saklanır.
 
 Dil değişince seyir defteri, olaylar ve haritadaki adlar da yeni dilde görünür. Bu sürümden önce başlatılmış kayıtlarda eski defter satırları Türkçe kalır.
 
@@ -42,19 +42,20 @@ Dil değişince seyir defteri, olaylar ve haritadaki adlar da yeni dilde görün
 - **Otomasyon:** Filo müdürleri yükü senin yerine bulur, iyisi kâr ettirir, kötüsü zarar. Makine enspektörü bakım zamanı gelince sorar.
 - **Ülkeler ve gündem:** Her ülkeyle ilişki puanın var. Kurgusal politik olaylarda verdiğin kararlar navlunu, liman masraflarını ve limanların açık olup olmadığını etkiler.
 - **Dil:** Türkçe, İngilizce ve Çince. Sayılar, para ve tarihler seçilen dile göre yazılır.
-- **Ekran:** Dikey ve yatay düzen, açık ve koyu tema, tam ekran, çevrimdışı oynama.
+- **Müzik ve deniz sesi:** Oyun çalarken üretilen sakin bir denizci havası ve dalga sesi. Dosya indirilmez, internetsiz çalışır; Ayarlar'dan ayrı ayrı açılıp kapatılır.
+- **Ekran:** Dikey ve yatay düzen, Ayarlar'dan seçilen açık, koyu ya da otomatik tema, tam ekran, çevrimdışı oynama.
 
 ## Telefonda oynamak
 
 - **Ana ekrana ekle:** Android'de Chrome menüsünden “Ana ekrana ekle”, iPhone'da Safari'de Paylaş › “Ana Ekrana Ekle”. Oyun tam ekran açılır ve internetsiz de çalışır.
-- **Dikey ya da yatay:** İlk açılışta hangisini istediğin sorulur. Haritadaki döndürme düğmesiyle ya da Şirket › Ayarlar'dan değiştirebilirsin. Yatay seçince destekleyen tarayıcılarda oyun tam ekrana geçip ekranı yatay kilitler; desteklemeyenlerde telefonu sola yatırarak tutman yeterli.
-- **Bilgisayarda:** 1–6 tuşları bölümler arasında geçer, boşluk tuşu zamanı durdurur ve başlatır, Esc açık pencereyi kapatır.
+- **Dikey ya da yatay:** İlk açılışta hangisini istediğin sorulur. Haritadaki döndürme düğmesiyle ya da Ayarlar sekmesinden değiştirebilirsin. Yatay seçince destekleyen tarayıcılarda oyun tam ekrana geçip ekranı yatay kilitler; desteklemeyenlerde telefonu sola yatırarak tutman yeterli.
+- **Bilgisayarda:** 1–7 tuşları bölümler arasında geçer, boşluk tuşu zamanı durdurur ve başlatır, Esc açık pencereyi kapatır.
 
 ## Kayıtlar
 
 Oyun kendini tarayıcının yerel depolamasına kaydeder; hiçbir veri bir sunucuya gönderilmez. Tarayıcı verilerini silersen kayıt da silinir.
 
-Kaydını başka bir cihaza taşımak ya da yedeklemek için **Şirket › Ayarlar › Kayıt yedeği** bölümünden kaydı dosya olarak indir, diğer cihazda **Kayıt yükle** ile aç.
+Kaydını başka bir cihaza taşımak ya da yedeklemek için **Ayarlar › Kayıt** bölümünden kaydı dosya olarak indir, diğer cihazda **Kayıt yükle** ile aç.
 
 ## GitHub Pages ile yayınlamak
 
@@ -108,11 +109,11 @@ Arayüze yeni bir metin eklerken üç dili birlikte yaz: `L('Türkçe','English'
 
 ## English
 
-**Armatör** (“shipowner”) is a shipping company management game that runs in the browser. It plays in **Turkish, English and Simplified Chinese**: the language is picked from your device on first launch and can be changed any time on the start screen or under **Company › Settings › Language**.
+**Armatör** (“shipowner”) is a shipping company management game that runs in the browser. It plays in **Turkish, English and Simplified Chinese**: the language is picked from your device on first launch and can be changed any time on the start screen or under **Settings › Language**.
 
 ![English, landscape](ekran/english.png)
 
-Start with one old coaster, carry cargo between 34 world ports, hire crew, earn experience per ship class to unlock licences, larger ports and ship upgrades, then grow into bulk carriers and tankers. Take bank loans and ship mortgages, put ships on time charter, keep up with class surveys, compete with four rival companies (or buy one out) and look after crew who age, want promotion and can be poached. Fleet managers can automate your fleets, and fictional political events affect relations with countries.
+Start with one old coaster, carry cargo between 34 world ports, hire crew, earn experience per ship class to unlock licences, larger ports and ship upgrades, then grow into bulk carriers and tankers. Take bank loans and ship mortgages, put ships on time charter, keep up with class surveys, compete with four rival companies (or buy one out) and look after crew who age, want promotion and can be poached. Fleet managers can automate your fleets, and fictional political events affect relations with countries. A calm, generated sea tune and wave sounds play in the background; music, sea sounds and the light or dark theme are set in the Settings tab.
 
 No install needed. It works on phones, tablets and desktops, in portrait or landscape, can be added to the home screen and plays offline. Saves are stored locally in the browser and can be exported to a file.
 
@@ -122,11 +123,11 @@ To host it: upload this folder to a GitHub repository and enable **Settings › 
 
 ## 中文
 
-**Armatör**（土耳其语“船东”）是一款在浏览器中运行的航运公司经营游戏，支持**土耳其语、英语和简体中文**。首次打开时会根据设备语言自动选择，之后可以在开始界面或“**公司 › 设置 › 语言**”中随时切换。
+**Armatör**（土耳其语“船东”）是一款在浏览器中运行的航运公司经营游戏，支持**土耳其语、英语和简体中文**。首次打开时会根据设备语言自动选择，之后可以在开始界面或“**设置 › 语言**”中随时切换。
 
 <img src="ekran/zhongwen.png" alt="中文竖屏" width="300">
 
-你从一艘旧沿海货船起步，在全球34个港口之间运货，招募船员，为每种船型积累经验，以解锁新的船舶执照、更大的港口和船舶改装，逐步发展到散货船和油轮船队。你还可以向银行贷款、用抵押贷款买船、把船期租出去、按时完成船级检验、与四家竞争对手较量（甚至收购对手），并照顾会变老、要求晋升、可能被挖走的船员。船队经理可以替你打理船队，虚构的时事事件会影响你与各国的关系。
+你从一艘旧沿海货船起步，在全球34个港口之间运货，招募船员，为每种船型积累经验，以解锁新的船舶执照、更大的港口和船舶改装，逐步发展到散货船和油轮船队。你还可以向银行贷款、用抵押贷款买船、把船期租出去、按时完成船级检验、与四家竞争对手较量（甚至收购对手），并照顾会变老、要求晋升、可能被挖走的船员。船队经理可以替你打理船队，虚构的时事事件会影响你与各国的关系。游戏背景有实时生成的舒缓航海音乐和海浪声；音乐、海浪声和浅色/深色主题可在“设置”页面调整。
 
 无需安装，手机、平板和电脑都能玩，支持竖屏和横屏，可以添加到主屏幕并离线游玩。存档保存在浏览器本地，也可以导出为文件。
 

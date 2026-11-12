@@ -370,12 +370,19 @@ html.pwa.rot #app{height:var(--vw)}
 .cr1 span.cm{font-size:12px;white-space:normal}
 .prow.rv .pn{display:block}.prow.rv .rk{display:inline-block;min-width:20px;font:700 15px/1 var(--disp);font-style:normal;color:var(--mute)}.prow.rv .dot{margin-right:6px}
 .prow.rv.me{background:var(--card);box-shadow:inset 3px 0 0 var(--mag)}.prow.rv.me .pn{font-weight:600}
+/* ayarlar */
+.btn.tgl{flex-direction:column;align-items:flex-start;text-align:left;padding:7px 12px}.btn.tgl>span{display:flex;align-items:center;gap:10px}
+.sw{position:relative;flex:none;width:34px;height:20px;border-radius:10px;background:var(--line);transition:background .15s}.sw::after{content:"";position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--card);box-shadow:0 1px 2px rgba(0,0,0,.3);transition:left .15s}
+.sw.on{background:var(--mag)}.sw.on::after{left:16px}
+.btn.tgl small{padding-left:44px}
+/* açık temada iOS ana ekran uygulamasının beyaz durum çubuğu yazısı okunsun */
+html.pwa.lt body::before{content:"";position:fixed;left:0;right:0;top:0;height:env(safe-area-inset-top,0px);background:rgba(10,20,29,.55);z-index:70;pointer-events:none}
 
 </style>
 </head>
 <body>
 <div id="app">
-  <nav id="rail" aria-label="Bölümler" data-ia="rail"><button type="button" data-a="tab" data-t="fleet"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M2.5 12.5h15l-2 4h-11zM5 12.5V9h4v3.5M9 9V5.5h3.5V9M12.5 12.5V7l2.5 1.5v4"/></g></svg><span class="lbl" data-i="fleet">Filo</span><i class="rb2" id="bdFleet" hidden></i></button><button type="button" data-a="tab" data-t="market"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 3h6.5l7.5 7.5-6.5 6.5L3 9.5z"/><circle cx="6.8" cy="6.8" r="1.2"/></g></svg><span class="lbl" data-i="market">Pazar</span></button><button type="button" data-a="tab" data-t="xp"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M10 2.8l2.1 4.3 4.7.7-3.4 3.3.8 4.7L10 13.6l-4.2 2.2.8-4.7-3.4-3.3 4.7-.7z"/></g></svg><span class="lbl" data-i="xp">Tecrübe</span><i class="rb2 mag" id="bdXp" hidden></i></button><button type="button" data-a="tab" data-t="office"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 17V7l5-3v13M8 17V9h9v8M2 17h16M11 12h3M11 14.5h3"/></g></svg><span class="lbl" data-i="office">Ofis</span></button><button type="button" data-a="tab" data-t="world"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M2.5 10h15M10 2.5c-4 4.5-4 10.5 0 15M10 2.5c4 4.5 4 10.5 0 15"/></g></svg><span class="lbl" data-i="world">Dünya</span></button><button type="button" data-a="tab" data-t="co"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 17h14M5 17v-6M9 17V6M13 17v-9M17 17V4"/></g></svg><span class="lbl" data-i="co">Şirket</span></button></nav>
+  <nav id="rail" aria-label="Bölümler" data-ia="rail"><button type="button" data-a="tab" data-t="fleet"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M2.5 12.5h15l-2 4h-11zM5 12.5V9h4v3.5M9 9V5.5h3.5V9M12.5 12.5V7l2.5 1.5v4"/></g></svg><span class="lbl" data-i="fleet">Filo</span><i class="rb2" id="bdFleet" hidden></i></button><button type="button" data-a="tab" data-t="market"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 3h6.5l7.5 7.5-6.5 6.5L3 9.5z"/><circle cx="6.8" cy="6.8" r="1.2"/></g></svg><span class="lbl" data-i="market">Pazar</span></button><button type="button" data-a="tab" data-t="xp"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M10 2.8l2.1 4.3 4.7.7-3.4 3.3.8 4.7L10 13.6l-4.2 2.2.8-4.7-3.4-3.3 4.7-.7z"/></g></svg><span class="lbl" data-i="xp">Tecrübe</span><i class="rb2 mag" id="bdXp" hidden></i></button><button type="button" data-a="tab" data-t="office"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 17V7l5-3v13M8 17V9h9v8M2 17h16M11 12h3M11 14.5h3"/></g></svg><span class="lbl" data-i="office">Ofis</span></button><button type="button" data-a="tab" data-t="world"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M2.5 10h15M10 2.5c-4 4.5-4 10.5 0 15M10 2.5c4 4.5 4 10.5 0 15"/></g></svg><span class="lbl" data-i="world">Dünya</span></button><button type="button" data-a="tab" data-t="co"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 17h14M5 17v-6M9 17V6M13 17v-9M17 17V4"/></g></svg><span class="lbl" data-i="co">Şirket</span></button><button type="button" data-a="tab" data-t="set"><svg viewBox="0 0 20 20" width="22" height="22" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 5h14M3 10h14M3 15h14"/></g><g fill="currentColor"><circle cx="7" cy="5" r="2"/><circle cx="13" cy="10" r="2"/><circle cx="8.5" cy="15" r="2"/></g></svg><span class="lbl" data-i="set">Ayarlar</span></button></nav>
   <section id="mapWrap" aria-label="Dünya haritası" data-ia="map">
     <canvas id="map"></canvas>
     <header id="hud">
@@ -1623,6 +1630,96 @@ function vRivals(){const me={n:S.name,v:netWorth(),sh:S.ships.length,rep:S.rep,m
  if(gone.length)h+=`<p class="note">${L('Piyasadan çekilenler: ','Gone from the market: ','已退出市场：')}${LJ(gone.map(r=>esc(r.n)))}${L('.','.','。')}</p>`;
  return h;}
 
+/* ---------- ayarlar ---------- */
+function vSet(){const op=oriGet(),seg=(a,v,cur,t)=>`<button type="button" class="${cur?'on':''}" data-a="${a}" data-v="${v}">${t}</button>`,tg=(a,on,t,sm)=>`<button type="button" class="btn sm tgl" data-a="${a}" aria-pressed="${!!on}"><span><i class="sw${on?' on':''}"></i>${t}</span>${sm?`<small>${sm}</small>`:''}</button>`;
+ const vol=typeof PREF.vol==='number'?PREF.vol:0.6,canA=!!(window.AudioContext||window.webkitAudioContext);
+ let h=`<div class="card"><h3 class="h">${L('Ses','Sound','声音')}</h3>${canA?`${tg('mus',PREF.mus,L('Müzik','Music','音乐'),L('akordeon ve mızraplı sakin bir denizci havası','a calm sea tune on squeezebox and strings','手风琴与拨弦演奏的舒缓航海小调'))}${tg('sea',PREF.sea,L('Deniz sesi','Sea sounds','海浪声'),L('dalgalar ve rüzgâr','waves and wind','海浪与海风'))}
+ <div class="kv"><span>${L('Ses düzeyi','Volume','音量')}</span><b></b></div><div class="segs">${seg('vol',0.3,vol<=0.35,L('Düşük','Low','低'))}${seg('vol',0.6,vol>0.35&&vol<0.8,L('Orta','Medium','中'))}${seg('vol',1,vol>=0.8,L('Yüksek','High','高'))}</div>
+ <p class="note">${L('Müzik oyun açıkken çalarken üretilir, internet gerektirmez. iPhone’da telefon sessiz moddaysa ses çıkmaz.','The music is generated live while you play and needs no internet. On iPhone there is no sound while the phone is in silent mode.','音乐在游戏运行时实时生成，无需联网。iPhone处于静音模式时没有声音。')}</p>`:`<p class="note">${L('Bu tarayıcı ses çalmayı desteklemiyor.','This browser doesn’t support audio playback.','此浏览器不支持播放声音。')}</p>`}</div>`;
+ h+=`<div class="card"><h3 class="h">${L('Görünüm','Display','显示')}</h3><div class="kv"><span>${L('Tema','Theme','主题')}</span><b></b></div><div class="segs">${seg('theme','auto',PREF.theme!=='light'&&PREF.theme!=='dark',L('Otomatik','Automatic','自动'))}${seg('theme','light',PREF.theme==='light',L('Açık','Light','浅色'))}${seg('theme','dark',PREF.theme==='dark',L('Koyu','Dark','深色'))}</div>
+ <p class="note">${L('Otomatik, telefonun açık ya da koyu moduna uyar.','Automatic follows your phone’s light or dark mode.','“自动”会跟随手机的浅色或深色模式。')}</p>
+ <div class="kv"><span>${L('Ekran düzeni','Screen layout','屏幕布局')}</span><b></b></div><div class="segs">${seg('ori','port',op==='port',L('Dikey','Portrait','竖屏'))}${seg('ori','rot',op==='rot',L('Yatay','Landscape','横屏'))}${seg('ori','',!op,L('Her açılışta sor','Ask every time','每次询问'))}</div>
+ <p class="note">${L('Telefon kendiliğinden yan dönerse oyun her zaman yatay düzene geçer. Haritadaki döndürme düğmesiyle iki düzen arasında hızlıca geçebilirsin.','If the phone rotates by itself, the game always switches to landscape. Use the rotate button on the map to switch quickly between the two layouts.','如果手机自动旋转，游戏会自动切换到横屏。可以用地图上的旋转按钮在两种布局间快速切换。')}</p>
+ ${fsCan()?`<button type="button" class="btn sm" data-a="fs">${fsOn()?L('Tam ekrandan çık','Exit full screen','退出全屏'):L('Tam ekran','Full screen','全屏')}</button>`:''}</div>`;
+ h+=`<div class="card"><h3 class="h">${L('Dil','Language','语言')}</h3>${langBtns()}</div>`;
+ h+=`<div class="card"><h3 class="h">${L('Oyun','Game','游戏')}</h3>${tg('opt',S.opt.autoPause,L('Emir bekleyen gemide duraklat','Pause when a ship awaits orders','船舶待命时暂停'),L('sen yönettiğin bir gemi limanda emir beklerken oyun durur ve uyarır','the game stops and warns you when a ship you manage is waiting in port','你管理的船在港待命时，游戏会暂停并提醒你'))}
+ <button type="button" class="btn sm" data-a="help">${L('Nasıl oynanır','How to play','玩法说明')}</button><p class="note">${L('Bilgisayarda 1–7 tuşları bölümler arasında geçer, boşluk tuşu zamanı durdurur ve başlatır, Esc açık pencereyi kapatır.','On a computer, keys 1–7 switch sections, the space bar stops and starts time, and Esc closes the open window.','在电脑上，1–7键切换栏目，空格键暂停或继续时间，Esc键关闭当前窗口。')}</p></div>`;
+ h+=`<div class="card"><h3 class="h">${L('Kayıt','Save','存档')}</h3><p class="note">${L('Oyun bu tarayıcıda kendiliğinden kaydedilir.','The game saves automatically in this browser.','游戏会自动保存在此浏览器中。')}${REL?' '+L('Kaydını dosya olarak indirip başka bir cihazda ya da tarayıcıda yükleyebilirsin. Tarayıcı verilerini silersen kayıt da silinir; arada bir yedek al.','You can download your save as a file and load it on another device or browser. Clearing browser data deletes the save too, so back it up now and then.','可以把存档下载为文件，在其他设备或浏览器上载入。清除浏览器数据也会删除存档，请不时备份。'):''}</p>
+ ${REL?`<div class="btns"><button type="button" class="btn sm" data-a="exp">${L('Kaydı indir','Download save','下载存档')}</button><label class="btn sm">${L('Kayıt yükle','Load save','载入存档')}<input type="file" accept=".json,application/json" data-f="imp" hidden></label></div>`:''}
+ <button type="button" class="btn sm" data-a="askNew">${L('Yeni oyun','New game','新游戏')}<small>${L('mevcut şirket silinir','the current company is deleted','当前公司将被删除')}</small></button></div>`;
+ return h+`<p class="note">Armatör ${VER}</p>`;}
+
+/* ================= TERCİHLER, TEMA ve SES =================
+   Tercihler kayıttan ayrı tutulur: yeni oyun açılınca silinmez.
+   Müzik dosya değildir; Web Audio ile çalarken üretilir (telifsiz, internetsiz çalışır). */
+const PREF_KEY='armator_pref';
+const PREF=(()=>{let o={};try{o=JSON.parse(localStorage.getItem(PREF_KEY)||'{}')||{};}catch(e){}return Object.assign({mus:1,sea:1,vol:0.6,theme:'auto'},o);})();
+function prefSave(){try{localStorage.setItem(PREF_KEY,JSON.stringify(PREF));}catch(e){}}
+
+/* ---------- tema ---------- */
+const DARKQ=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
+function themeDark(){return PREF.theme==='dark'||(PREF.theme!=='light'&&!!(DARKQ&&DARKQ.matches));}
+function applyTheme(){const h=document.documentElement;if(PREF.theme==='light'||PREF.theme==='dark')h.dataset.theme=PREF.theme;else delete h.dataset.theme;h.classList.toggle('lt',!themeDark());
+ const m=document.querySelector('meta[name=theme-color]'),c=getComputedStyle(h).getPropertyValue('--panel').trim();if(m&&c)m.setAttribute('content',c);
+ if(typeof readTheme==='function')readTheme();}
+if(DARKQ){const f=()=>{if(PREF.theme==='auto')applyTheme();};DARKQ.addEventListener?DARKQ.addEventListener('change',f):DARKQ.addListener&&DARKQ.addListener(f);}
+
+/* ---------- ses motoru ---------- */
+const AU={ctx:null,on:false,timer:0,next:0,bar:0,sec:0,prog:null,mot:null,last:7};
+const VOLS=[0.3,0.6,1];
+/* Re minör, yavaş bir denizci havası: armonyum benzeri akortlar, bas, mızrap sesi ezgi, arada gemi çanı */
+const BPM=66,BEAT=60/BPM,BARD=BEAT*4;
+const PROGS=[[[2,5,9],[10,2,5],[5,9,0],[0,4,7]],[[2,5,9],[0,4,7],[10,2,5],[9,1,4]],[[5,9,0],[0,4,7],[2,5,9],[9,1,4]],[[2,5,9],[7,10,2],[2,5,9],[0,4,7]]];
+const SCALE=[2,4,5,7,9,10,12,14,16,17,19,21,22,24];// Re minör, iki oktav (yarım ses, Do=0)
+const RHY=[[0,1,2,3],[0,1.5,2,3],[0,0.5,1,2,3],[0,2,3],[0,1,1.5,2],[0,1,2,2.5,3]];
+const hz=m=>440*Math.pow(2,(m-69)/12);
+function impulse(c,sec,dec){const n=Math.floor(c.sampleRate*sec),b=c.createBuffer(2,n,c.sampleRate);for(let ch=0;ch<2;ch++){const d=b.getChannelData(ch);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,dec);}return b;}
+function auInit(oc){if(AU.ctx&&!oc)return true;const C=window.AudioContext||window.webkitAudioContext;if(!C&&!oc)return false;
+ try{if(navigator.audioSession)navigator.audioSession.type='ambient';}catch(e){}
+ let c;try{c=AU.ctx=oc||new C();}catch(e){return false;}
+ const comp=c.createDynamicsCompressor();comp.threshold.value=-16;comp.ratio.value=3;comp.connect(c.destination);
+ AU.mg=c.createGain();AU.mg.gain.value=0;AU.mg.connect(comp);
+ AU.mus=c.createGain();AU.mus.gain.value=0;AU.mus.connect(AU.mg);AU.sea=c.createGain();AU.sea.gain.value=0;AU.sea.connect(AU.mg);
+ AU.dry=c.createGain();AU.dry.connect(AU.mus);AU.rev=c.createConvolver();AU.rev.buffer=impulse(c,3,2.4);const rg=c.createGain();rg.gain.value=0.32;AU.rev.connect(rg);rg.connect(AU.mus);
+ AU.send=c.createGain();AU.send.gain.value=1;AU.send.connect(AU.rev);
+ seaInit();return true;}
+/* dalga sesi: kesintisiz döngülü pembe gürültü, iki katman, yavaş kabarıp çekilen */
+function seaInit(){const c=AU.ctx,L=c.sampleRate*8,N=c.sampleRate,b=c.createBuffer(2,L,c.sampleRate);
+ for(let ch=0;ch<2;ch++){const d=b.getChannelData(ch),x=new Float32Array(L+N);let b0=0,b1=0,b2=0;for(let i=0;i<L+N;i++){const w=Math.random()*2-1;b0=0.99765*b0+w*0.099046;b1=0.963*b1+w*0.2965164;b2=0.57*b2+w*1.0526913;x[i]=(b0+b1+b2+w*0.1848)*0.16;}
+  for(let i=0;i<L;i++)d[i]=i<N?x[i]*(i/N)+x[L+i]*(1-i/N):x[i];}
+ const lay=(type,f,q,base,depth,rate,ph)=>{const s=c.createBufferSource();s.buffer=b;s.loop=true;s.loopEnd=8;const fl=c.createBiquadFilter();fl.type=type;fl.frequency.value=f;fl.Q.value=q;const g=c.createGain();g.gain.value=base;
+  const o=c.createOscillator(),og=c.createGain();o.frequency.value=rate;og.gain.value=depth;o.connect(og);og.connect(g.gain);
+  const o2=c.createOscillator(),og2=c.createGain();o2.frequency.value=rate*0.37;og2.gain.value=f*0.35;o2.connect(og2);og2.connect(fl.frequency);
+  s.connect(fl);fl.connect(g);g.connect(AU.sea);s.start(0,ph);o.start();o2.start();};
+ lay('lowpass',420,0.6,0.55,0.45,0.085,0);lay('bandpass',1700,0.5,0.16,0.14,0.11,3.7);lay('lowpass',160,0.8,0.5,0.2,0.05,5.1);}
+function env(g,t,a,peak,hold,rel){const p=g.gain;p.setValueAtTime(0.0001,t);p.exponentialRampToValueAtTime(peak,t+a);p.setValueAtTime(peak,t+a+hold);p.exponentialRampToValueAtTime(0.0001,t+a+hold+rel);}
+function pad(t,notes){const c=AU.ctx;for(const n of notes){const f=hz(n);for(const dt of [-7,7]){const o=c.createOscillator(),fl=c.createBiquadFilter(),g=c.createGain();o.type='sawtooth';o.frequency.value=f;o.detune.value=dt;fl.type='lowpass';fl.frequency.value=950;fl.Q.value=0.4;
+  o.connect(fl);fl.connect(g);g.connect(AU.dry);g.connect(AU.send);env(g,t,0.7,0.022,BARD-0.9,1.4);o.start(t);o.stop(t+BARD+1.6);}}}
+function bass(t,n,dur){const c=AU.ctx,o=c.createOscillator(),o2=c.createOscillator(),g=c.createGain();o.type='sine';o2.type='triangle';o.frequency.value=o2.frequency.value=hz(n);const g2=c.createGain();g2.gain.value=0.35;o2.connect(g2);g2.connect(g);o.connect(g);g.connect(AU.dry);env(g,t,0.03,0.16,dur*0.4,dur*0.8);o.start(t);o2.start(t);o.stop(t+dur*1.3+0.1);o2.stop(t+dur*1.3+0.1);}
+function pluck(t,n,v){const c=AU.ctx,o=c.createOscillator(),o2=c.createOscillator(),g=c.createGain(),fl=c.createBiquadFilter();o.type='triangle';o2.type='sine';o.frequency.value=hz(n);o2.frequency.value=hz(n+12);fl.type='lowpass';fl.frequency.setValueAtTime(3200,t);fl.frequency.exponentialRampToValueAtTime(700,t+0.6);
+ const g2=c.createGain();g2.gain.value=0.25;o2.connect(g2);g2.connect(fl);o.connect(fl);fl.connect(g);g.connect(AU.dry);g.connect(AU.send);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.11*v,t+0.008);g.gain.exponentialRampToValueAtTime(0.0001,t+1.6);o.start(t);o2.start(t);o.stop(t+1.7);o2.stop(t+1.7);}
+function bell(t){const c=AU.ctx;for(const k of [0,0.42]){for(const [r,a,d] of [[1,0.05,3.2],[2.76,0.025,1.8],[5.4,0.012,1],[8.93,0.006,0.6]]){const o=c.createOscillator(),g=c.createGain();o.frequency.value=740*r;o.connect(g);g.connect(AU.dry);g.connect(AU.send);g.gain.setValueAtTime(0.0001,t+k);g.gain.exponentialRampToValueAtTime(a,t+k+0.004);g.gain.exponentialRampToValueAtTime(0.0001,t+k+d);o.start(t+k);o.stop(t+k+d+0.05);}}}
+function nearIdx(m){let b=0;for(let i=0;i<SCALE.length;i++)if(Math.abs(SCALE[i]-m)<Math.abs(SCALE[b]-m))b=i;return b;}
+function motif(chord){const r=RHY[Math.floor(Math.random()*RHY.length)],out=[];let pc=chord[Math.floor(Math.random()*3)];let i=nearIdx(pc+(pc<5?12:0));for(const b of r){out.push([b,i]);i=clamp(i+[-2,-1,-1,1,1,2][Math.floor(Math.random()*6)],1,SCALE.length-2);}return out;}
+function schedBar(t){const ph=AU.bar%4;if(ph===0&&AU.bar%16===0)AU.prog=PROGS[Math.floor(Math.random()*PROGS.length)];if(!AU.prog)AU.prog=PROGS[0];const ch=AU.prog[ph];
+ pad(t,ch.map(n=>n+(n<5?60:48)));const bn=p=>36+p+(p<2?12:0);bass(t,bn(ch[0]),BEAT*1.6);bass(t+BEAT*2,bn(ch[2]),BEAT*1.6);
+ const sec=Math.floor(AU.bar/4)%4;if(ph===0)AU.mot=motif(ch);
+ if(sec>0){let m=AU.mot;if(ph===3)m=[[0,nearIdx(ch[0]+(ch[0]<5?12:0))],[2,nearIdx(ch[1]+(ch[1]<5?12:0))]];else if(ph===2)m=motif(ch);
+  for(const [b,i] of m){const n=SCALE[clamp(i,0,SCALE.length-1)]+60;pluck(t+b*BEAT+(Math.random()-0.5)*0.02,n,b===0?1:0.75);}}
+ if(ph===0&&AU.bar%16===8&&Math.random()<0.6)bell(t+BEAT*0.5);
+ AU.bar++;}
+function auTick(){if(!AU.ctx||!AU.on)return;const c=AU.ctx;if(AU.next<c.currentTime)AU.next=c.currentTime+0.15;while(AU.next<c.currentTime+0.8){if(PREF.mus)schedBar(AU.next);else AU.bar++;AU.next+=BARD;}}
+function auApply(){if(!AU.ctx)return;const c=AU.ctx,t=c.currentTime,v=typeof PREF.vol==='number'?clamp(PREF.vol,0,1):0.6;
+ AU.mg.gain.setTargetAtTime((PREF.mus||PREF.sea)?v:0,t,0.6);AU.mus.gain.setTargetAtTime(PREF.mus?0.9:0,t,0.8);AU.sea.gain.setTargetAtTime(PREF.sea?0.38:0,t,0.8);}
+function auStart(){if(!(PREF.mus||PREF.sea))return;if(!auInit())return;const c=AU.ctx;if(c.state==='suspended')c.resume().catch(()=>{});
+ if(!AU.on){AU.on=true;AU.next=c.currentTime+0.3;clearInterval(AU.timer);AU.timer=setInterval(auTick,150);}auApply();}
+function auStop(){if(!AU.ctx)return;auApply();if(!PREF.mus&&!PREF.sea){setTimeout(()=>{if(!PREF.mus&&!PREF.sea&&AU.ctx){AU.on=false;clearInterval(AU.timer);AU.ctx.suspend().catch(()=>{});}},2500);}}
+function auSet(k,v){PREF[k]=v;prefSave();if(PREF.mus||PREF.sea)auStart();else auStop();}
+/* tarayıcılar sesi ancak bir dokunuştan sonra başlatır */
+const auKick=()=>{if((PREF.mus||PREF.sea)&&(!AU.on||(AU.ctx&&AU.ctx.state!=='running')))auStart();};
+document.addEventListener('pointerdown',auKick,true);document.addEventListener('keydown',auKick,true);
+document.addEventListener('visibilitychange',()=>{if(!AU.ctx)return;if(document.hidden)AU.ctx.suspend().catch(()=>{});else if(AU.on&&(PREF.mus||PREF.sea))AU.ctx.resume().catch(()=>{});});
+
 /* ================= ARAYÜZ: ÇEKİRDEK ================= */
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const stars=n=>'★'.repeat(n)+'☆'.repeat(5-n);
@@ -1687,19 +1784,13 @@ const langBtns=()=>`<div class="segs langs" role="group" aria-label="Language">$
 
 /* ---------- şirket sekmesi ---------- */
 const FCAT=[['ofis',['Ofis ve çalışanlar','Office and staff','办公室和员工']],['diplomasi',['Dış ilişkiler','External relations','对外关系']],['navlun',['Navlun geliri','Freight income','运费收入']],['kira',['Kiralama geliri','Charter hire','期租租金']],['gemi',['Gemi alım satım','Ship sale and purchase','船舶买卖']],['geliştirme',['Gemi geliştirme','Ship upgrades','船舶改装']],['yakıt',['Yakıt','Fuel','燃油']],['personel',['Personel','Crew','船员']],['işletme',['İşletme ve sigorta','Running costs and insurance','运营和保险']],['liman',['Liman masrafları','Port costs','港口费用']],['kanal',['Kanal geçişleri','Canal transits','运河通行']],['bakım',['Bakım ve onarım','Maintenance and repairs','维护和修理']],['kumanya',['Kumanya','Provisions','伙食']],['ceza',['Cezalar','Fines','罚款']],['faiz',['Faiz','Interest','利息']],['kredi',['Kredi çekme ve geri ödeme','Loan drawdowns and repayments','贷款借入与偿还']]];
-function vCo(){const f=S.fin,sum=o=>Object.values(o).reduce((a,b)=>a+b,0),cell=x=>x?`<td class="${x<0?'neg':'pos'}">${USD(x)}</td>`:'<td>–</td>',op=oriGet();
+function vCo(){const f=S.fin,sum=o=>Object.values(o).reduce((a,b)=>a+b,0),cell=x=>x?`<td class="${x<0?'neg':'pos'}">${USD(x)}</td>`:'<td>–</td>';
  return `<div class="card"><div class="row"><b class="nm big">${esc(S.name)}</b></div><div class="sub">${level()} · ${L(S.ships.length+' gemi',S.ships.length+' '+pl(S.ships.length,'ship','ships'),S.ships.length+'艘船')} · ${CLVN[coLv()-1]}</div>${kv(L('Nakit','Cash','现金'),USD(S.cash),S.cash<0?'neg':'')}${kv(L('Filo değeri','Fleet value','船队价值'),USD(fleetValue()))}${debt()?kv(L('Kredi borcu','Loan debt','贷款'),USD(-debt()),'neg'):''}${kv(L('Net değer','Net worth','净资产'),USD(netWorth()),'tot')}${kv(L('Kredi limiti','Credit limit','信用额度'),USD(creditLimit()))}${kv(L('İtibar','Reputation','声誉'),Math.round(S.rep)+' / 100')}${kv(L('Teslim edilen yük','Cargoes delivered','已交付货物'),L(S.stat.cargo+' sefer · '+N(S.stat.tons)+' t',S.stat.cargo+' '+pl(S.stat.cargo,'voyage','voyages')+' · '+N(S.stat.tons)+' t',S.stat.cargo+'个航次 · '+N(S.stat.tons)+'吨'))}</div>
  <div class="card"><h3 class="h">${L('Gelir gider','Income and expenses','收支')}</h3><table class="fin"><thead><tr><th></th><th>${L('Bu ay','This month','本月')}</th><th>${L('Geçen ay','Last month','上月')}</th></tr></thead><tbody>${FCAT.filter(c=>f.cur[c[0]]||f.prev[c[0]]).map(c=>`<tr><th>${tx(c[1])}</th>${cell(f.cur[c[0]])}${cell(f.prev[c[0]])}</tr>`).join('')}<tr class="tot"><th>${L('Net','Net','净额')}</th>${cell(sum(f.cur))}${cell(sum(f.prev))}</tr></tbody></table></div>${vBank()}
- <div class="card"><h3 class="h">${L('Ayarlar','Settings','设置')}</h3><div class="kv"><span>${L('Dil','Language','语言')}</span><b></b></div>${langBtns()}
- <button type="button" class="btn sm" data-a="opt" aria-pressed="${S.opt.autoPause}">${S.opt.autoPause?'✓ ':''}${L('Sen yönettiğin gemi emir beklerken duraklat ve uyar','Pause and warn me when a ship I manage awaits orders','我管理的船等待指令时暂停并提醒')}</button>
- <div class="kv"><span>${L('Ekran düzeni','Screen layout','屏幕布局')}</span><b></b></div><div class="segs"><button type="button" class="${op==='port'?'on':''}" data-a="ori" data-v="port">${L('Dikey','Portrait','竖屏')}</button><button type="button" class="${op==='rot'?'on':''}" data-a="ori" data-v="rot">${L('Yatay','Landscape','横屏')}</button><button type="button" class="${!op?'on':''}" data-a="ori" data-v="">${L('Her açılışta sor','Ask every time','每次询问')}</button></div><p class="note">${L('Telefon kendiliğinden yan dönerse oyun her zaman yatay düzene geçer. Haritadaki döndürme düğmesiyle iki düzen arasında hızlıca geçebilirsin.','If the phone rotates by itself, the game always switches to landscape. Use the rotate button on the map to switch quickly between the two layouts.','如果手机自动旋转，游戏会自动切换到横屏。可以用地图上的旋转按钮在两种布局间快速切换。')}</p>
- ${fsCan()?`<button type="button" class="btn sm" data-a="fs">${fsOn()?L('Tam ekrandan çık','Exit full screen','退出全屏'):L('Tam ekran','Full screen','全屏')}</button>`:''}<div class="btns"><button type="button" class="btn sm" data-a="help">${L('Nasıl oynanır','How to play','玩法说明')}</button><button type="button" class="btn sm" data-a="askNew">${L('Yeni oyun','New game','新游戏')}</button></div><p class="note">${L('Oyun bu tarayıcıda otomatik kaydedilir. Bilgisayarda 1–6 tuşları bölümleri, boşluk tuşu zamanı açıp kapatır.','The game saves automatically in this browser. On a computer, keys 1–6 switch sections and the space bar starts and stops time.','游戏会自动保存在此浏览器中。在电脑上，1–6键切换栏目，空格键开始或暂停时间。')}</p></div>
- ${REL?`<div class="card"><h3 class="h">${L('Kayıt yedeği','Save backup','存档备份')}</h3><p class="note">${L('Kaydını dosya olarak indirip başka bir cihazda ya da tarayıcıda yükleyebilirsin. Tarayıcı verilerini silersen kayıt da silinir; arada bir yedek al.','You can download your save as a file and load it on another device or browser. Clearing browser data deletes the save too, so back it up now and then.','可以把存档下载为文件，在其他设备或浏览器上载入。清除浏览器数据也会删除存档，请不时备份。')}</p><div class="btns"><button type="button" class="btn sm" data-a="exp">${L('Kaydı indir','Download save','下载存档')}</button><label class="btn sm">${L('Kayıt yükle','Load save','载入存档')}<input type="file" accept=".json,application/json" data-f="imp" hidden></label></div></div>`:''}
- <p class="note">Armatör ${VER}</p>
  <div class="card"><h3 class="h">${L('Seyir defteri','Logbook','航海日志')}</h3><ul class="log">${S.log.slice(0,30).map(l=>`<li><time>${fmtDate(l.d)}</time>${esc(tx(l.t))}</li>`).join('')}</ul></div>`;}
-const VIEW={fleet:vFleet,market:vMarket,xp:vXP,office:vOffice,world:vWorld,co:vCo};
-const TABT={fleet:['Filo','Fleet','船队'],market:['Gemi pazarı','Ship market','船舶市场'],xp:['Tecrübe','Experience','经验'],office:['Ofis','Office','办公室'],world:['Dünya','World','世界'],co:['Şirket','Company','公司']};
-function headSub(){switch(ui.tab){case 'fleet':{const n=S.ships.length;return L(n+' gemi',n+' '+pl(n,'ship','ships'),n+'艘船');}case 'market':{const n=S.market.length;return L(n+' ilan',n+' '+pl(n,'listing','listings'),n+'条挂牌');}case 'xp':return L('şirket seviyesi ','company level ','公司等级')+coLv();case 'office':return HQ[S.hq].n;case 'co':return esc(S.name);}return '';}
+const VIEW={fleet:vFleet,market:vMarket,xp:vXP,office:vOffice,world:vWorld,co:vCo,set:vSet};
+const TABT={fleet:['Filo','Fleet','船队'],market:['Gemi pazarı','Ship market','船舶市场'],xp:['Tecrübe','Experience','经验'],office:['Ofis','Office','办公室'],world:['Dünya','World','世界'],co:['Şirket','Company','公司'],set:['Ayarlar','Settings','设置']};
+function headSub(){switch(ui.tab){case 'fleet':{const n=S.ships.length;return L(n+' gemi',n+' '+pl(n,'ship','ships'),n+'艘船');}case 'market':{const n=S.market.length;return L(n+' ilan',n+' '+pl(n,'listing','listings'),n+'条挂牌');}case 'xp':return L('şirket seviyesi ','company level ','公司等级')+coLv();case 'office':return HQ[S.hq].n;case 'co':return esc(S.name);case 'set':return 'Armatör '+VER;}return '';}
 function headAct(){if(ui.tab==='fleet'){const n=idleList().length;if(n)return `<button type="button" class="btn xs pri" data-a="quickAll">${L('Hepsini sevk et','Dispatch all','全部派船')} (${n})</button>`;}return '';}
 
 /* ---------- gemi ekranı ---------- */
@@ -1762,7 +1853,7 @@ function vBuy(sh){const m=S.market.find(x=>x.id===sh.id);if(!m)return `<p class=
 function vSell(sh){const s=ship(sh.id),v=USD(Math.round(shipValue(s)*0.85/1000)*1000);return `<div class="card"><p>${L(esc(s.name)+' yaklaşık <b>'+v+'</b> karşılığında satılacak. Personelin işine son verilir.',esc(s.name)+' will be sold for about <b>'+v+'</b>. The crew will be discharged.',esc(s.name)+'将以约<b>'+v+'</b>出售。船员将被解雇。')}</p></div><button type="button" class="btn pri" data-a="sellok" data-id="${s.id}">${L('Satışı onayla','Confirm the sale','确认出售')}</button>`;}
 function vAskNew(){return `<div class="card"><p>${L('Mevcut şirket silinecek ve sıfırdan başlayacaksın.','Your current company will be deleted and you’ll start from scratch.','当前公司将被删除，你将从头开始。')}</p></div><button type="button" class="btn pri" data-a="newgame">${L('Yeni oyuna başla','Start a new game','开始新游戏')}</button>`;}
 const HELP=[
- [['Ekran','Screen','界面'],['İki düzen var: dikeyde harita üstte, listeler ve gemi resimleri altta; yatayda solda bölümler, ortada harita, sağda panel. Haritanın sağ üstündeki döndürme düğmesiyle ya da Şirket › Ayarlar’dan geçiş yapabilirsin. Yatayda paneli sağ üstteki okla kapatıp haritayı büyütebilirsin. Haritada gemiye ya da limana dokununca ayrıntısı panelde açılır.','There are two layouts: in portrait the map is on top with lists and ship pictures below; in landscape the sections are on the left, the map in the middle and the panel on the right. Switch with the rotate button at the top right of the map or under Company › Settings. In landscape you can close the panel with the arrow at its top right to enlarge the map. Tap a ship or port on the map to open its details in the panel.','有两种布局：竖屏时地图在上，列表和船舶图片在下；横屏时栏目在左，地图居中，面板在右。可以用地图右上角的旋转按钮或在“公司 › 设置”中切换。横屏时，可以用面板右上角的箭头关闭面板以放大地图。在地图上点击船舶或港口，会在面板中打开详情。']],
+ [['Ekran','Screen','界面'],['İki düzen var: dikeyde harita üstte, listeler ve gemi resimleri altta; yatayda solda bölümler, ortada harita, sağda panel. Haritanın sağ üstündeki döndürme düğmesiyle ya da Ayarlar sekmesinden geçiş yapabilirsin. Yatayda paneli sağ üstteki okla kapatıp haritayı büyütebilirsin. Haritada gemiye ya da limana dokununca ayrıntısı panelde açılır.','There are two layouts: in portrait the map is on top with lists and ship pictures below; in landscape the sections are on the left, the map in the middle and the panel on the right. Switch with the rotate button at the top right of the map or in the Settings tab. In landscape you can close the panel with the arrow at its top right to enlarge the map. Tap a ship or port on the map to open its details in the panel.','有两种布局：竖屏时地图在上，列表和船舶图片在下；横屏时栏目在左，地图居中，面板在右。可以用地图右上角的旋转按钮或在“设置”页面中切换。横屏时，可以用面板右上角的箭头关闭面板以放大地图。在地图上点击船舶或港口，会在面板中打开详情。']],
  [['Döngü','The loop','基本玩法'],['Gemi al, personel ata, yük seç, sefere çık. Navlun yük teslim edilince ödenir. Maaşlar ve işletme giderleri her gün işler; gemi boş beklerse para kaybedersin. “Sevk et” geminin limanındaki en kârlı güvenli yükü seçip yola çıkarır.','Buy a ship, hire a crew, pick a cargo, set sail. Freight is paid on delivery. Wages and running costs accrue every day, so an idle ship loses money. “Dispatch” picks the most profitable safe cargo in the ship’s port and sails.','买船、招船员、选货、开航。运费在交货时支付。工资和运营费用每天都在产生，船闲着就会亏钱。“派船”会在船所在港口挑选最赚钱的安全货物并开航。']],
  [['Tecrübe','Experience','经验'],['Her teslimat, geminin sınıfında tecrübe kazandırır. Sınıf seviyesi arttıkça o sınıfta navlun artar, liman işleri hızlanır ve yeni gemi ruhsatları açılır. Şirket seviyesi bütün sınıfların toplamıdır; büyük limanlar ve büyük binalar şirket seviyesiyle açılır.','Every delivery earns experience in the ship’s class. As a class levels up, freight in that class rises, port work speeds up and new ship licences open. The company level is the sum of all classes; big ports and big buildings open with the company level.','每次交货都会为该船型积累经验。船型等级越高，该船型的运费越高，港口作业越快，并会解锁新的船舶执照。公司等级是所有船型的总和；大港口和大办公楼随公司等级开放。']],
  [['Büyümek','Growing','发展'],['Gemi almak için para yetmez: o sınıfın ruhsatı ve ofiste yer gerekir. Ofisin yönetebileceği gemi sayısı binaya bağlıdır.','Money alone won’t buy a ship: you need the licence for that class and room in your office. The number of ships your office can manage depends on the building.','光有钱买不了船：还需要该船型的执照和办公室的管理容量。办公室能管理的船舶数量取决于办公楼。']],
@@ -1806,7 +1897,7 @@ function showIntro(){ui.intro=true;ui.ask=null;if(!S)newGame('');const el=$('#in
  $('#fNew').addEventListener('submit',e=>{e.preventDefault();S.name=$('#coInp').value.trim()||L('Karadeniz Denizcilik','Black Sea Shipping','黑海航运');S.log=[];logFounded();el.hidden=true;el.innerHTML='';ui.intro=false;ui.tab='market';ui.sheet=[];ui.pc=false;view.lon=24;view.lat=38.5;view.z=11;clampView();save();R();});R();}
 
 /* ---------- dil ---------- */
-const I18={fleet:['Filo','Fleet','船队'],market:['Pazar','Market','市场'],xp:['Tecrübe','XP','经验'],office:['Ofis','Office','办公室'],world:['Dünya','World','世界'],co:['Şirket','Company','公司'],
+const I18={fleet:['Filo','Fleet','船队'],market:['Pazar','Market','市场'],xp:['Tecrübe','XP','经验'],office:['Ofis','Office','办公室'],world:['Dünya','World','世界'],co:['Şirket','Company','公司'],set:['Ayarlar','Settings','设置'],
  cash:['Nakit','Cash','现金'],date:['Tarih','Date','日期'],rep:['İtibar','Reputation','声誉'],lv:['Şirket','Company','公司'],insp:['Denetim','Inspection','检查'],lax:['gevşek','lax','宽松'],mid:['orta','moderate','中等'],strict:['sıkı','strict','严格'],locked:['kilitli','locked','锁定'],
  back:['Geri','Back','返回'],close:['Kapat','Close','关闭']};
 const I18A={zin:['Yakınlaştır','Zoom in','放大'],zout:['Uzaklaştır','Zoom out','缩小'],otg:['Dikey ya da yatay düzene geç','Switch between portrait and landscape','切换竖屏或横屏'],s0:['Duraklat','Pause','暂停'],s1:['Normal hız','Normal speed','正常速度'],s2:['Hızlı','Fast','快速'],s3:['Çok hızlı','Very fast','极快'],speed:['Oyun hızı','Game speed','游戏速度'],ptog:['Paneli aç','Open the panel','打开面板'],pcb:['Paneli kapat, haritayı büyüt','Close the panel, enlarge the map','关闭面板，放大地图'],rail:['Bölümler','Sections','栏目'],map:['Dünya haritası','World map','世界地图']};
@@ -1817,7 +1908,7 @@ function applyStatic(){const h=document.documentElement;h.lang=['tr','en','zh-CN
 function setLang(i){setLangIdx(i);try{localStorage.setItem('armator_lang',LANGS[LI]);}catch(e){}applyStatic();renderRot();if(ui.intro&&S)showIntro();R();}
 
 /* ---------- sürüm, tam ekran, kayıt yedeği ---------- */
-const VER='1.4',REL=!!document.querySelector('link[rel=manifest]');
+const VER='1.5',REL=!!document.querySelector('link[rel=manifest]');
 function fsOn(){return !!(document.fullscreenElement||document.webkitFullscreenElement);}
 function fsCan(){return !!(document.fullscreenEnabled||document.webkitFullscreenEnabled);}
 async function goLand(){if(!fsCan())return false;try{const el=document.documentElement;if(!fsOn())await (el.requestFullscreen?el.requestFullscreen({navigationUI:'hide'}):el.webkitRequestFullscreen());if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape');return true;}catch(e){return false;}}
@@ -1855,6 +1946,8 @@ const ACT={
  ptog(){ui.pc=!ui.pc;if(ui.pc)ui.sheet=[];R();requestAnimationFrame(()=>{renderAll();resizeMap();});},
  ori(d){oriSet(d.v);if(d.v==='rot')goLand().then(()=>setTimeout(applyOri,300));},
  lang(d){setLang(+d.i);},
+ mus(){auSet('mus',PREF.mus?0:1);R();},sea(){auSet('sea',PREF.sea?0:1);R();},vol(d){auSet('vol',+d.v);R();},
+ theme(d){PREF.theme=d.v;prefSave();applyTheme();R();},
  oriTog(){const por=window.innerHeight>window.innerWidth;if(!por){if(fsOn()){if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();(document.exitFullscreen?document.exitFullscreen():document.webkitExitFullscreen()).catch(()=>{});oriSet('port');setTimeout(applyOri,300);return;}toast(L('Dikey düzen için telefonu dik tut','Hold the phone upright for portrait','竖屏请竖持手机'));return;}
   const to=oriGet()==='port'?'rot':'port';oriSet(to);if(to==='rot')goLand().then(ok=>{setTimeout(applyOri,300);if(!ok)toast(L('Yatay düzen: telefonu sola yatırarak tut','Landscape: hold the phone turned to the left','横屏：将手机向左横置'));});else toast(L('Dikey düzen','Portrait layout','竖屏布局'));},
  fs(){fsToggle();},exp(){exportSave();},
@@ -1910,13 +2003,13 @@ const ACT={
  help(){ui.pc=false;ui.sheet.push({t:'help'});R();},askNew(){ui.sheet.push({t:'asknew'});R();},
  newgame(){clearSave();S=null;ui.sheet=[];ui.sel=null;showIntro();}
 };
-document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;const a=el.dataset.a;if(!S&&a!=='ori'&&a!=='lang')return;const f=ACT[a];if(f)f(el.dataset,el);});
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;const a=el.dataset.a;if(!S&&a!=='ori'&&a!=='lang'&&a!=='theme')return;const f=ACT[a];if(f)f(el.dataset,el);});
 document.addEventListener('submit',e=>{const f=e.target;if(!f.dataset||f.dataset.f!=='rename')return;e.preventDefault();const s=ship(+f.dataset.id);if(s&&renameShip(s,f.elements.nm.value)){toast(L('Yeni ad: ','New name: ','新船名：')+s.name,s.id,'ok');}R();});
 document.addEventListener('pointerdown',()=>{ui.ptr=performance.now();},true);
 const ptrOff=()=>{ui.ptr=0;};document.addEventListener('pointerup',ptrOff,true);document.addEventListener('pointercancel',ptrOff,true);
 document.addEventListener('keydown',e=>{if(!S||ui.intro||/INPUT|TEXTAREA/.test(e.target.tagName))return;
  if(e.code==='Space'&&!S.ev.length&&e.target.tagName!=='BUTTON'){e.preventDefault();setSpeed(S.speed?0:(S.lastSpd||1));}
- else if(/^Digit[1-6]$/.test(e.code)&&!S.ev.length){ACT.tab({t:['fleet','market','xp','office','world','co'][+e.code.slice(5)-1]});}
+ else if(/^Digit[1-7]$/.test(e.code)&&!S.ev.length){ACT.tab({t:['fleet','market','xp','office','world','co','set'][+e.code.slice(5)-1]});}
  else if(e.code==='Escape'){if(ui.sheet.length){ui.sheet.pop();R();}}});
 window.addEventListener('resize',applyOri);window.addEventListener('orientationchange',()=>setTimeout(applyOri,120));
 
@@ -1930,7 +2023,7 @@ function frame(now){const dt=Math.min(0.1,(now-lastT)/1000);lastT=now;
  liveT+=dt;if(liveT>0.2){liveT=0;updateLive();}
  drawMap(now);requestAnimationFrame(frame);}
 function boot(data){
- setLangIdx(LANGS.indexOf(detectLang()));applyStatic();renderRot();
+ applyTheme();setLangIdx(LANGS.indexOf(detectLang()));applyStatic();renderRot();
  if(data&&data.v===1&&Array.isArray(data.ships))S=data;else S=loadSave();
  const old=!!S&&S.hq===undefined,oldP=!!S&&S.xp===undefined;if(S)initCorp();applyOri();readTheme();resizeMap();
  if(S){S.speed=0;S.ev=S.ev||[];
