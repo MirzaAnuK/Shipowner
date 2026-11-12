@@ -30,7 +30,11 @@ Dil değişince seyir defteri, olaylar ve haritadaki adlar da yeni dilde görün
 - **8 gemi sınıfı:** koster, genel kargo, Handysize, Supramax ve Panamax dökme yük, küçük ürün tankeri, MR ve Aframax tanker.
 - **34 liman ve gerçek deniz yolları:** Boğazlar, Süveyş ve Panama kanalları, Ümit Burnu, Aden Körfezi.
 - **Liman devleti denetimi:** Denetimi gevşek limanlar eski gemiye göz yumar ama az öder; sıkı limanlar iyi öder, bakımsız gemiyi tutar.
-- **Personel:** Kaptan, 2. kaptan, çarkçıbaşı, 2. çarkçı ve aşçı. Beceri, maaş ve moral oyunu doğrudan etkiler.
+- **Personel:** Kaptan, 2. kaptan, çarkçıbaşı, 2. çarkçı ve aşçı. Beceri, maaş ve moral oyunu doğrudan etkiler. Her denizcinin yaşı ve sadakati var: terfi ister, emekli olur, yılsonu ikramiyesi bekler, sadakatsiz olan istifa eder.
+- **Banka:** İşletme kredisi ve yarı peşin, yarı kredili gemi alımı. Faiz itibara bağlı, taksitler her ay ödenir.
+- **Zaman çarteri:** Gemiyi 3, 6 ya da 12 aylığına sabit günlük kirayla bir kiracıya ver; arızada kira kesilir (off-hire).
+- **Klas sörveyleri:** 2,5 yılda bir ara, 5 yılda bir özel sörvey. Kaçırılırsa klas askıya alınır ve gemi yük alamaz.
+- **Rakip şirketler:** Dört rakip büyür, zorlanır, batar. Personelini ayartır, navlun savaşı açar, ucuz gemi satar; batmak üzere olanı satın alabilirsin.
 - **Seyirde olaylar:** Makine arızası, fırtına, sintine ve yağlı su kararı, korsan riski, yakıtsız kalma.
 - **Tecrübe ve ruhsat:** Her gemi sınıfında ayrı tecrübe puanı var. Yeni sınıf için ruhsat, büyük limanlar için şirket seviyesi gerekir.
 - **Gemi geliştirmeleri:** Pervane, makine revizyonu, scrubber, yük donanımı, kapasite artırımı ve diğerleri. Gövde boyası ve gemi adı da değiştirilebilir.
@@ -108,7 +112,7 @@ Arayüze yeni bir metin eklerken üç dili birlikte yaz: `L('Türkçe','English'
 
 ![English, landscape](ekran/english.png)
 
-Start with one old coaster, carry cargo between 34 world ports, hire crew, earn experience per ship class to unlock licences, larger ports and ship upgrades, then grow into bulk carriers and tankers. Fleet managers can automate your fleets, and fictional political events affect relations with countries.
+Start with one old coaster, carry cargo between 34 world ports, hire crew, earn experience per ship class to unlock licences, larger ports and ship upgrades, then grow into bulk carriers and tankers. Take bank loans and ship mortgages, put ships on time charter, keep up with class surveys, compete with four rival companies (or buy one out) and look after crew who age, want promotion and can be poached. Fleet managers can automate your fleets, and fictional political events affect relations with countries.
 
 No install needed. It works on phones, tablets and desktops, in portrait or landscape, can be added to the home screen and plays offline. Saves are stored locally in the browser and can be exported to a file.
 
@@ -122,7 +126,7 @@ To host it: upload this folder to a GitHub repository and enable **Settings › 
 
 <img src="ekran/zhongwen.png" alt="中文竖屏" width="300">
 
-你从一艘旧沿海货船起步，在全球34个港口之间运货，招募船员，为每种船型积累经验，以解锁新的船舶执照、更大的港口和船舶改装，逐步发展到散货船和油轮船队。船队经理可以替你打理船队，虚构的时事事件会影响你与各国的关系。
+你从一艘旧沿海货船起步，在全球34个港口之间运货，招募船员，为每种船型积累经验，以解锁新的船舶执照、更大的港口和船舶改装，逐步发展到散货船和油轮船队。你还可以向银行贷款、用抵押贷款买船、把船期租出去、按时完成船级检验、与四家竞争对手较量（甚至收购对手），并照顾会变老、要求晋升、可能被挖走的船员。船队经理可以替你打理船队，虚构的时事事件会影响你与各国的关系。
 
 无需安装，手机、平板和电脑都能玩，支持竖屏和横屏，可以添加到主屏幕并离线游玩。存档保存在浏览器本地，也可以导出为文件。
 
