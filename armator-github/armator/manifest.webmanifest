@@ -1,0 +1,19 @@
+{
+  "name": "Armatör · Denizcilik Şirketi Oyunu",
+  "short_name": "Armatör",
+  "description": "Eski bir kosterle başla, denizcilik şirketini büyüt. Start with an old coaster and grow a shipping company. 从一艘旧货船起步，发展你的航运公司。",
+  "lang": "tr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "any",
+  "background_color": "#0a141d",
+  "theme_color": "#0a141d",
+  "categories": ["games", "simulation"],
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
