@@ -1,5 +1,5 @@
 /* Armatör: çevrimdışı oynama için önbellek. Önce ağ, ağ yoksa önbellek. */
-const CACHE = 'armator-2.1';
+const CACHE = 'armator-2.2';
 const CORE = ['./', './index.html', './manifest.webmanifest', './favicon.svg', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

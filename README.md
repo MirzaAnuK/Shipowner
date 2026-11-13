@@ -54,6 +54,10 @@ Her yıl sonunda gemilerin A'dan E'ye bir karbon notu alır ve kurallar her yıl
 
 Deniz kurallarına aykırı davranırsan şirketine dava açılır. Yük hasarı, çatışma ve rıhtım kazaları da mahkemeye gidebilir. Her davada uzlaşır ya da mahkemede savunursun; davası süren gemin limanda tutuklanabilir.
 
+### Ödüller
+
+Her yıl sonunda bir denizcilik dergisi dört ödül verir: Yılın Armatörü, Güvenlik Ödülü, Yeşil Denizcilik Ödülü ve Yılın İşvereni. En hızlı büyüyen, kazasız ve ihlalsiz bir yıl geçiren, karbon notları iyi olan ya da denizcilerine iyi bakan şirket kazanır. Ödüller itibar getirir ve şirketin vitrininde durur.
+
 ### Öğrenmek
 
 Oyunu adım adım öğreten 22 görev vardır; her biri bir ödül verir. Yeni bir şeyle ilk kez karşılaştığında kısa bir ipucu çıkar. Oyun uzun soluklu düşünülmüştür: büyük gemiler ve büyük limanlar yıllar içinde açılır.
@@ -88,6 +92,8 @@ Oyundaki politik olaylar kurgusaldır. Fiyatlar ve süreler oyun dengesi için s
 
 **The world and its rules.** Relations with each country raise or lower freight, costs and inspections, and fictional crises ask you to take sides. Risk levels in the Red Sea, the Gulf of Aden, the Gulf of Guinea, Hormuz and the northern Black Sea change over time; you choose war-risk insurance, armed guards or the long way round the Cape. Ships get a yearly carbon rating from A to E, E-rated ships are barred from the EU, and EU voyages pay for their emissions. Breaking the rules of the sea, cargo damage, collisions and quay accidents lead to lawsuits that you can settle or fight in court, and a ship with a pending case can be arrested in port.
 
+**Awards.** Every year a shipping magazine names the Shipowner of the Year, and gives a Safety Award, a Green Shipping Award and Employer of the Year. They bring reputation and stay in your trophy cabinet.
+
 **Learning.** 22 missions with rewards teach the game step by step, and short tips appear the first time you meet something new. The game is designed to be played over a long time.
 
 ---
@@ -113,5 +119,7 @@ Oyundaki politik olaylar kurgusaldır. Fiyatlar ve süreler oyun dengesi için s
 **公司。** 办公室会经历五栋楼，从码头边的单间一直到航运大厦。你可以聘请机务主管、对外关系经理和法律顾问；完成15次交货后还能任命船队经理替你找货，经理有好有坏。之后可以购买自己的泊位并扩建成码头，还能收购陷入困境的对手。
 
 **世界与规则。** 与各国的关系会影响运费、费用和检查，虚构的危机会要求你选边站。红海、亚丁湾、几内亚湾、霍尔木兹和黑海北部的风险等级不断变化；你可以选择战争险、武装护卫，或绕行好望角。船舶每年获得A到E的碳评级，E级船不得进入欧盟，往返欧盟的航次要为排放付费。违反海上规则、货损、碰撞和码头事故都会招来诉讼，你可以和解，也可以出庭应诉；有未决案件的船可能在港口被扣押。
+
+**奖项。** 每年年底，航运杂志会评选年度船东，并颁发安全奖、绿色航运奖和年度雇主奖。获奖能提升声誉，奖杯会陈列在公司页面。
 
 **学习。** 22个带奖励的任务会一步步教你玩法，第一次遇到新情况时会出现简短提示。这是一款适合长期经营的游戏。

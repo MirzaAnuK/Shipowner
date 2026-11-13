@@ -355,3 +355,4 @@ html.pwa #tip,html.rot #tip{bottom:calc(54px + var(--mb))}
 .msn.ok b{color:var(--mute);font-weight:500}.msn .bar{margin:5px 0 2px}.msn small{color:var(--mute);font-size:11px}.msn .btns{margin:6px 0 0}.msn .note{margin:6px 0 0}
 .msnc{border-left:3px solid var(--mag)}
 .prow.emp.off{opacity:.75}
+.trophies{display:grid;gap:6px;margin-bottom:6px}.tro{display:flex;gap:9px;align-items:center;padding:6px 8px;border:1px solid var(--line);background:var(--bg2,transparent)}.tro .tri{font-size:20px}.tro b{display:block;font-size:13px}.tro small{color:var(--mute);font-size:11px}

@@ -156,11 +156,11 @@ function fillOffers(pid){if(!portOpen(pid)){S.offers[pid]=[];return;}const A=S.o
  if(TPORTS.roro.includes(pid))while(cnt('roro','M')<2)A.push(mkOffer(pid,'roro','M'));
  if(TPORTS.lngx.includes(pid))while(cnt('lng','L')<2)A.push(mkOffer(pid,'lng','L'));
  while(A.filter(o=>o.type==='dry'||o.type==='tank').length<10){const k=wpick(['dryX','dryS','dryM','dryL','tankS','tankM','tankL'],[14,14,24,14,10,14,10]);A.push(mkOffer(pid,k.slice(0,-1),k.slice(-1)));}}
-function fits(s,o){return s.type===o.type&&o.tons<=s.dwt&&S.rep>=o.rep&&portOpen(o.to)&&!svOver(s)&&(!o.imo||up(s,'imo'));}
+function fits(s,o){return s.type===o.type&&o.tons<=s.dwt&&S.rep>=o.rep&&portOpen(o.to)&&!svOver(s)&&(!o.imo||up(s,'imo'))&&!(ciiBanned(s)&&isEU(o.to));}
 
 /* ---------- sefer ---------- */
 function depart(s,to,oid,top,by){if(s.state!=='idle'||to===s.port||!PORT[to])return false;if(!portOpen(to)){if(!by)toast(PORT[to].n+': '+portWhy(to),'','bad');return false;}let o=null;
- if(ciiBanned(s)&&(isEU(to)||isEU(s.port))&&!by){toast(L(s.name+': karbon notu yüzünden AB limanlarına giremez',s.name+': barred from EU ports by its carbon rating',s.name+'：因碳强度评级不得进入欧盟港口'),s.id,'bad');return false;}
+ if(ciiBanned(s)&&isEU(to)&&!by){toast(L(s.name+': karbon notu yüzünden AB limanlarına giremez',s.name+': barred from EU ports by its carbon rating',s.name+'：因碳强度评级不得进入欧盟港口'),s.id,'bad');return false;}
  if(ciiBanned(s)&&isEU(to))return false;
  if(oid){o=(S.offers[s.port]||[]).find(x=>x.id===oid);if(!o){toast(L('Bu yük artık piyasada yok','This cargo is no longer on the market','这批货已不在市场上'),'','bad');return false;}}
  const p=planTrip(s,to,o);if(p.miss.length){toast(L('Personel eksik: ','Crew missing: ','缺少船员：')+LJ(p.miss),s.id,'bad');return false;}
@@ -225,7 +225,7 @@ function pushInfo(title,body){pushEv({k:'info',title,body,opts:[{l:OK3}]});}
 function evBribe(s,P){const amt=Math.round((1200+s.dwt*0.05)/100)*100;pushEv({k:'bribe',sid:s.id,title:()=>L('Limanda ek ödeme talebi: ','Request for an extra payment in port: ','港口索要额外费用：')+s.name,
  body:()=>L(P.n+' limanında bir görevli, evrak işlerini “hızlandırmak” için '+USD(amt)+' istiyor. Ödenmezse işlemler ağırdan alınacak.','An official at '+P.n+' wants '+USD(amt)+' to “speed up” the paperwork. If you don’t pay, things will move slowly.',P.n+'的一名官员索要'+USD(amt)+'来“加快”办理手续。不付的话，手续会被拖延。'),d:{amt},
  opts:[{l:()=>L('Öde, iş yürüsün','Pay and keep things moving','付钱，让事情顺利进行'),s:()=>USD(amt)+L(' · gecikme olmaz · duyulursa itibar zedelenir',' · no delay · reputation suffers if it gets out',' · 不会延误 · 若传出去会损害声誉')},{l:()=>L('Reddet','Refuse','拒绝'),s:()=>L('2 gün gecikme · itibar artar','2-day delay · reputation improves','延误2天 · 声誉提升')}]});}
-function evBreakdown(s){tip('bd');const major=Math.random()<0.15+Math.max(0,70-s.cond)/200,sev=major?2.5:1,avg=(sk(s,'cb')+sk(s,'c2'))/2,pOk=clamp(0.22+0.14*avg-(major?0.2:0),0.1,0.95),
+function evBreakdown(s){tip('bd');if(S.yr)S.yr.bd++;const major=Math.random()<0.15+Math.max(0,70-s.cond)/200,sev=major?2.5:1,avg=(sk(s,'cb')+sk(s,'c2'))/2,pOk=clamp(0.22+0.14*avg-(major?0.2:0),0.1,0.95),
  svc=Math.round((9000+s.dwt*0.9)*sev/100)*100,parts=Math.round((1500+s.dwt*0.1)*sev/100)*100,v=s.voy,bi=ri(0,BD3.length-1),pct=Math.floor(v.done/v.nm*100);
  s.state='broken';s.op=99;s.cond=Math.max(15,s.cond-0.5);v.lastEv=S.day;
  pushEv({k:'bd',sid:s.id,title:()=>(major?L('Ciddi arıza: ','Major breakdown: ','严重故障：'):L('Arıza: ','Breakdown: ','故障：'))+s.name,
