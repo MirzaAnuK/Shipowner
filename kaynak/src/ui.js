@@ -202,7 +202,7 @@ function applyStatic(){const h=document.documentElement;h.lang=['tr','en','zh-CN
 function setLang(i){setLangIdx(i);try{localStorage.setItem('armator_lang',LANGS[LI]);}catch(e){}applyStatic();renderRot();if(ui.intro&&S)showIntro();R();}
 
 /* ---------- sürüm, tam ekran, kayıt yedeği ---------- */
-const VER='2.2',REL=!!document.querySelector('link[rel=manifest]');
+const VER='2.3',REL=!!document.querySelector('link[rel=manifest]');
 function fsOn(){return !!(document.fullscreenElement||document.webkitFullscreenElement);}
 function fsCan(){return !!(document.fullscreenEnabled||document.webkitFullscreenEnabled);}
 async function goLand(){if(!fsCan())return false;try{const el=document.documentElement;if(!fsOn())await (el.requestFullscreen?el.requestFullscreen({navigationUI:'hide'}):el.webkitRequestFullscreen());if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape');return true;}catch(e){return false;}}

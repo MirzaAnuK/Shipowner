@@ -180,7 +180,7 @@ function goIdle(s,why){s.state='idle';s.op=0;s.ack=false;s.idleAt=S.day;if(manag
 function psc(s,P){const st=P.st;
  if(s.flags.dump){s.flags.dump=0;const ct=Math.random()<[.05,.1,.2,.4,.6][st-1];if(!ct)lawWhistle(s);if(ct){const fine=Math.round((60000+s.dwt*3)/1000)*1000;pay(fine,'ceza',s);addRep(-15);addRel(P.c,-10);s.state='held';s.op=5;
    pushInfo(()=>L('MARPOL ihlali: ','MARPOL violation: ','违反MARPOL公约：')+s.name,()=>L(P.n+' liman devleti kontrolü yağ kayıt defterindeki tutarsızlığı fark etti. Ceza '+USD(fine)+', gemi 5 gün tutuldu ve şirketin itibarı ağır yara aldı.','Port State Control at '+P.n+' found inconsistencies in the oil record book. Fine '+USD(fine)+'; the ship is detained for 5 days and the company’s reputation has taken a heavy blow.',P.n+'的港口国监督检查发现油类记录簿有出入。罚款'+USD(fine)+'，船舶被滞留5天，公司声誉严重受损。'));
-   logMsg(()=>L(s.name+' MARPOL ihlalinden tutuldu, ceza '+USD(fine),s.name+' detained for a MARPOL violation, fine '+USD(fine),s.name+'因违反MARPOL被滞留，罚款'+USD(fine)));tip('psc');lawOpen('marpol',s,fine*1.5,0.2,()=>L(P.n+' liman devleti kontrolünün raporu üzerine bayrak devleti, kaptan ve çarkçıbaşı hakkında MARPOL ihlalinden kovuşturma başlattı.','Following the Port State Control report at '+P.n+', the flag state has opened a MARPOL prosecution against the master and chief engineer.','根据'+P.n+'港口国监督的报告，船旗国对船长和轮机长提起MARPOL刑事诉讼。'));return 'held';}}
+   logMsg(()=>L(s.name+' MARPOL ihlalinden tutuldu, ceza '+USD(fine),s.name+' detained for a MARPOL violation, fine '+USD(fine),s.name+'因违反MARPOL被滞留，罚款'+USD(fine)));tip('psc');lawOpen('marpol',s,fine*2+(150000+s.dwt*18)*rnd(0.8,1.4),0.2,()=>L(P.n+' liman devleti kontrolünün raporu üzerine bayrak devleti, kaptan ve çarkçıbaşı hakkında MARPOL ihlalinden kovuşturma başlattı.','Following the Port State Control report at '+P.n+', the flag state has opened a MARPOL prosecution against the master and chief engineer.','根据'+P.n+'港口国监督的报告，船旗国对船长和轮机长提起MARPOL刑事诉讼。'));return 'held';}}
  const pI=Math.min(0.92,(PSC_P[st-1]+(s.age>20?0.12:0))*relPsc(P.id));if(Math.random()>pI)return 'none';
  const thr=PSC_T[st-1]+(TPSC[s.type]||0),score=s.cond+(sk(s,'kap')+sk(s,'cb')-6)*3+pscB(s)+rnd(-7,7)-(svOver(s)?15:0);
  if(score>=thr){if(st>=4)addRep(1);if(!managed(s))toast(L(s.name+': liman devleti denetimi temiz geçti',s.name+': passed the Port State Control inspection',s.name+'：顺利通过港口国监督检查'),s.id,'ok');return 'ok';}
@@ -202,7 +202,7 @@ function arrive(s){const P=PORT[s.voy.to],v0=s.voy;s.port=P.id;s.voy=null;etsArr
  R();}
 function completeCargo(s){const c=s.cargo,late=Math.max(0,S.day-c.due);let pen=0;if(late>0.5)pen=Math.min(0.4,0.02*Math.ceil(late))*c.freight;
  const cr=(c.claim||0)+(Math.random()<Math.max(0.02,0.14-0.028*sk(s,'zab'))?rnd(0.03,0.08):0);let claim=cr*c.freight;
- if(claim>25000&&Math.random()<0.5){const a=claim*1.4,kn=kindN(c.kind),Pn=PORT[c.to].n;lawOpen('cargo',s,a,0.45+0.05*sk(s,'zab'),()=>L(Pn+' limanında alıcı, '+kn+' yükünün hasarlı teslim edildiğini söyleyerek tazminat davası açtı.','At '+Pn+' the receiver has sued, saying the '+kn+' cargo was delivered damaged.','在'+Pn+'，收货人起诉称'+kn+'货物交付时已受损。'));claim=0;}
+ if(claim>25000&&Math.random()<0.5){const a=claim*2.6+s.dwt*2,kn=kindN(c.kind),Pn=PORT[c.to].n;lawOpen('cargo',s,a,0.45+0.05*sk(s,'zab'),()=>L(Pn+' limanında alıcı, '+kn+' yükünün hasarlı teslim edildiğini söyleyerek tazminat davası açtı.','At '+Pn+' the receiver has sued, saying the '+kn+' cargo was delivered damaged.','在'+Pn+'，收货人起诉称'+kn+'货物交付时已受损。'));claim=0;}
  const net=Math.round(c.freight-pen-claim);
  earn(net,'navlun');const prof=Math.round(net-(s.vc||0));s.vc=0;addRel(PORT[c.to].c,late>0.5?-1:0.6);addRel(PORT[c.from].c,0.3);
  if(c.by){const m=S.staff.find(x=>x.id===c.by);if(m){m.stat.voy++;m.stat.profit+=prof;if(late>0.5)m.stat.late++;m.stat.hist.unshift({n:s.name,k:c.kind,f:c.from,t:c.to,p:prof});if(m.stat.hist.length>8)m.stat.hist.length=8;}}
@@ -216,7 +216,7 @@ function completeCargo(s){const c=s.cargo,late=Math.max(0,S.day-c.due);let pen=0
    başlık, metin ve seçenekler kapanış olarak verilir; olay kaydedilmeden önce üç dile çevrilir */
 const OK3=()=>L('Tamam','OK','好的');
 function evText(ev){ev.title=LX(ev.title);ev.body=LX(ev.body);ev.opts=ev.opts.map(o=>({l:LX(o.l),s:LX(o.s)}));return ev;}
-function pushEv(ev){if(ev.k!=='info'&&ev.k!=='lvl')tip('ev');evText(ev);const a=S.auto[ev.k];
+function pushEv(ev){if(ev.k!=='info'&&ev.k!=='lvl'&&ev.k!=='award')tip('ev');evText(ev);const a=S.auto[ev.k];
  if(a!==undefined&&ev.k!=='over'&&ev.k!=='pol'){const i=Math.min(a,ev.opts.length-1);
   if(ev.k==='info'||ev.k==='lvl'){toast(tx(ev.title),ev.sid,ev.k==='lvl'?'ok':'bad');logMsg(()=>tx(ev.title)+'. '+tx(ev.body));}
   else toast(tx(ev.title)+': '+tx(ev.opts[i].l)+L(' (otomatik)',' (automatic)','（自动）'),ev.sid);applyEv(ev,i);return;}

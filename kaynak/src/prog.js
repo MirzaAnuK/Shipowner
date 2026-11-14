@@ -28,7 +28,7 @@ const opsMul=s=>(1-0.04*catB(s))*(up(s,'gear')?0.75:1);
 const pscB=s=>1.5*catB(s)+(up(s,'nav')?4:0);
 
 /* tecrübe kazanımı: oyun uzun soluklu olsun diye düşük tutulur */
-const XPM=0.4;
+const XPM=0.24;
 function voyXP(c,late){const d=clamp(S.day-(c.t0===undefined?S.day-10:c.t0),2,80);let x=4+1.2*d;if(late)x*=0.5;if(PORT[c.to].st>=4)x*=1.2;return Math.max(1,Math.round(x*XPM));}
 function addXP(k,x){if(!(x>0))return;const l0=catLv(k),c0=coLv();S.xp[k]=xpOf(k)+x;const l1=catLv(k),c1=coLv();
  if(l1>l0){const lic=CLSORD.filter(c=>LIC[c]&&LIC[c][0]===k&&LIC[c][1]===l1),ups=UPGK.filter(u=>UPG[u].lv===l1),F=FLEET[k];

@@ -46,14 +46,14 @@ function lawArrive(s,P){const c=S.cases.find(x=>x.st==='court'&&x.sid===s.id&&!x
  pushEv({k:'arrest',sid:s.id,title:()=>L('Gemi tutuklandı: ','Ship arrested: ','船舶被扣押：')+s.name,body:()=>L(P.n+' mahkemesi, '+tx(LAWK[c.k].n).toLocaleLowerCase('tr')+' için davacının talebiyle gemiyi tutukladı. Teminat yatırmadan ya da uzlaşmadan gemi limandan çıkamaz.','At the claimant’s request, the court in '+P.n+' has arrested the ship over the '+tx(LAWK[c.k].n).toLowerCase()+'. She cannot leave port until you post security or settle.',P.n+'法院应原告申请，就'+tx(LAWK[c.k].n)+'扣押了该船。在提供担保或和解之前，船舶不得离港。'),d:{cid:c.id},
   opts:[{l:()=>L('Teminat yatır','Post security','提供担保'),s:()=>USD(c.amt)+L(' · davayı kazanırsan geri döner',' · returned if you win',' · 胜诉后退还')},{l:()=>L('Uzlaş','Settle','和解'),s:()=>USD(caseSet(c))+L(' · dava kapanır',' · the case is closed',' · 结案')}]});}
 function lawArrest(c,i,s){if(i===0){pay(c.amt,'hukuk');c.sec=c.amt;c.secd=1;}else{const v=caseSet(c);pay(v,'hukuk');addRep(-1);c.st='done';c.res='set';c.paid=v;c.end=Math.floor(S.day);}if(s){s.op=(s.op||0)+1;}addRep(-1);}
-function lawWhistle(s){if(Math.random()<(s.morale<40?0.3:0.16))S.whq.push({sid:s.id,sn:s.name,at:Math.floor(S.day)+ri(20,120),amt:(60000+s.dwt*3)*1.6});}
+function lawWhistle(s){if(Math.random()<(s.morale<40?0.3:0.16))S.whq.push({sid:s.id,sn:s.name,at:Math.floor(S.day)+ri(20,120),amt:(180000+s.dwt*22)*rnd(0.8,1.5)});}
 const TSS=[[0.5,50.5,2.5,51.6],[98,0.8,104.5,6],[28.8,40.9,29.3,41.3],[-6.2,35.7,-5.2,36.2],[32.2,29.8,32.7,31.4],[121,23,123,26]];
 function inTSS(lon,lat){return TSS.some(b=>lon>=b[0]&&lon<=b[2]&&lat>=b[1]&&lat<=b[3]);}
 function collRoll(s){if(s.state!=='sea'||!s.voy||S.ev.some(e=>e.sid===s.id))return;const p=posOn(s.voy);if(!inTSS(p.lon,p.lat))return;
  const pr=0.012*(1.6-0.15*sk(s,'kap'))*(s.morale<30?1.5:1)*(dueCrew(s).length?1.4:1);if(Math.random()>pr)return;
  const nm=pick(SHIPS2),dmg=Math.round((40000+s.dwt*1.2)/1000)*1000;pay(dmg,'bakım',s);s.cond=Math.max(15,s.cond-10);s.hold=(s.hold||0)+3;s.morale=Math.max(0,s.morale-10);
- lawOpen('coll',s,(120000+s.dwt*6)*rnd(0.7,1.4),0.3+0.06*sk(s,'kap'),()=>L(s.name+', trafik ayırım düzeninde '+nm+' ile çatıştı. Kendi hasarın '+USD(dmg)+', 3 gün kayıp. Diğer gemi kusurun bizde olduğunu iddia ediyor.',s.name+' collided with '+nm+' in a traffic separation scheme. Your own damage is '+USD(dmg)+' and 3 days are lost. The other ship says we were at fault.',s.name+'在分道通航区与'+nm+'相撞。本船损失'+USD(dmg)+'，耽误3天。对方声称过错在我方。'));}
-function quayRoll(s,P){if(cong(P.id)<2||Math.random()>0.02*(1.5-0.1*sk(s,'kap')))return;const a=(30000+s.dwt*1.5)*rnd(0.8,1.3);
+ lawOpen('coll',s,(160000+s.dwt*26)*rnd(0.7,1.5),0.3+0.06*sk(s,'kap'),()=>L(s.name+', trafik ayırım düzeninde '+nm+' ile çatıştı. Kendi hasarın '+USD(dmg)+', 3 gün kayıp. Diğer gemi kusurun bizde olduğunu iddia ediyor.',s.name+' collided with '+nm+' in a traffic separation scheme. Your own damage is '+USD(dmg)+' and 3 days are lost. The other ship says we were at fault.',s.name+'在分道通航区与'+nm+'相撞。本船损失'+USD(dmg)+'，耽误3天。对方声称过错在我方。'));}
+function quayRoll(s,P){if(cong(P.id)<2||Math.random()>0.02*(1.5-0.1*sk(s,'kap')))return;const a=(70000+s.dwt*5)*rnd(0.8,1.4);
  lawOpen('quay',s,a,0.35,()=>L(s.name+' '+P.n+' limanında yanaşırken rıhtıma sert çarptı ve iskeleye zarar verdi.',s.name+' struck the quay hard while berthing at '+P.n+' and damaged it.',s.name+'在'+P.n+'靠泊时重重撞上码头，造成损坏。'));}
 function lawDay(){for(const c of S.cases)if(c.st==='court'&&S.day>=c.due)lawVerdict(c);
  for(const w of S.whq.slice())if(S.day>=w.at){S.whq.splice(S.whq.indexOf(w),1);const s=S.ships.find(x=>x.id===w.sid);
@@ -61,6 +61,7 @@ function lawDay(){for(const c of S.cases)if(c.st==='court'&&S.day>=c.due)lawVerd
  for(const s of S.ships)collRoll(s);
  S.cases=S.cases.filter(c=>c.st!=='done'||S.day-c.end<200);}
 function lawEv(ev,i,s,d){if(ev.k==='case'){const c=S.cases.find(x=>x.id===d.cid);if(c)lawDecide(c,i);return true;}
+ if(ev.k==='award')return true;
  if(ev.k==='arrest'){const c=S.cases.find(x=>x.id===d.cid);if(c)lawArrest(c,i,s);return true;}return false;}
 
 /* ---------- görevler ---------- */
@@ -121,5 +122,5 @@ function awYear(){const y=S.yr,yr=gameYear()-1,n=S.ships.length;if(!y)return awY
  out.push(['crew',n>=2&&mor>=70&&!y.walk&&Math.random()<(S.cprog?0.9:0.55),rp()]);
  let won=0;for(const [k,w] of out)if(w){won++;S.awards.push({y:yr,k});addRep(AWK[k].rep);if(k==='crew')for(const s of S.ships)for(const r of ROLES){const p=s.crew[r.k];if(p)p.loy=Math.min(100,p.loy+5);}}
  const co=S.name;
- pushInfo(()=>L(yr+' Denizcilik Ödülleri',yr+' Shipping Awards',yr+'年度航运大奖'),()=>L('Liman ve Gemi dergisinin '+yr+' ödülleri açıklandı. '+out.map(([k,w,r])=>tx(AWK[k].n)+': '+(w?co+' ★':r)).join(' · ')+'. '+(won?'Ödüller itibarını artırdı.':'Bu yıl ödül çıkmadı; ödüller iki ve daha fazla gemisi olan şirketlere veriliyor.'),'Harbour & Ship magazine has announced its '+yr+' awards. '+out.map(([k,w,r])=>tx(AWK[k].n)+': '+(w?co+' ★':r)).join(' · ')+'. '+(won?'The awards have raised your reputation.':'No award for you this year; awards go to companies with two or more ships.'),'《港口与船舶》杂志公布了'+yr+'年度奖项。'+out.map(([k,w,r])=>tx(AWK[k].n)+'：'+(w?co+' ★':r)).join(' · ')+'。'+(won?'获奖提升了你的声誉。':'今年没有获奖；奖项只颁给拥有两艘及以上船舶的公司。')));
+ pushEv({k:'award',title:()=>L(yr+' Denizcilik Ödülleri',yr+' Shipping Awards',yr+'年度航运大奖'),body:()=>'',d:{yr,won,rows:out.map(([k,w,r])=>[k,w?1:0,w?co:r])},opts:[{l:OK3}]});
  logMsg(()=>L(yr+' ödülleri: '+won+' ödül',yr+' awards: '+won+' '+pl(won,'award','awards'),yr+'年度奖项：获得'+won+'项'));awYearStart();}

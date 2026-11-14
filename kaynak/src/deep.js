@@ -51,7 +51,7 @@ function tcNext(s){const A=PORTS.filter(p=>p.id!==s.port&&portOpen(p.id)&&RTc[s.
 function crewXp(s,d){for(const r of ROLES){const p=s.crew[r.k];if(!p)continue;p.xp=(p.xp||0)+d;if(p.skill<5&&p.xp>=120*p.skill){p.xp=0;p.skill++;p.wage=Math.round(p.wage*1.15/50)*50;toast(L(p.name+' ('+r.n+') tecrübe kazandı',p.name+' ('+r.n+') gained experience',p.name+'（'+r.n+'）经验提升'),s.id,'ok');R();}}}
 function tcStep(s,d){const t=s.tc;if(!t){goIdle(s);return;}
  if(t.off>0){t.off-=d;if(t.off<=0&&!managed(s))toast(L(s.name+' tamir edildi, kira yeniden işliyor',s.name+' repaired and back on hire',s.name+'已修好，恢复计租'),s.id,'ok');return;}
- earn(t.rate*d,'kira');t.earned+=t.rate*d;t.xpa+=0.28*d;if(t.xpa>=5){const g=Math.floor(t.xpa);t.xpa-=g;addXP(FLEETOF[s.cls],g);}
+ earn(t.rate*d,'kira');t.earned+=t.rate*d;t.xpa+=0.17*d;if(t.xpa>=5){const g=Math.floor(t.xpa);t.xpa-=g;addXP(FLEETOF[s.cls],g);}
  if(s.voy){const v=s.voy,dn=seaSpeed(s)*24*d*wxSea(s,d,true);v.done+=dn;s.cf=(s.cf||0)+consSea(s)*d;s.cd=(s.cd||0)+dn*s.dwt;s.cond=Math.max(15,s.cond-0.08*(1+s.age/20)*(1.3-0.1*sk(s,'c2'))*(up(s,'eng')?0.8:1)*d);crewXp(s,d);
   if(Math.random()<pBreak(s)*d*0.8){const days=Math.round(rnd(1,3.5)*10)/10,c=Math.round((4000+s.dwt*0.4)/100)*100;pay(c,'bakım',s);t.off=days;t.offT+=days;
    toast(L(s.name+' arıza yaptı: '+D1(days)+' gün kira kesildi (off-hire), tamir '+USD(c),s.name+' broke down: '+D1(days)+' days off-hire, repairs '+USD(c),s.name+'发生故障：停租'+D1(days)+'天，修理费'+USD(c)),s.id,'bad');

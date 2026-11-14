@@ -2,7 +2,7 @@
 const FLEETS=[{k:'koster',n:'',sh:'',cls:['koster']},{k:'gcargo',n:'',sh:'',cls:['gcargo']},{k:'bulk',n:'',sh:'',cls:['handy','supra','pmax']},{k:'tank',n:'',sh:'',cls:['ctank','mr','afra']},{k:'box',n:'',sh:'',cls:['feeder','cbox']},{k:'roro',n:'',sh:'',cls:['pctc']},{k:'gas',n:'',sh:'',cls:['lng']}];
 const FLEET3={koster:[['Koster filosu','Coaster fleet','沿海货船船队'],['Koster','Coaster','沿海货船']],gcargo:[['Genel kargo filosu','General cargo fleet','杂货船船队'],['Genel kargo','General cargo','杂货船']],bulk:[['Dökme yük filosu','Bulk carrier fleet','散货船队'],['Dökme yük','Bulk','散货']],tank:[['Tanker filosu','Tanker fleet','油轮船队'],['Tanker','Tanker','油轮']],box:[['Konteyner filosu','Container fleet','集装箱船队'],['Konteyner','Container','集装箱']],roro:[['Ro-Ro filosu','Ro-Ro fleet','滚装船队'],['Ro-Ro','Ro-Ro','滚装']],gas:[['LNG filosu','LNG fleet','LNG船队'],['LNG','LNG','LNG']]};
 const FLEETOF={},FLEET={};FLEETS.forEach(f=>{FLEET[f.k]=f;f.cls.forEach(c=>FLEETOF[c]=f.k);});
-const SROLE={mgr:{n:'',base:6500,d:''},insp:{n:'',base:7000,d:''},dip:{n:'',base:7500,d:''},law:{n:'',base:8000,d:''}};
+const SROLE={mgr:{n:'',base:21000,d:''},insp:{n:'',base:7000,d:''},dip:{n:'',base:7500,d:''},law:{n:'',base:8000,d:''}};
 const SROLE3={
  mgr:[['Filo müdürü','Fleet manager','船队经理'],['Filosundaki gemilere yük bulur, ikmali yapar ve sefere çıkarır. İyisi kârlı iş bağlar, kötüsü zarar ettirir. Becerisi özgeçmişten tam anlaşılmaz; yaptığı işlere bak.','Finds cargo for the ships in the fleet, arranges supplies and sends them to sea. A good one closes profitable deals, a bad one loses you money. The CV doesn’t really show skill; judge by results.','为船队中的船舶寻找货源、安排补给并派船出航。好的经理能谈成赚钱的生意，差的会让你亏钱。简历看不出真实能力，要看实际业绩。']],
  insp:[['Makine enspektörü','Technical superintendent','机务主管'],['Gemilerin durumunu izler, bakım zamanı gelince sana sorar. İyisi sorunu erken görür, arızayı azaltır ve bakımı ucuza bağlar.','Monitors the ships’ condition and asks you when maintenance is due. A good one spots trouble early, reduces breakdowns and gets maintenance done cheaply.','监控船舶状况，到了维修时间会征求你的意见。好的机务主管能及早发现问题、减少故障，并以较低成本完成维修。']],
@@ -10,10 +10,10 @@ const SROLE3={
  dip:[['Dış ilişkiler müdürü','External relations manager','对外关系经理'],['Ülkelerle ilişkileri yürütür. İlişki kazanımlarını artırır, ticaret heyetlerini ucuzlatır.','Handles relations with countries. Increases relation gains and makes trade delegations cheaper.','负责与各国的关系。提高关系增幅，并降低贸易代表团的费用。']]};
 const HQ=[null,
  {n:'',slots:1,cost:0,nw:0,rent:1500,d:''},
- {n:'',slots:3,cost:350000,nw:2.2e6,lv:1,rent:6000,d:''},
- {n:'',slots:4,cost:1.4e6,nw:7e6,lv:2,rent:15000,d:''},
- {n:'',slots:5,cost:5e6,nw:2.5e7,lv:3,rent:40000,d:''},
- {n:'',slots:6,cost:1.6e7,nw:7e7,lv:4,rent:90000,d:''}];
+ {n:'',slots:3,cost:1.2e6,nw:5e6,lv:1,rent:10000,d:''},
+ {n:'',slots:4,cost:6e6,nw:2e7,lv:2,rent:30000,d:''},
+ {n:'',slots:5,cost:2.5e7,nw:7e7,lv:3,rent:90000,d:''},
+ {n:'',slots:6,cost:9e7,nw:2.2e8,lv:4,rent:220000,d:''}];
 const HQ3=[null,
  [['Liman bürosu','Harbour office','港口办事处'],['Rıhtımda kiralık tek oda.','A single rented room on the quay.','码头边租来的一个单间。']],
  [['İş hanında kat','Office floor','写字楼楼层'],['Eski bir iş hanında bütün bir kat.','A whole floor in an old office block.','一栋老写字楼里的整整一层。']],
@@ -22,7 +22,7 @@ const HQ3=[null,
  [['Denizcilik kulesi','Maritime tower','航运大厦'],['Şehrin siluetine giren kule.','A tower that has joined the city skyline.','跻身城市天际线的摩天大楼。']]];
 const EU=['GR','IT','ES','NL','DE','RO'];
 const CV={hi:['Büyük bir armatörde yıllarca çalıştı','Yirmi yıldır aynı işi yapıyor, piyasayı ezbere bilir','Önceki şirketinde iyi iş çıkardı, referansları sağlam','Yurt dışında uzun süre çalıştı'],mid:['Orta ölçekli bir şirkette çalıştı','Limanları iyi tanır','İşini bilir, parlak değil','Denizden karaya yeni geçti'],lo:['Yeni mezun, çok hevesli','Bir tanıdığın tavsiyesiyle geldi','Son üç işinden kısa sürede ayrıldı','Sektöre yeni girdi']};
-const MSIG=[0.85,0.55,0.28,0.14,0.05],MNEG=[0.84,0.92,1,1.05,1.1],MDLY=[1.6,1,0.6,0.35,0.2],ITHR=[38,43,48,52,55],ICF=[1.1,1.03,0.96,0.9,0.84],IBF=[1,0.97,0.93,0.88,0.82],DMUL=[1.1,1.2,1.3,1.45,1.6];
+const MSIG=[0.85,0.55,0.28,0.14,0.05],MNEG=[0.84,0.92,1,1.05,1.1],MDLY=[1.6,1,0.6,0.35,0.2],ITHR=[56,58,60,62,64],ICF=[1.1,1.03,0.96,0.9,0.84],IBF=[1,0.97,0.93,0.88,0.82],DMUL=[1.1,1.2,1.3,1.45,1.6];
 const NOWIN=['pencere açılmasın, bildirim yeter','no window, a notification is enough','不弹窗，通知即可'];
 const AUTOLBL={bd:[['Seyirde arıza','Breakdown at sea','航行中故障'],[['mürettebat tamir etsin','crew repairs it','船员自修'],['servis çağrılsın','call a service team','叫维修服务']]],
  storm:[['Fırtına uyarısı','Storm warning','风暴预警'],[['rota değişsin','change course','改变航线'],['rotada kalınsın','stay on course','保持航线']]],
