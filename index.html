@@ -473,7 +473,7 @@ const PN3={IST:['İstanbul','Istanbul','伊斯坦布尔'],IZM:['İzmir','Izmir',
 const CN3={TR:['Türkiye','Türkiye','土耳其'],RO:['Romanya','Romania','罗马尼亚'],RU:['Rusya','Russia','俄罗斯'],GR:['Yunanistan','Greece','希腊'],EG:['Mısır','Egypt','埃及'],LY:['Libya','Libya','利比亚'],DZ:['Cezayir','Algeria','阿尔及利亚'],IT:['İtalya','Italy','意大利'],ES:['İspanya','Spain','西班牙'],MA:['Fas','Morocco','摩洛哥'],NL:['Hollanda','Netherlands','荷兰'],DE:['Almanya','Germany','德国'],SN:['Senegal','Senegal','塞内加尔'],NG:['Nijerya','Nigeria','尼日利亚'],ZA:['Güney Afrika','South Africa','南非'],KE:['Kenya','Kenya','肯尼亚'],SA:['Suudi Arabistan','Saudi Arabia','沙特阿拉伯'],AE:['BAE','UAE','阿联酋'],PK:['Pakistan','Pakistan','巴基斯坦'],IN:['Hindistan','India','印度'],BD:['Bangladeş','Bangladesh','孟加拉国'],SG:['Singapur','Singapore','新加坡'],CN:['Çin','China','中国'],KR:['Güney Kore','South Korea','韩国'],JP:['Japonya','Japan','日本'],AU:['Avustralya','Australia','澳大利亚'],BR:['Brezilya','Brazil','巴西'],AR:['Arjantin','Argentina','阿根廷'],US:['ABD','USA','美国'],IR:['İran','Iran','伊朗']};
 const KIND3={'Genel kargo':['General cargo','件杂货'],'Çelik rulo':['Steel coils','钢卷'],'Çimento':['Cement','水泥'],'Kereste':['Timber','木材'],'Hurda':['Scrap metal','废钢'],'Mermer':['Marble','大理石'],'Gübre':['Fertiliser','化肥'],'Tahıl':['Grain','谷物'],'Proje yükü':['Project cargo','项目货物'],'Kömür':['Coal','煤炭'],'Klinker':['Clinker','熟料'],'Şeker':['Sugar','糖'],'Çelik':['Steel','钢材'],'Demir cevheri':['Iron ore','铁矿石'],'Boksit':['Bauxite','铝土矿'],'Motorin':['Diesel','柴油'],'Benzin':['Gasoline','汽油'],'Bitkisel yağ':['Vegetable oil','植物油'],'Kimyasal':['Chemicals','化学品'],'Konteyner':['Containers','集装箱'],'Soğutmalı konteyner':['Reefer containers','冷藏集装箱'],'Tehlikeli madde (IMO)':['Dangerous goods (IMO)','危险品（IMO）'],'Otomobil':['Cars','汽车'],'Kamyon ve iş makinesi':['Trucks and machinery','卡车和工程机械'],'Tarım makinesi':['Farm machinery','农业机械'],'Otobüs':['Buses','客车'],'LNG':['LNG','液化天然气'],'Jet yakıtı':['Jet fuel','航空煤油'],'Nafta':['Naphtha','石脑油'],'Ham petrol':['Crude oil','原油'],'Fuel oil':['Fuel oil','燃料油']};
 const kindN=k=>LI&&KIND3[k]?KIND3[k][LI-1]:k;
-const CV3={'Büyük bir armatörde yıllarca çalıştı':['Worked for years at a large shipowner','曾在大型船东公司工作多年'],'Yirmi yıldır aynı işi yapıyor, piyasayı ezbere bilir':['Twenty years in the job, knows the market by heart','干这行二十年，对市场了如指掌'],'Önceki şirketinde iyi iş çıkardı, referansları sağlam':['Did well at the last company, strong references','在上一家公司表现出色，推荐信可靠'],'Yurt dışında uzun süre çalıştı':['Worked abroad for a long time','曾长期在海外工作'],'Orta ölçekli bir şirkette çalıştı':['Worked at a mid-sized company','曾在一家中型公司工作'],'Limanları iyi tanır':['Knows the ports well','熟悉各个港口'],'İşini bilir, parlak değil':['Knows the job, nothing brilliant','业务熟练，但不算出色'],'Denizden karaya yeni geçti':['Recently came ashore from sea service','刚从海上转到岸上工作'],'Yeni mezun, çok hevesli':['Fresh graduate, very eager','应届毕业生，干劲十足'],'Bir tanıdığın tavsiyesiyle geldi':['Came recommended by an acquaintance','经熟人推荐而来'],'Son üç işinden kısa sürede ayrıldı':['Left the last three jobs after a short time','最近三份工作都很快离职'],'Sektöre yeni girdi':['New to the industry','刚入行']};
+const CV3={'Büyük bir armatörde yıllarca çalıştı':['Worked for years at a large shipowner','曾在大型船东公司工作多年'],'Yirmi yıldır aynı işi yapıyor, piyasayı ezbere bilir':['Twenty years in the job, knows the market by heart','干这行二十年，对市场了如指掌'],'Önceki şirketinde iyi iş çıkardı, referansları sağlam':['Did well at the last company, strong references','在上一家公司表现出色，推荐信可靠'],'Yurt dışında uzun süre çalıştı':['Worked abroad for a long time','曾长期在海外工作'],'Orta ölçekli bir şirkette çalıştı':['Worked at a mid-sized company','曾在一家中型公司工作'],'Limanları iyi tanır':['Knows the ports well','熟悉各个港口'],'İşini bilir, parlak değil':['Knows the job, nothing brilliant','业务熟练，但不算出色'],'Denizden karaya yeni geçti':['Recently came ashore from sea service','刚从海上转到岸上工作'],'Yeni mezun, çok hevesli':['Fresh graduate, very eager','应届毕业生，干劲十足'],'Bir tanıdığın tavsiyesiyle geldi':['Came recommended by an acquaintance','经熟人推荐而来'],'Son üç işinden kısa sürede ayrıldı':['Left the last three jobs after a short time','最近三份工作都很快离职'],'Sektöre yeni girdi':['New to the industry','刚入行'],'Tecrübeli ama yeniliklere kapalı':['Experienced but set in their ways','经验丰富，但不愿接受新事物'],'Uzun yıllar çalıştı ama karnesi parlak değil':['Many years in the job, but an unremarkable record','从业多年，但业绩平平'],'Genç ama çok yetenekli, hızlı öğreniyor':['Young but very talented, learns fast','年轻但很有才华，学得很快']};
 const cvN=c=>LI&&CV3[c]?CV3[c][LI-1]:c;
 const TOLL3={'Süveyş Kanalı':['Suez Canal','苏伊士运河'],'Panama Kanalı':['Panama Canal','巴拿马运河']};
 const tollN=n=>LI&&TOLL3[n]?TOLL3[n][LI-1]:n;
@@ -946,7 +946,10 @@ const HQ3=[null,
  [['Genel müdürlük','Headquarters','总部大楼'],['Cam cepheli genel müdürlük binası.','A glass-fronted headquarters building.','玻璃幕墙的总部大楼。']],
  [['Denizcilik kulesi','Maritime tower','航运大厦'],['Şehrin siluetine giren kule.','A tower that has joined the city skyline.','跻身城市天际线的摩天大楼。']]];
 const EU=['GR','IT','ES','NL','DE','RO'];
-const CV={hi:['Büyük bir armatörde yıllarca çalıştı','Yirmi yıldır aynı işi yapıyor, piyasayı ezbere bilir','Önceki şirketinde iyi iş çıkardı, referansları sağlam','Yurt dışında uzun süre çalıştı'],mid:['Orta ölçekli bir şirkette çalıştı','Limanları iyi tanır','İşini bilir, parlak değil','Denizden karaya yeni geçti'],lo:['Yeni mezun, çok hevesli','Bir tanıdığın tavsiyesiyle geldi','Son üç işinden kısa sürede ayrıldı','Sektöre yeni girdi']};
+const CV={s:{hi:['Büyük bir armatörde yıllarca çalıştı','Yurt dışında uzun süre çalıştı','Önceki şirketinde iyi iş çıkardı, referansları sağlam'],mid:['Tecrübeli ama yeniliklere kapalı','Limanları iyi tanır','İşini bilir, parlak değil'],lo:['Uzun yıllar çalıştı ama karnesi parlak değil','Son üç işinden kısa sürede ayrıldı']},
+ m:{hi:['Önceki şirketinde iyi iş çıkardı, referansları sağlam','Yurt dışında uzun süre çalıştı'],mid:['Orta ölçekli bir şirkette çalıştı','Limanları iyi tanır','İşini bilir, parlak değil'],lo:['Son üç işinden kısa sürede ayrıldı','Bir tanıdığın tavsiyesiyle geldi']},
+ j:{hi:['Genç ama çok yetenekli, hızlı öğreniyor'],mid:['Denizden karaya yeni geçti','Yeni mezun, çok hevesli'],lo:['Sektöre yeni girdi','Bir tanıdığın tavsiyesiyle geldi']}};
+function cvPick(skill,exp){const b=exp>=15?'s':exp>=6?'m':'j',q=skill>=4?'hi':skill<=2?'lo':'mid';if(exp>=20&&q==='hi'&&Math.random()<0.4)return 'Yirmi yıldır aynı işi yapıyor, piyasayı ezbere bilir';return pick(CV[b][q]);}
 const MSIG=[0.85,0.55,0.28,0.14,0.05],MNEG=[0.84,0.92,1,1.05,1.1],MDLY=[1.6,1,0.6,0.35,0.2],ITHR=[56,58,60,62,64],ICF=[1.1,1.03,0.96,0.9,0.84],IBF=[1,0.97,0.93,0.88,0.82],DMUL=[1.1,1.2,1.3,1.45,1.6];
 const NOWIN=['pencere açılmasın, bildirim yeter','no window, a notification is enough','不弹窗，通知即可'];
 const AUTOLBL={bd:[['Seyirde arıza','Breakdown at sea','航行中故障'],[['mürettebat tamir etsin','crew repairs it','船员自修'],['servis çağrılsın','call a service team','叫维修服务']]],
@@ -976,8 +979,8 @@ function initCorp(){S.hq=S.hq||1;S.staff=S.staff||[];S.fleet=S.fleet||{};FLEETS.
 function setRouting(){RTc=(S&&((S.pol&&S.pol.cr.redsea&&S.pol.cr.redsea.mode===0)||(S.rpol&&S.rpol.avoid)))?RT2:RT;}
 
 /* ---------- çalışanlar ---------- */
-function mkStaff(role){const skill=rndSkill(),nat=wpick(NATS,NATW),[f,l]=NAMES[nat],fn=pick(f),ln=pick(l),tier=Math.random()<0.65?(skill>=4?'hi':skill<=2?'lo':'mid'):pick(['hi','mid','lo']);
- return {id:S.nid++,role,skill,nat,name:nat==='CN'?ln+' '+fn:fn+' '+ln,exp:clamp(skill*4+ri(-5,5),0,32),cv:pick(CV[tier]),wage:Math.round(SROLE[role].base*(0.55+0.22*skill)*rnd(0.85,1.2)/50)*50,stat:{voy:0,profit:0,late:0,det:0,jobs:0,hist:[]}};}
+function mkStaff(role){const skill=rndSkill(),nat=wpick(NATS,NATW),[f,l]=NAMES[nat],fn=pick(f),ln=pick(l),exp0=clamp(skill*4+ri(-5,5),0,32);
+ return {id:S.nid++,role,skill,nat,name:nat==='CN'?ln+' '+fn:fn+' '+ln,exp:exp0,cv:cvPick(skill,exp0),wage:Math.round(SROLE[role].base*(0.55+0.22*skill)*rnd(0.85,1.2)/50)*50,stat:{voy:0,profit:0,late:0,det:0,jobs:0,hist:[]}};}
 function refreshStaff(){S.spool={mgr:[],insp:[],dip:[],law:[]};for(let i=0;i<5;i++)S.spool.mgr.push(mkStaff('mgr'));for(let i=0;i<3;i++){S.spool.insp.push(mkStaff('insp'));S.spool.dip.push(mkStaff('dip'));S.spool.law.push(mkStaff('law'));}S.spoolDay=Math.floor(S.day);}
 const staffOf=(role,fleet)=>S.staff.find(x=>x.role===role&&(role!=='mgr'||x.fleet===fleet));
 const inspector=()=>staffOf('insp'),diplomat=()=>staffOf('dip');
@@ -1194,7 +1197,7 @@ installLang();
 
 /* ---------- kurulum ve eski kayıtlar ---------- */
 function initDeep(){S.xp=S.xp||{};FLEETS.forEach(f=>{if(S.xp[f.k]===undefined)S.xp[f.k]=0;});S.loans=S.loans||[];S.tco=S.tco||[];if(S.tcIdx===undefined)S.tcIdx=1;S.rnews=S.rnews||[];S.pw=S.pw||null;
- if(!S.riv){S.riv=RIVS.map((r,i)=>({id:i+1,n:r.n,c:r.c,home:r.home,f:r.f,v:r.v*rnd(0.9,1.1),pk:0,rep:r.rep,tr:0,st:'ok',t:0}));S.riv.forEach(r=>{r.pk=r.v;r.sh=rivShips(r);});}
+ if(!S.riv)S.riv=[];rivFill();
  if(S.rivNext===undefined)S.rivNext=Math.floor(S.day)+ri(70,110);if(S.crewNext===undefined)S.crewNext=Math.floor(S.day)+ri(40,70);
  const ppl=[];S.ships.forEach(s=>{svInit(s);ROLES.forEach(r=>{const p=s.crew[r.k];if(p){ppl.push(p);if(p.since===undefined)p.since=Math.floor(S.day);}});});
  ppl.concat(S.pool||[]).forEach(personInit);fillTC();}
@@ -1280,15 +1283,22 @@ function svDay(){for(const s of S.ships){if(s.svD===undefined)svInit(s);const lf
    opts:[{l:()=>L('Evet, yaptır','Yes, do it','好，去做'),s:()=>USD(f.cost)+' · '+f.days+L(' gün',' days','天')},{l:()=>L('Sonra','Later','以后再说'),s:()=>L('20 gün tekrar sorulmaz','Won’t ask again for 20 days','20天内不再询问')}]});}}}
 
 /* ---------- rakipler ---------- */
-const RIVS=[{n:'Marmara Lines',c:'#4a86d4',home:'IST',f:'dry',v:3.0e6,rep:15},{n:'Aegean Star Shipping',c:'#d4913f',home:'PIR',f:'dry',v:7.5e6,rep:28},{n:'Levant Tankers',c:'#3daf8a',home:'MER',f:'tank',v:12e6,rep:35},{n:'Golden Lotus Shipping',c:'#c9506f',home:'SHA',f:'dry',v:26e6,rep:50}];
+const RIVS=[{n:'Marmara Lines',c:'#4a86d4',home:'IST',f:'dry',v:3.0e6,rep:15},{n:'Aegean Star Shipping',c:'#d4913f',home:'PIR',f:'dry',v:7.5e6,rep:28},{n:'Levant Tankers',c:'#3daf8a',home:'MER',f:'tank',v:12e6,rep:35},{n:'Golden Lotus Shipping',c:'#c9506f',home:'SHA',f:'dry',v:26e6,rep:50},
+ {n:'Karadeniz Coasters',c:'#7a8fa6',home:'IST',f:'dry',v:1.8e6,rep:10},{n:'Bosphorus Bulk',c:'#a36f3c',home:'IST',f:'dry',v:5e6,rep:22},{n:'Adriatic Tank',c:'#5f9e6e',home:'PIR',f:'tank',v:9e6,rep:30},{n:'North Quay Shipping',c:'#6d73c9',home:'RTM',f:'dry',v:18e6,rep:42},
+ {n:'Malacca Carriers',c:'#c98a2b',home:'SIN',f:'dry',v:34e6,rep:55},{n:'Gulf Crescent Tankers',c:'#3f97a8',home:'MER',f:'tank',v:48e6,rep:60},{n:'Hanseatic Bulk',c:'#8c5fa8',home:'RTM',f:'dry',v:70e6,rep:68},{n:'Pacific Jade Lines',c:'#b8495a',home:'SHA',f:'dry',v:110e6,rep:75}];
+const RIVX=[['Mistral Shipping','#5b8dbf'],['Anatolia Bulk','#b07a4a'],['Blue Meridian','#4f9f95'],['Orient Wind Lines','#b5566f'],['Cape Lantern Shipping','#7c79c4'],['Sirius Tankers','#4a9d6b'],['Harbour Crown','#c2913a'],['Silver Tide Shipping','#8497ab']];
+function rivMk(R,id){const r={id,n:R.n,c:R.c,home:PORT[R.home]?R.home:'IST',f:R.f,v:R.v*rnd(0.9,1.1),pk:0,rep:R.rep,tr:0,st:'ok',t:0};r.pk=r.v;r.sh=rivShips(r);return r;}
+function rivFill(){let id=S.riv.reduce((a,r)=>Math.max(a,r.id),0);for(const R of RIVS)if(!S.riv.some(r=>r.n===R.n))S.riv.push(rivMk(R,++id));}
+function rivNew(){const X=RIVX.filter(x=>!S.riv.some(r=>r.n===x[0]));if(!X.length)return;const x=pick(X),id=S.riv.reduce((a,r)=>Math.max(a,r.id),0)+1,r=rivMk({n:x[0],c:x[1],home:pick(['IST','PIR','RTM','SIN','SHA']),f:Math.random()<0.3?'tank':'dry',v:rnd(2e6,6e6),rep:ri(10,25)},id);S.riv.push(r);const nm=r.n;rnews(()=>L('Yeni bir şirket kuruldu: '+nm,'A new company has been founded: '+nm,'新公司成立：'+nm));}
 const rivShips=r=>Math.max(1,Math.round(r.v/(r.f==='tank'?6.5e6:4e6)));
 const riv=id=>S.riv.find(r=>r.id===id);
 function rnews(t){S.rnews.unshift({d:Math.floor(S.day),t:LX(t)});if(S.rnews.length>12)S.rnews.length=12;}
-function rivMonth(){for(const r of S.riv){if(r.st==='gone')continue;if(r.st==='ok'&&S.day>240&&Math.random()<0.012){r.v*=rnd(0.5,0.65);const nm=r.n;rnews(()=>L(nm+' büyük zarar açıkladı: bir gemisi karaya oturdu, bir kiracısı battı',nm+' reported a heavy loss: one ship ran aground and a charterer went bust',nm+'公布巨额亏损：一艘船搁浅，一个租家破产'));}let g=rnd(-0.035,0.06)-(S.pw&&S.pw.rid===r.id&&S.pw.mode===0?0.03:0);if(r.st==='weak'||r.st==='offered')g-=0.01;r.v*=1+g;r.tr=g;r.pk=Math.max(r.pk,r.v);r.rep=clamp(r.rep+rnd(-1,1.5),5,95);
+function rivMonth(){for(const r of S.riv){if(r.st==='gone')continue;if(r.st==='ok'&&S.day>240&&Math.random()<0.006){r.v*=rnd(0.5,0.65);const nm=r.n;rnews(()=>L(nm+' büyük zarar açıkladı: bir gemisi karaya oturdu, bir kiracısı battı',nm+' reported a heavy loss: one ship ran aground and a charterer went bust',nm+'公布巨额亏损：一艘船搁浅，一个租家破产'));}let g=rnd(-0.035,0.06)-(S.pw&&S.pw.rid===r.id&&S.pw.mode===0?0.03:0);if(r.st==='weak'||r.st==='offered')g-=0.01;r.v*=1+g;r.tr=g;r.pk=Math.max(r.pk,r.v);r.rep=clamp(r.rep+rnd(-1,1.5),5,95);
  const x=r.v/(r.f==='tank'?6.5e6:4e6),nm=r.n;if(x>=r.sh+0.75){r.sh++;rnews(()=>L(nm+' filosuna yeni bir gemi kattı',nm+' added a ship to its fleet',nm+'船队新增一艘船'));}else if(x<=r.sh-0.75&&r.sh>1){r.sh--;rnews(()=>L(nm+' bir gemisini sattı',nm+' sold one of its ships',nm+'出售了一艘船'));}
  if(r.st==='ok'&&r.v<0.62*r.pk){r.st='weak';r.t=S.day;rnews(()=>L(nm+' zor durumda: bankalar kredi limitlerini kıstı',nm+' is in trouble: banks have cut its credit lines',nm+'陷入困境：银行削减了其信贷额度'));}
  else if((r.st==='weak'||r.st==='offered')&&r.v>0.8*r.pk){r.st='ok';rnews(()=>L(nm+' toparlandı',nm+' has recovered',nm+'已恢复元气'));}
- else if((r.st==='weak'||r.st==='offered')&&S.day-r.t>200){r.st='gone';rnews(()=>L(nm+' iflas etti, gemileri icradan satılıyor',nm+' went bankrupt; its ships are being sold at auction',nm+'破产，其船舶正在拍卖'));for(let k=0;k<Math.min(2,r.sh);k++)rivListing(r,0.8);}}}
+ else if((r.st==='weak'||r.st==='offered')&&S.day-r.t>200){r.st='ok';r.pk=r.v=Math.max(r.v,1.2e6);rnews(()=>L(nm+' yeni bir ortak buldu ve borçlarını yapılandırdı',nm+' found a new partner and restructured its debts',nm+'找到了新合伙人并重组了债务'));if(r.sh>1)rivListing(r,0.8);}}
+ if(S.riv.filter(r=>r.st!=='gone').length<RIVS.length&&Math.random()<0.25)rivNew();}
 function rivListing(r,disc){let A=CLSORD.filter(c=>CLS[c].t===r.f&&(LIC[c]?LIC[c][1]<=catLv(LIC[c][0])+1:true));if(!A.length)A=CLSORD.filter(c=>CLS[c].t===r.f);const cls=pick(A),m=mkListing(cls,[r.home].concat(HOME),false);m.price=Math.round(m.price*disc/1000)*1000;m.riv=r.n;S.market.push(m);return m;}
 function rivEvent(force){const L0=S.riv.filter(r=>r.st!=='gone');if(!L0.length)return;const cand=[];
  const star=[];S.ships.forEach(s=>['kap','cb','zab','c2'].forEach(k=>{const p=s.crew[k];if(p&&p.skill>=4&&!p.leave)star.push([s,k,p]);}));if(star.length)cand.push('poach');
@@ -1616,6 +1626,7 @@ const lawyer=()=>staffOf('law');
 function initDeep4(){S.cases=S.cases||[];S.cnid=S.cnid||1;S.done=S.done||{};S.tips=S.tips||{};S.tipQ=S.tipQ||[];S.msn=S.msn||{};S.whq=S.whq||[];
  if(S.spool&&!S.spool.law){S.spool.law=[];for(let i=0;i<3;i++)S.spool.law.push(mkStaff('law'));}
  if(S.staff.some(x=>x.role==='mgr'))S.mgrOk=1;awInit();
+ if(!S.v24){S.v24=1;for(const m of S.staff.concat(...Object.values(S.spool||{})))m.cv=cvPick(m.skill,m.exp);}
  if(S.v20===undefined){S.v20=1;if(S.day>2&&S.ships.length){for(const m of MSN)if(m.ok())S.msn[m.id]=1;
   pushInfo(()=>L('Yenilikler: deniz hukuku ve görevler','What’s new: maritime law and missions','新内容：海事法与任务'),()=>L('Deniz kurallarına aykırı davranırsan (yağlı su basmak, imdat çağrısına uymamak, sözleşmesi dolan denizciyi tutmak) ya da yük hasar görürse, gemin çatışırsa şirketine dava açılabilir. Ofis’e hukuk müşaviri alırsan davaları o yürütür. Şirket sekmesinde adım adım görevler var; her biri oyunun bir bölümünü öğretir ve ödül verir.','If you break the rules of the sea (pumping oily water overboard, ignoring a distress call, keeping seafarers past their contract) or cargo is damaged or your ship is in a collision, your company can be sued. Hire a legal counsel in the Office to handle the cases. The Company tab now has step-by-step missions; each one teaches a part of the game and pays a reward.','如果违反海上规则（向海里排放含油污水、不响应求救、让合同到期的船员继续工作），或者货物受损、船舶发生碰撞，公司就可能被起诉。在办公室聘请法律顾问来处理案件。公司页面现在有分步任务，每个任务都会教你游戏的一部分并给予奖励。'));}}}
 
@@ -1725,7 +1736,7 @@ function awTrack(){const y=S.yr;if(!y)return;for(const s of S.ships){if(s.state=
 function awYear(){const y=S.yr,yr=gameYear()-1,n=S.ships.length;if(!y)return awYearStart();const out=[],R=(S.riv||[]).filter(r=>r.st!=='gone'),rp=()=>R.length?pick(R).n:'Aegean Star Shipping';
  /* yılın armatörü */
  const g=(netWorth()-y.nw0)/Math.max(y.nw0,2e6),best=R.reduce((a,r)=>Math.max(a,(r.v/(r.v0||r.v))-1),-1),bestR=R.find(r=>(r.v/(r.v0||r.v))-1===best);
- out.push(['own',n>=2&&g>best&&g>0.15,bestR?bestR.n:rp()]);
+ out.push(['own',n>=2&&g>best*0.7&&g>0.15,bestR?bestR.n:rp()]);
  out.push(['safe',n>=2&&!y.det&&!y.acc&&!y.lost&&!y.dump&&y.bd<=n*2&&Math.random()<0.75,rp()]);
  const cs=S.ships.map(ciiOf),avg=cs.reduce((a,b)=>a+b,0)/Math.max(1,n);
  out.push(['green',n>=2&&avg<=1.2&&!cs.includes(4)&&Math.random()<0.75,rp()]);
@@ -2636,7 +2647,7 @@ function applyStatic(){const h=document.documentElement;h.lang=['tr','en','zh-CN
 function setLang(i){setLangIdx(i);try{localStorage.setItem('armator_lang',LANGS[LI]);}catch(e){}applyStatic();renderRot();if(ui.intro&&S)showIntro();R();}
 
 /* ---------- sürüm, tam ekran, kayıt yedeği ---------- */
-const VER='2.4',REL=!!document.querySelector('link[rel=manifest]');
+const VER='2.5',REL=!!document.querySelector('link[rel=manifest]');
 function fsOn(){return !!(document.fullscreenElement||document.webkitFullscreenElement);}
 function fsCan(){return !!(document.fullscreenEnabled||document.webkitFullscreenEnabled);}
 async function goLand(){if(!fsCan())return false;try{const el=document.documentElement;if(!fsOn())await (el.requestFullscreen?el.requestFullscreen({navigationUI:'hide'}):el.webkitRequestFullscreen());if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape');return true;}catch(e){return false;}}
