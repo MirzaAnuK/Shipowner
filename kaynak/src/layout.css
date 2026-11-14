@@ -367,3 +367,4 @@ html.pwa #tip,html.rot #tip{bottom:calc(54px + var(--mb))}
 .awi .awp{font-size:12px;font-weight:700;color:var(--ok);white-space:nowrap}
 .awd .awm{margin:8px 14px 4px;text-align:center;font-size:13px}.awd .opts{padding:8px 14px 14px}
 .trophies{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.tro{border-color:#c9a227;background:rgba(201,162,39,.1);flex-direction:column;text-align:center;padding:10px 8px}.tro .tri{font-size:30px}
+.card.due{border-left:5px solid var(--warn)}
